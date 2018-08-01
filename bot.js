@@ -19,14 +19,12 @@ client.on('message', message => {
 
   if(message.content === '!checkrole')
   {
-
     var status = checkUserRoles(message);
     if(status)
       console.log("User already has a role!");
     else {
       console.log("No role assigned!");
     }
-
   }
   if(message.content === '!csrole')
   {
@@ -42,17 +40,27 @@ client.on('message', message => {
   if(message.content.startsWith("!addrole"))
   {
     console.log("User trying to add themselves to a role.");
-    var args = message.content.split(" ");
-    console.log(args[1]);
 
-    var args = message.content.split(" ");
-    if(args[1] === 'cs')
+    if(message.channel.name === "bot")
     {
-      findRole('Computer Science', message);
+      var args = message.content.split(" ");
+      console.log(args[1]);
+
+      var args = message.content.split(" ");
+      if(args[1] === 'cs')
+      {
+        findRole('Computer Science', message);
+
+      }
+      else if(args[1] === 'bio')
+      {
+        findRole('Biology', message);
+        message.author.send("You've been assigned to the Biology role!");
+      }
     }
-    else if(args[1] === 'bio')
+    else
     {
-      findRole('Biology', message);
+      message.author.send("You must use this command in the #bot channel!");
     }
   }
 
@@ -88,7 +96,15 @@ function findRole(roleName, message)
 {
   var getRole = message.member.guild.roles.find('name', roleName);
   var roleID = getRole.id;
+  // First check if the user is already part of this role.
 
-  message.member.addRole(roleID);
-  console.log(message.content);
+  if(message.member.roles.has(roleID))
+    message.author.send("You are already assigned to this role!");
+
+  else {
+    message.member.addRole(roleID);
+    message.author.send("You've been assigned to the " + roleName + " role!");
+    console.log("Role successfully added");
+  }
+
 }
