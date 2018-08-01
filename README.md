@@ -2,6 +2,8 @@
 
 **The UAlbany Discord is a public server for students, alumni, faculty, or anyone affiliated with the university in any form. Below are some generic information you will find in regards to the server.**
 
+https://discord.gg/AEszUUv
+
 Welcome to the Discord Server for UAlbany Affiliates!
 
 **Guidelines:**
