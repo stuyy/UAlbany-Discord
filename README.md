@@ -4,15 +4,15 @@
 
 https://discord.gg/AEszUUv
 
-Welcome to the Discord Server for UAlbany Affiliates!
+<h1>Welcome to the Discord Server for UAlbany Affiliates!</h1>
 
-**Guidelines:**
+<h2>Rules and Guidelines</h2>
 
 UAlbany students, alumni, applicants, faculty, or anyone associated with UAlbany in any way are welcome here. To clear things, you don't necessary have to be a student at UAlbany to be a part of the server. This is just a community served for people to communicate with others and have open conversations.
 
 We do not limit this server to one's age, ethnicity, nationality, religion, culture, sexual orientation, political views. Please be mindful when using #general to chat with other users. We will not tolerate any forms of racism, discrimination or hate-speech.
 
-**Rules:**
+---
 
 Standard chat etiquette should always be applied when having discussions or open-ended conversations with others. With that being said, it's safe to say that everyone here should know better and we do not need to mention every particular detail on how one should behave on a public server.
 
@@ -29,3 +29,19 @@ Standard chat etiquette should always be applied when having discussions or open
 If you have any questions or concerns about the server, you can directly message anyone with the "Administrator" role.
 
 If you have any questions or concerns about UAlbany, you can ask in #general or send a direct message to anyone with the "Resident Assistant" or "Housing Manager" role.
+
+-------------------------
+
+<h2> Server Bots </h2>
+
+We have a Discord Bot designed specifically for this server. The bot serves as a tool, providing generic information, FAQs, and the ability for users to identify themselves by selecting whichever roles they wish.
+
+<h3>Roles:</h3>
+
+Users online can be assigned to a role by the Administrator or Moderator. Roles allow users to identify themselves and others across servers. 
+
+<h4>Special Roles<h4>
+
+**Administrator & Moderator** are self-explanatory.
+
+**Housing Manager & Resident Assistant** - Assigned to a user who is currently a Housing Manager(HM) or Resident Assistant(RA) on campus. These are your friendly neighbors (usually with a purple shirt during duty hours) that keep the residents safe and disciplined, ensuring campus policies are abided. Housing Managers take care of residents on the campus apartments, whereas Resident Assistants take care of residents on the traditional Quads.
