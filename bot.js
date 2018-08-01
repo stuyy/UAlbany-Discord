@@ -19,36 +19,13 @@ client.on('message', message => {
 
   if(message.content === '!checkrole')
   {
-    /*
-    role = message.guild.roles.find('name', data.majorRole[0]);
-    console.log("Searching if user has " + data.majorRole[0] + " role");
-    if(message.member.roles.has(role.id))
-    {
-      console.log("hello");
-      message.channel.send(message.author.username +  " has the " + data.majorRole[0] + " role!");
-    }
 
-    console.log("Size of array: " + data.majorRole.length);
-    */
-    var count = 0;
-    var majorArraySize = data.majorRole.length;
-    while(count<majorArraySize)
-    {
-      // find the role first.
-      role = message.guild.roles.find('name', data.majorRole[count]); // search each role
-      console.log("Searching if user has " + data.majorRole[count] + " role");
-      if(role === null)
-      {
-        count++;
-        continue;
-      }
-      else if(message.member.roles.has(role.id))
-      {
-        message.channel.send(message.author.username + " has the " + data.majorRole[count] + " role!");
-      }
-      count++;
+    var status = checkUserRoles(message);
+    if(status)
+      console.log("User already has a role!");
+    else {
+      console.log("No role assigned!");
     }
-
 
   }
   if(message.content === '!csrole')
@@ -80,6 +57,32 @@ client.on('message', message => {
   }
 
 });
+
+function checkUserRoles(message)
+{
+  var count = 0;
+  var majorArraySize = data.majorRole.length;
+  while(count<majorArraySize)
+  {
+    // find the role first.
+    role = message.guild.roles.find('name', data.majorRole[count]); // search each role
+    console.log("Searching if user has " + data.majorRole[count] + " role");
+    if(role === null)
+    {
+      count++;
+      continue;
+    }
+    else if(message.member.roles.has(role.id))
+    {
+      message.channel.send(message.author.username + " has the " + data.majorRole[count] + " role!");
+      return true;
+    }
+    count++;
+  }
+
+  return false;
+
+}
 
 function findRole(roleName, message)
 {
