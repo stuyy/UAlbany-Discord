@@ -40,8 +40,58 @@ We have a Discord Bot designed specifically for this server. The bot serves as a
 
 Users online can be assigned to a role by the Administrator or Moderator. Roles allow users to identify themselves and others across servers. 
 
-<h4>Special Roles<h4>
+<h4>Special Roles:</h4>
+
+These roles are only assigned by the Administrator.
 
 **Administrator & Moderator** are self-explanatory.
 
 **Housing Manager & Resident Assistant** - Assigned to a user who is currently a Housing Manager(HM) or Resident Assistant(RA) on campus. These are your friendly neighbors (usually with a purple shirt during duty hours) that keep the residents safe and disciplined, ensuring campus policies are abided. Housing Managers take care of residents on the campus apartments, whereas Resident Assistants take care of residents on the traditional Quads.
+
+**Orientation Leader** - Assigned to a user that is an Orientation Leader. These are typically undergraduate students that are responsible for leading orientation dates during the summer for new students. They answer all questions you have relating to UAlbany.
+
+**Alumni** - Assigned to a user who has graduated from the University at Albany.
+
+**Faculty** - Assigned to a user who is part of a faculty team in a department at the University.
+
+<h4>Normal Roles:</h4>
+
+These are roles that can be assigned automatically by the bot upon the "!addrole" command in the #bot channel.
+
+<h5>Grade Level</h5>
+
+* Freshmen
+* Sophomore
+* Junior
+* Senior
+
+<h5>Majors</h5>
+
+* Biochemistry
+* Biology
+* Business Administration
+* Chemistry
+* Computer Science
+* Computer Engineering
+* Economics
+* English
+* Mathematics
+* Physics
+
+<h5>Miscellaneous</h5>
+
+* Greek Life
+* ?????
+
+<h5>Gaming</h5>
+
+* Overwatch
+* League of Legends
+* Minecraft
+* CSGO
+* Hearthstone
+* Fort Nite
+
+If you do not see a role listed here, you can request one by simply sending a message to the Administrator(s).
+
+
