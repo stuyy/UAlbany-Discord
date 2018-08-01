@@ -46,21 +46,56 @@ client.on('message', message => {
       var args = message.content.split(" ");
       console.log(args[1]);
 
-      var args = message.content.split(" ");
+      //var args = message.content.split(" ");
       if(args[1] === 'cs')
       {
-        findRole('Computer Science', message);
-
+        addUserRole('Computer Science', message);
       }
       else if(args[1] === 'bio')
       {
-        findRole('Biology', message);
-        message.author.send("You've been assigned to the Biology role!");
+        addUserRole('Biology', message);
+
       }
+      else if(args[1] === 'chem')
+      {
+        addUserRole('Chemistry', message);
+      }
+      else if(args[1] === 'phys')
+        addUserRole('Physics', message);
+
+      else if(args[1] === 'math')
+        addUserRole('Mathematics', message);
     }
     else
     {
       message.author.send("You must use this command in the #bot channel!");
+    }
+  }
+
+  if(message.content.startsWith("!deleterole"))
+  {
+    console.log("User trying to delete themselves from a role.");
+    var args = message.content.split(" ");
+    switch(args[1])
+    {
+      case 'cs':
+      deleteUserRole('Computer Science', message);
+      break;
+
+      case 'bio':
+      deleteUserRole('Biology', message);
+      break;
+
+      case 'phys':
+      deleteUserRole('Physics', message);
+      break;
+
+      case 'chem':
+      deleteUserRole('Chemistry', message);
+      break;
+
+      default:
+      message.author.send("Please specify a role");
     }
   }
 
@@ -92,19 +127,44 @@ function checkUserRoles(message)
 
 }
 
-function findRole(roleName, message)
+function addUserRole(roleName, message)
 {
-  var getRole = message.member.guild.roles.find('name', roleName);
-  var roleID = getRole.id;
-  // First check if the user is already part of this role.
+  var role = message.member.guild.roles.find('name', roleName);
 
-  if(message.member.roles.has(roleID))
+  if(role === null) // Check if the user entry is legal.
+  {
+    message.author.send("Role assignment failed. The role does not exist or you tried to access a special role. Please contact the Administrator for additional info.");
+    return;
+  }
+  // Check if the user is already assigned to the role.
+  if(message.member.roles.has(role.id))
     message.author.send("You are already assigned to this role!");
 
   else {
-    message.member.addRole(roleID);
+    message.member.addRole(role.id);
     message.author.send("You've been assigned to the " + roleName + " role!");
     console.log("Role successfully added");
   }
 
+}
+
+function deleteUserRole(roleName, message)
+{
+  var role = message.member.guild.roles.find('name', roleName);
+  if(role === null)
+  {
+    message.author.send("Role removal failed. You specified a role that you were not assigned to already, or doesn't exist. Please contact the Administrator for additional info.");
+    return;
+  }
+
+  if(message.member.roles.has(role.id))
+  {
+    message.member.removeRole(role.id);
+    message.author.send("You have successfully removed yourself from the " + roleName + " role!");
+    console.log("Role removed successfully!");
+  }
+  else
+  {
+    message.member.author.send("You're trying to remove yourself from a role you are not assigned to.");
+  }
 }
