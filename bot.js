@@ -193,7 +193,7 @@ function getTemp(msg, url, city)
 
       else {
         var temp = kelToF(data.main.temp);
-        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) " + F.");
+        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " + F.");
       }
   })
 }
