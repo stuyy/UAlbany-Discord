@@ -1,7 +1,7 @@
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const data = require("./dbot.json");
+const botinfo = require("./botinfo.json");
+const request = require('request');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -21,7 +21,14 @@ client.on('message', message => {
 
   else if(message.content === '!weather')
   {
-
+    message.channel.send("What is your city?");
+    const filter = m => (!m.author.bot);
+    message.channel.awaitMessages(filter, {max: 1, time: 0, errors: ['time'] })
+    .then(collected => {
+      cityName = collected.first().content;
+      var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=b72c192b44cefcc6c901db99aaa5823e';
+      getTemp(message, url, cityName);
+    })
   }
 
   else if(message.content === '!destroy')
@@ -107,12 +114,12 @@ client.on('message', message => {
 function checkUserRoles(message)
 {
   var count = 0;
-  var majorArraySize = data.majorRole.length;
+  var majorArraySize = botinfo.majorRole.length;
   while(count<majorArraySize)
   {
     // find the role first.
-    role = message.guild.roles.find('name', data.majorRole[count]); // search each role
-    console.log("Searching if user has " + data.majorRole[count] + " role");
+    role = message.guild.roles.find('name', botinfo.majorRole[count]); // search each role
+    console.log("Searching if user has " + botinfo.majorRole[count] + " role");
     if(role === null)
     {
       count++;
@@ -120,7 +127,7 @@ function checkUserRoles(message)
     }
     else if(message.member.roles.has(role.id))
     {
-      message.channel.send(message.author.username + " has the " + data.majorRole[count] + " role!");
+      message.channel.send(message.author.username + " has the " + botinfo.majorRole[count] + " role!");
       return true;
     }
     count++;
@@ -170,4 +177,23 @@ function deleteUserRole(roleName, message)
   {
     message.member.author.send("You're trying to remove yourself from a role you are not assigned to.");
   }
+}
+
+function kelToF(temp)
+{
+  return (temp*(9/5)) - 459.67;
+}
+
+function getTemp(msg, url, city)
+{
+  request(url, function(err, res, body) {
+    var data = JSON.parse(body);
+    if(data.cod === "404")
+      msg.channel.send("Invalid city provided, try again.");
+
+      else {
+        var temp = kelToF(data.main.temp);
+        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) " + F.");
+      }
+  })
 }
