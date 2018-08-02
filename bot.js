@@ -138,6 +138,54 @@ client.on('message', message => {
       deleteUserRole('Chemistry', message);
       break;
 
+      case 'math':
+      deleteUserRole('Mathematics', message);
+      break;
+
+      case 'art':
+      deleteUserRole('Art', message);
+      break;
+
+      case 'crj':
+      deleteUserRole('Criminal Justice', message);
+      break;
+
+      case 'eco':
+      deleteUserRole('Economics', message);
+      break;
+
+      case 'bus':
+      deleteUserRole('Business Administration', message);
+      break;
+
+      case 'ce':
+      deleteUserRole('Computer Engineering', message);
+      break;
+
+      case 'freshmen':
+      deleteUserRole('Freshmen', message);
+      break;
+
+      case 'sophomore':
+      deleteUserRole('Sophomore', message);
+      break;
+
+      case 'junior':
+      deleteUserRole('Junior', message);
+      break;
+
+      case 'senior':
+      deleteUserRole('Senior', message);
+      break;
+
+      case 'transfer':
+      deleteUserRole('Transfer', message);
+      break;
+
+      case 'greeklife':
+      deleteUserRole('Greek Life', message);
+      break;
+
       default:
       message.author.send("Please specify a role");
     }
@@ -181,16 +229,16 @@ function addUserRole(roleName, message)
 
   if(role === null) // Check if the user entry is legal.
   {
-    message.author.send("Role assignment failed. The role does not exist or you tried to access a special role. Please contact the Administrator for additional info.");
+    message.channel.reply("Role assignment failed. The role does not exist or you tried to access a special role. Please contact the Administrator for additional info.");
     return;
   }
   // Check if the user is already assigned to the role.
   if(message.member.roles.has(role.id))
-    message.author.send("You are already assigned to this role!");
+    message.channel.reply("You are already assigned to this role!");
 
   else {
     message.member.addRole(role.id);
-    message.author.send("You've been assigned to the " + roleName + " role!");
+    message.author.reply("You've been assigned to the " + roleName + " role!");
     console.log("Role successfully added");
   }
 
