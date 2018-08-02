@@ -229,16 +229,16 @@ function addUserRole(roleName, message)
 
   if(role === null) // Check if the user entry is legal.
   {
-    message.channel.reply("Role assignment failed. The role does not exist or you tried to access a special role. Please contact the Administrator for additional info.");
+    message.channel.send("Role assignment failed. The role does not exist or you tried to access a special role. Please contact the Administrator for additional info.");
     return;
   }
   // Check if the user is already assigned to the role.
   if(message.member.roles.has(role.id))
-    message.channel.reply("You are already assigned to this role!");
+    message.channel.send("You are already assigned to this role!");
 
   else {
     message.member.addRole(role.id);
-    message.author.reply("You've been assigned to the " + roleName + " role!");
+    message.author.send("You've been assigned to the " + roleName + " role!");
     console.log("Role successfully added");
   }
 
