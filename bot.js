@@ -29,6 +29,7 @@ client.on('message', message => {
       var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=b72c192b44cefcc6c901db99aaa5823e';
       getTemp(message, url, cityName);
     })
+    .catch(collected => console.log("Error"));
   }
 
   else if(message.content === '!destroy')
@@ -193,7 +194,7 @@ function getTemp(msg, url, city)
 
       else {
         var temp = kelToF(data.main.temp);
-        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " + F.");
+        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + "degrees F.");
       }
   })
 }
