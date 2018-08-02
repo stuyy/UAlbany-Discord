@@ -25,16 +25,23 @@ client.on('message', message => {
     })
     .catch(collected => console.log(`After 5 seconds, only ${collected.size} out of 4 voted.`));
 
+  }
 
+  else if(message.content === '!uptime')
+  {
+
+    let totalSeconds = (client.uptime / 1000);
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = Math.floor(totalSeconds % 60);
+
+    message.channel.send("Bot has been online for " + hours + " hours " + minutes + " minutes and " + seconds + " seconds");
   }
 
 
 });
 
-function returnTemp()
-{
-
-}
 
 function kelToF(temp)
 {
