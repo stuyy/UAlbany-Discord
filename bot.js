@@ -51,27 +51,60 @@ client.on('message', message => {
   {
     console.log("User trying to add themselves to a role.");
 
-    if(message.channel.name === "bot")
+    if(message.channel.name === "bot2" || message.channel.name === "bot")
     {
       var args = message.content.split(" ");
       //var args = message.content.split(" ");
       if(args[1] === 'cs')
-      {
         addUserRole('Computer Science', message);
-      }
+
       else if(args[1] === 'bio')
-      {
         addUserRole('Biology', message);
-      }
+
       else if(args[1] === 'chem')
-      {
         addUserRole('Chemistry', message);
-      }
+
       else if(args[1] === 'phys')
         addUserRole('Physics', message);
 
       else if(args[1] === 'math')
         addUserRole('Mathematics', message);
+
+      else if(args[1] === 'art')
+        addUserRole('Art', message);
+
+      else if(args[1] === 'inf')
+        addUserRole('Informatics', message);
+
+      else if(args[1] === 'crj')
+        addUserRole('Criminal Justice', message);
+
+      else if(args[1] === 'bus')
+        addUserRole('Business Administration', message);
+
+      else if(args[1] === 'eco')
+        addUserRole('Economics', message);
+
+      else if(args[1] === 'ce')
+        addUserRole('Computer Engineering', message);
+
+      else if(args[1] === 'freshmen')
+        addUserRole('Freshmen', message);
+
+      else if(args[1] === 'sophomore')
+        addUserRole('Sophomore', message);
+
+      else if(args[1] === 'junior')
+        addUserRole('Junior', message);
+
+      else if(args[1] === 'senior')
+        addUserRole('Senior', message);
+
+      else if(args[1] === 'transfer')
+        addUserRole('Transfer', message);
+
+      else if(args[1] === 'greeklife')
+        addUserRole('Greek Life', message);
 
       else {
         message.author.send("The role you specified does not exist or is a special role!");
@@ -112,6 +145,10 @@ client.on('message', message => {
 
 }); // End of message event.
 
+function isAdmin()
+{
+
+}
 function checkUserRoles(message)
 {
   var count = 0;
@@ -194,7 +231,7 @@ function getTemp(msg, url, city)
 
       else {
         var temp = kelToF(data.main.temp);
-        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + "degrees F.");
+        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " degrees F.");
       }
   })
 }
