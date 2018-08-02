@@ -2,22 +2,29 @@ const data = require("./dbot.json");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-client.login(data.token);
+
+client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
 
-  console.log("Hello");
+  console.log("Logged in successfully!");
+  client.user.setActivity('with Federal Loans', {type: 'PLAYING'});
 
 });
 
 client.on('message', message => {
 
-  if(message.content === 'hello')
+  if(message.content === 'bot help')
   {
-    message.reply('Welcome!');
+    message.channel.send("`!addrole - Specify one or multiple keywords to be assigned to the respective role.\n!deleterole - Specify one or multiple keywords to be removed from the respective roles.\n!roles - list of all the roles\n!movein - Display information on move-in dates\n`");
   }
 
-  if(message.content === '!checkrole')
+  else if(message.content === '!destroy')
+  {
+    client.destroy();
+  }
+
+  else if(message.content === '!checkrole')
   {
     var status = checkUserRoles(message);
     if(status)
@@ -26,26 +33,14 @@ client.on('message', message => {
       console.log("No role assigned!");
     }
   }
-  if(message.content === '!csrole')
-  {
-    var getRole = message.member.guild.roles.find('name', 'Computer Science');
-    var csRoleID = getRole.id;
 
-    console.log(csRoleID);
-
-    message.member.addRole(csRoleID);
-
-  }
-
-  if(message.content.startsWith("!addrole"))
+  else if(message.content.startsWith("!addrole"))
   {
     console.log("User trying to add themselves to a role.");
 
     if(message.channel.name === "bot")
     {
       var args = message.content.split(" ");
-      console.log(args[1]);
-
       //var args = message.content.split(" ");
       if(args[1] === 'cs')
       {
@@ -65,6 +60,10 @@ client.on('message', message => {
 
       else if(args[1] === 'math')
         addUserRole('Mathematics', message);
+
+      else {
+        message.author.send("The role you specified does not exist or is a special role!");
+      }
     }
     else
     {
@@ -72,7 +71,7 @@ client.on('message', message => {
     }
   }
 
-  if(message.content.startsWith("!deleterole"))
+  else if(message.content.startsWith("!deleterole"))
   {
     console.log("User trying to delete themselves from a role.");
     var args = message.content.split(" ");
@@ -99,7 +98,7 @@ client.on('message', message => {
     }
   }
 
-});
+}); // End of message event.
 
 function checkUserRoles(message)
 {
