@@ -1,7 +1,7 @@
 {
-  "name": "UAlbany BOT",
-  "description": "Discord Bot served for the UAlbany Community Discord",
-  "version": "1.0.0",
+  "name": "Test",
+  "description": "Test",
+  "version": "0.0.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
