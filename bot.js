@@ -238,7 +238,7 @@ function addUserRole(roleName, message)
 
   else {
     message.member.addRole(role.id);
-    message.author.send("You've been assigned to the " + roleName + " role!");
+    message.channel.send("You've been assigned to the " + roleName + " role!");
     console.log("Role successfully added");
   }
 
