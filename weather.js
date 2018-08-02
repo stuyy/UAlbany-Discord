@@ -66,4 +66,4 @@ function getTemp(m, url, city)
   })
 }
 
-client.login("NDc0NTE5Mzk1NjEyMjI5NjUy.DkRqLA.H-fK6Pr5XLvA9Dem052KZ3-5vMs");
+client.login("");
