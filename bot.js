@@ -249,19 +249,19 @@ function deleteUserRole(roleName, message)
   var role = message.member.guild.roles.find('name', roleName);
   if(role === null)
   {
-    message.author.send("Role removal failed. You specified a role that you were not assigned to already, or doesn't exist. Please contact the Administrator for additional info.");
+    message.channel.send("Role removal failed. You specified a role that you were not assigned to already, or doesn't exist. Please contact the Administrator for additional info.");
     return;
   }
 
   if(message.member.roles.has(role.id))
   {
     message.member.removeRole(role.id);
-    message.author.send("You have successfully removed yourself from the " + roleName + " role!");
+    message.channel.send("You have successfully removed yourself from the " + roleName + " role!");
     console.log("Role removed successfully!");
   }
   else
   {
-    message.member.author.send("You're trying to remove yourself from a role you are not assigned to.");
+    message.channel.send("You're trying to remove yourself from a role you are not assigned to.");
   }
 }
 
