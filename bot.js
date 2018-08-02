@@ -19,6 +19,11 @@ client.on('message', message => {
     message.channel.send("`!addrole - Specify one or multiple keywords to be assigned to the respective role.\n!deleterole - Specify one or multiple keywords to be removed from the respective roles.\n!roles - list of all the roles\n!movein - Display information on move-in dates\n`");
   }
 
+  else if(message.content === '!weather')
+  {
+
+  }
+
   else if(message.content === '!destroy')
   {
     client.destroy();
@@ -49,7 +54,6 @@ client.on('message', message => {
       else if(args[1] === 'bio')
       {
         addUserRole('Biology', message);
-
       }
       else if(args[1] === 'chem')
       {
