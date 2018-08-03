@@ -196,6 +196,11 @@ client.on('message', message => {
     }
   }
 
+  else if(message.content.toLowerCase() === '!albany')
+  {
+    message.channel.send("Here's a picture of UAlabny's Football Field: ", {files: ['./ua.jpg']});
+  }
+
 }); // End of message event.
 
 function isAdmin()
