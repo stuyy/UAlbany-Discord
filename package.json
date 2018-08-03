@@ -1,25 +1,15 @@
 {
-  "name": "UAlbany-Discord",
-  "version": "1.0.0",
-  "description": "**The UAlbany Discord is a public server for students, alumni, faculty, or anyone affiliated with the university in any form. Below are some generic information you will find in regards to the server.**",
+  "name": "UAlbany Bot",
+  "description": "Bot for UA Discord",
+  "version": "0.0.0",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ansonfoong/UAlbany-Discord.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ansonfoong/UAlbany-Discord/issues"
-  },
-  "homepage": "https://github.com/ansonfoong/UAlbany-Discord#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
     "pdf-poppler": "^0.2.1",
     "request": "^2.87.0"
+
   }
 }
