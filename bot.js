@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const botinfo = require("./botinfo.json");
 const request = require('request');
+const pdf = require('pdf-poppler');
+const path = require('path');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -55,6 +57,11 @@ client.on('message', message => {
     {
       var args = message.content.split(" ");
       //var args = message.content.split(" ");
+      var argLength = args.length;
+      if(args>2) // If greater than 2, then the user is trying to add themselves to more than 1 role.
+      {
+
+      }
       if(args[1] === 'cs')
         addUserRole('Computer Science', message);
 
@@ -190,8 +197,31 @@ client.on('message', message => {
       message.author.send("Please specify a role");
     }
   }
+  else if(message.content.toLowerCase() === '!hours')
+  {
+    convert("hours", message);
+  }
 
 }); // End of message event.
+
+function convert(fileName, message)
+{
+  let file = "./Major_MAPS/" + fileName + ".pdf";
+  let opts = {
+      format: 'png',
+      out_dir: path.dirname("./PDF_IMAGES"),
+      out_prefix: path.basename(file, path.extname(file)),
+      page: null
+  }
+  pdf.convert(file, opts)
+  .then(res => {
+      console.log('Successfully converted');
+      message.channel.send('Hours of Operation: ', {files: ['./Major_MAPS/' + fileName + '-1.png']});
+  })
+  .catch(error => {
+      console.error(error);
+  });
+}
 
 function isAdmin()
 {
