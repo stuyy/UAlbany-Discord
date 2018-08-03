@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "discord.js": "11.3.2",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "pdf-poppler": "0.2.1"
+
   }
 }
