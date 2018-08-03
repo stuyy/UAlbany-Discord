@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ansonfoong/UAlbany-Discord#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "pdf-poppler": "^0.2.1"
+    "pdf-poppler": "^0.2.1",
+    "request": "^2.87.0"
   }
 }
