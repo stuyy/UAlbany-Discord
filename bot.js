@@ -21,24 +21,7 @@ client.on('message', message => {
 
   else if(message.content === '!roles')
   {
-    message.channel.send("`art - Art\n
-    bus - Business Administration\n
-    ce - Computer Engineering\n
-    crj - Criminal Justice\n
-    cs - Computer Science\n
-    bio - Biology\n
-    chem - Chemistry\n
-    eco - Economics\n
-    geo - geography\n
-    inf - Informatics\n
-    math - Mathematics\n
-    phys - Physics\n
-    psy - Psychology\n
-    freshmen - Freshmen\n
-    sophomore - Sophomore\n
-    junior - Junior\n
-    senior - Senior\n
-    transfer - transfer`");
+    message.channel.send("`art - Art\nbus - Business Administration\nce - Computer Engineering\ncrj - Criminal Justice\ncs - Computer Science\nbio - Biology\nchem - Chemistry\neco - Economics\ngeo - geography\ninf - Informatics\nmath - Mathematics\nphys - Physics\npsy - Psychology\nfreshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer`");
   }
 
   else if(message.content === '!weather')
