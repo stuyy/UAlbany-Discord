@@ -16,7 +16,32 @@ client.on('message', message => {
 
   if(message.content === 'bot help')
   {
-    message.channel.send("`!addrole - Specify one or multiple keywords to be assigned to the respective role.\n!deleterole - Specify one or multiple keywords to be removed from the respective roles.\n!roles - list of all the roles\n!movein - Display information on move-in dates\n`");
+    message.channel.send("`!addrole - Specify one or multiple keywords to be assigned to the respective role.\n!deleterole - Specify one or multiple keywords to be removed from the respective roles.\n!roles - list of all the roles available\n!courseinfo - Enter the department/subject code/course number to retrieve a list of courses offered in Fall 2018 as an image.\n!weather - Provides the weather (only temperature as of now) of the city in Fahrenheight`");
+  }
+
+  else if(message.content === '!roles')
+  {
+    message.channel.send("`
+    art - Art\n
+    bus - Business Administration\n
+    ce - Computer Engineering\n
+    crj - Criminal Justice\n
+    cs - Computer Science\n
+    bio - Biology\n
+    chem - Chemistry\n
+    eco - Economics\n
+    geo - geography\n
+    inf - Informatics\n
+    math - Mathematics\n
+    phys - Physics\n
+    psy - Psychology\n
+    freshmen - Freshmen\n
+    sophomore - Sophomore\n
+    junior - Junior\n
+    senior - Senior\n
+    transfer - transfer
+
+    ``");
   }
 
   else if(message.content === '!weather')
