@@ -86,7 +86,7 @@ client.on('message', message => {
       else if(args[1] === 'art')
         addUserRole('Art', message);
 
-      else if(args[1] ===' psy')
+      else if(args[1] === 'psy')
         addUserRole('Psychology', message);
 
       else if(args[1] === 'inf')
