@@ -12,6 +12,15 @@ client.on("ready", () => {
 
 });
 
+client.on('guildMemberAdd', member => {
+
+  var generalChannel = client.channels.find('name', 'general');
+  console.log(member.user.username);
+  console.log(generalChannel.name);
+
+
+});
+
 client.on('message', message => {
 
   if(message.content === 'bot help')
@@ -83,6 +92,27 @@ client.on('message', message => {
       else if(args[1] === 'math')
         addUserRole('Mathematics', message);
 
+      else if(args[1] === 'actuarial')
+        addUserRole('Actuarial Science');
+
+      else if(args[1] === 'afs')
+        addUserRole('Africana Studies');
+
+      else if(args[1] === 'atm')
+        addUserRole('Atmospheric Science');
+
+      else if(args[1] === 'acc')
+        addUserRole('Accounting');
+
+      else if(args[1] === 'dig')
+        addUserRole('Digital Forensics');
+
+      else if(args[1] === 'cyb')
+        addUserRole('Cybersecurity');
+
+      else if(args[1] === 'polsci')
+        addUserRole('Political Science');
+
       else if(args[1] === 'art')
         addUserRole('Art', message);
 
@@ -123,7 +153,7 @@ client.on('message', message => {
         addUserRole('Greek Life', message);
 
       else {
-        message.channel.send("The role you specified does not exist or is a special role!");
+        message.channel.send("The role you specified does not exist or is a special role! Sorry about that. :(");
       }
     }
     else
@@ -180,6 +210,34 @@ client.on('message', message => {
 
       case 'ce':
       deleteUserRole('Computer Engineering', message);
+      break;
+
+      case 'act':
+      deleteUserRole('Actuarial Science', message);
+      break;
+
+      case 'afs':
+      deleteUserRole('Africana Studies', message);
+      break;
+
+      case 'atm':
+      deleteUserRole('Atmospheric Science', message);
+      break;
+
+      case 'acc':
+      deleteUserRole('Accounting', message);
+      break;
+
+      case 'dig':
+      deleteUserRole('Digital Forensics', message);
+      break;
+
+      case 'cyb':
+      deleteUserRole('Cybersecurity', message);
+      break;
+
+      case 'polsci':
+      deleteUserRole('Political Science', message);
       break;
 
       case 'freshmen':
