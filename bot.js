@@ -41,7 +41,7 @@ client.on('message', message => {
     senior - Senior\n
     transfer - transfer
 
-    ``");
+    `");
   }
 
   else if(message.content === '!weather')
