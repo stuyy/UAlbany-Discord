@@ -93,25 +93,25 @@ client.on('message', message => {
         addUserRole('Mathematics', message);
 
       else if(args[1] === 'actuarial')
-        addUserRole('Actuarial Science');
+        addUserRole('Actuarial Science', message);
 
       else if(args[1] === 'afs')
-        addUserRole('Africana Studies');
+        addUserRole('Africana Studies', message);
 
       else if(args[1] === 'atm')
-        addUserRole('Atmospheric Science');
+        addUserRole('Atmospheric Science', message);
 
       else if(args[1] === 'acc')
-        addUserRole('Accounting');
+        addUserRole('Accounting', message);
 
       else if(args[1] === 'dig')
-        addUserRole('Digital Forensics');
+        addUserRole('Digital Forensics', message);
 
       else if(args[1] === 'cyb')
-        addUserRole('Cybersecurity');
+        addUserRole('Cybersecurity', message);
 
       else if(args[1] === 'polsci')
-        addUserRole('Political Science');
+        addUserRole('Political Science', message);
 
       else if(args[1] === 'art')
         addUserRole('Art', message);
