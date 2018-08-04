@@ -8,7 +8,7 @@ client.login(process.env.BOT_TOKEN);
 client.on("ready", () => {
 
   console.log("Logged in successfully!");
-  client.user.setActivity('with Federal Loans', {type: 'PLAYING'});
+  client.user.setActivity('with Federal Loans | "bot help" for more info', {type: 'PLAYING'});
 
 });
 
