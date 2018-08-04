@@ -160,16 +160,16 @@ client.on('message', message => {
       else if(args[1] === 'lol')
         addUserRole('League of Legends', message);
 
-      else if(args[1] === 'siege');
+      else if(args[1] === 'siege')
         addUserRole('Rainbow Six Siege', message);
 
-      else if(args[1] === 'csgo');
+      else if(args[1] === 'csgo')
         addUserRole('CSGO', message);
 
-      else if(args[1] === 'pubg');
+      else if(args[1] === 'pubg')
         addUserRole('PUBG', message);
 
-      else if(args[1] === 'fn');
+      else if(args[1] === 'fn')
         addUserRole('Fort Nite', message);
 
       else {
@@ -307,7 +307,6 @@ client.on('message', message => {
       case 'siege':
       deleteUserRole('Rainbow Six Siege', message);
       break;
-
 
       default:
       message.channel.send("Please specify a role");
