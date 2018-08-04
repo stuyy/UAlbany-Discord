@@ -72,6 +72,9 @@ client.on('message', message => {
       else if(args[1] === 'phys')
         addUserRole('Physics', message);
 
+      else if(args[1] === 'geo')
+        addUserRole('Geography', message);
+
       else if(args[1] === 'math')
         addUserRole('Mathematics', message);
 
@@ -112,12 +115,12 @@ client.on('message', message => {
         addUserRole('Greek Life', message);
 
       else {
-        message.author.send("The role you specified does not exist or is a special role!");
+        message.channel.send("The role you specified does not exist or is a special role!");
       }
     }
     else
     {
-      message.author.send("You must use this command in the #bot channel!");
+      message.channel.send("You must use this command in the #bot channel!");
     }
   }
 
@@ -141,6 +144,10 @@ client.on('message', message => {
 
       case 'chem':
       deleteUserRole('Chemistry', message);
+      break;
+
+      case 'geo':
+      deleteUserRole('Geography', message);
       break;
 
       case 'math':
@@ -192,7 +199,7 @@ client.on('message', message => {
       break;
 
       default:
-      message.author.send("Please specify a role");
+      message.channel.send("Please specify a role");
     }
   }
 
