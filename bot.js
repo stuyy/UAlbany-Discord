@@ -18,6 +18,8 @@ client.on('guildMemberAdd', member => {
   console.log(member.user.username);
   console.log(generalChannel.name);
 
+  console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!")
+
 
 });
 
@@ -30,7 +32,7 @@ client.on('message', message => {
 
   else if(message.content === '!roles')
   {
-    message.channel.send("`art - Art\nbus - Business Administration\nce - Computer Engineering\ncrj - Criminal Justice\ncs - Computer Science\nbio - Biology\nchem - Chemistry\neco - Economics\ngeo - geography\ninf - Informatics\nmath - Mathematics\nphys - Physics\npsy - Psychology\nfreshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer`");
+    message.channel.send("`acc - Accounting\nact - Actuarial Science\nafs - Africana Studies\nart - Art\natm - Atmospheric Science\nbus - Business Administration\nce - Computer Engineering\ncrj - Criminal Justice\ncs - Computer Science\nbio - Biology\nchem - Chemistry\ncyb - Cybersecuritydig - Digital Forensics\neco - Economics\ngeo - geography\ninf - Informatics\nmath - Mathematics\nphys - Physics\npsy - Psychology\nfreshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n\nGaming Roles: ow - Overwatch\nlol - League of Legends\n - fn - Fort Nite\n pubg - PUBG\n csgo - CSGO\nsiege - Rainbow Six Siege\n`");
   }
 
   else if(message.content === '!weather')
@@ -92,7 +94,7 @@ client.on('message', message => {
       else if(args[1] === 'math')
         addUserRole('Mathematics', message);
 
-      else if(args[1] === 'actuarial')
+      else if(args[1] === 'act')
         addUserRole('Actuarial Science', message);
 
       else if(args[1] === 'afs')
