@@ -21,8 +21,7 @@ client.on('message', message => {
 
   else if(message.content === '!roles')
   {
-    message.channel.send("`
-    art - Art\n
+    message.channel.send("`art - Art\n
     bus - Business Administration\n
     ce - Computer Engineering\n
     crj - Criminal Justice\n
@@ -39,9 +38,7 @@ client.on('message', message => {
     sophomore - Sophomore\n
     junior - Junior\n
     senior - Senior\n
-    transfer - transfer
-
-    `");
+    transfer - transfer`");
   }
 
   else if(message.content === '!weather')
