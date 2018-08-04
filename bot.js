@@ -154,6 +154,24 @@ client.on('message', message => {
       else if(args[1] === 'greeklife')
         addUserRole('Greek Life', message);
 
+      else if(args[1] === 'ow')
+        addUserRole('Overwatch', message);
+
+      else if(args[1] === 'lol')
+        addUserRole('League of Legends', message);
+
+      else if(args[1] === 'siege');
+        addUserRole('Rainbow Six Siege', message);
+
+      else if(args[1] === 'csgo');
+        addUserRole('CSGO', message);
+
+      else if(args[1] === 'pubg');
+        addUserRole('PUBG', message);
+
+      else if(args[1] === 'fn');
+        addUserRole('Fort Nite', message);
+
       else {
         message.channel.send("The role you specified does not exist or is a special role! Sorry about that. :(");
       }
@@ -265,6 +283,31 @@ client.on('message', message => {
       case 'greeklife':
       deleteUserRole('Greek Life', message);
       break;
+
+      case 'csgo':
+      deleteUserRole('CSGO', message);
+      break;
+
+      case 'pubg':
+      deleteUserRole('PUBG', message);
+      break;
+
+      case 'ow':
+      deleteUserRole('Overwatch', message);
+      break;
+
+      case 'lol':
+      deleteUserRole('League of Legends', message);
+      break;
+
+      case 'fn':
+      deleteUserRole('Fort Nite', message);
+      break;
+
+      case 'siege':
+      deleteUserRole('Rainbow Six Siege', message);
+      break;
+
 
       default:
       message.channel.send("Please specify a role");
