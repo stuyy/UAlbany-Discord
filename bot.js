@@ -20,7 +20,6 @@ client.on('guildMemberAdd', member => {
 
   console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!")
 
-
 });
 
 client.on('message', message => {
@@ -32,7 +31,7 @@ client.on('message', message => {
 
   else if(message.content === '!roles')
   {
-    message.channel.send("`acc - Accounting\nact - Actuarial Science\nafs - Africana Studies\nart - Art\natm - Atmospheric Science\nbus - Business Administration\nce - Computer Engineering\ncrj - Criminal Justice\ncs - Computer Science\nbio - Biology\nchem - Chemistry\ncyb - Cybersecuritydig - Digital Forensics\neco - Economics\ngeo - geography\ninf - Informatics\nmath - Mathematics\nphys - Physics\npsy - Psychology\nfreshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n\nGaming Roles: ow - Overwatch\nlol - League of Legends\n - fn - Fort Nite\n pubg - PUBG\n csgo - CSGO\nsiege - Rainbow Six Siege\n`");
+    message.channel.send("`acc - Accounting\nact - Actuarial Science\nafs - Africana Studies\nart - Art\natm - Atmospheric Science\nbus - Business Administration\nce - Computer Engineering\ncrj - Criminal Justice\ncs - Computer Science\nbio - Biology\nchem - Chemistry\ncyb - Cybersecuritydig - Digital Forensics\neco - Economics\ngeo - geography\ninf - Informatics\nmath - Mathematics\nphys - Physics\npsy - Psychology\nfreshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n\nGaming Roles:\now - Overwatch\nlol - League of Legends\nfn - Fort Nite\npubg - PUBG\ncsgo - CSGO\nsiege - Rainbow Six Siege\n`");
   }
 
   else if(message.content === '!weather')
@@ -406,7 +405,8 @@ function getTemp(msg, url, city)
 
       else {
         var temp = kelToF(data.main.temp);
-        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " degrees F.");
+        console.log(data.weather[0].main);
+        msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " degrees F. Weather condition: ");
       }
   })
 }
