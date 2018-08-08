@@ -405,7 +405,7 @@ function getTemp(msg, url, city)
 
       else {
         var temp = kelToF(data.main.temp);
-        var condition = data.weather[0].main);
+        var condition = data.weather[0].main;
         msg.channel.send("The current temperature in " + city + " is " + Math.ceil(temp) + " degrees F. Weather condition: " + condition);
       }
   })
