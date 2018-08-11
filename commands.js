@@ -1,6 +1,6 @@
 const roles = require('./roles.json');
 
-function addRole(message)
+exports.addRole = function addRole(message)
 {
   console.log("User trying to add themselves to a role.");
   let args = message.content.toLowerCase().split(" ");
