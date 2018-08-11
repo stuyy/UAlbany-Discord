@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const botinfo = require("./botinfo.json");
 const request = require('request');
+const commands = require('./commands.js');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -45,6 +46,11 @@ client.on('message', message => {
       getTemp(message, url, cityName);
     })
     .catch(collected => console.log("Error"));
+  }
+
+  else if(message.content.startsWith("!roleadd"))
+  {
+    commands.addRole(message);
   }
 
   else if(message.content.startsWith("!addrole"))
