@@ -22,12 +22,19 @@ function requestData(url, message)
       let maxTemp = kelToF(weatherData.main.temp_max);
       let minTemp = kelToF(weatherData.main.temp_min);
       let condition = weatherData.weather[0].main;
-      message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition);
+      if(weatherData.weather[1] != null)
+      {
+        let condition2 = weatherData.weather[1].main;
+        message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition + ", " + condition2);
+      }
+      else
+        message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition);
+
     }
   });
 
 }
 function kelToF(temp)
 {
-  return (temp*(9/5)) - 459.67;
+  return Math.ceil((temp*(9/5)) - 459.67);
 }
