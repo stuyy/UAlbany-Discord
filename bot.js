@@ -34,7 +34,7 @@ client.on('message', message => {
 
   else if(message.content.toLowerCase().startsWith("!weather"))
   {
-    weather.getTemperature(message);
+    weather.getWeather(message);
     //message.channel.send("What is your city?");
     /*
     const filter = m => (!m.author.bot);
