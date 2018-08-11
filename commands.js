@@ -30,7 +30,25 @@ exports.addRole = function addRole(message)
 
 exports.deleteRole = function deleteRole()
 {
+  console.log("User trying to delete themselves from role.");
+  let args = message.content.toLowerCase().split(" ");
+  let deleteRoles = [];
+  let notDeletedRoles = [];
+  if(args.length > 1)
+  {
+    let i = 1;
+    while(i<args.length)
+    {
+      if(roles.hasOwnProperty(args[i]))
+      {
+        var role = message.guild.roles.find('name', roles[args[i]]);
+        if(message.member.roles.has(role.id))
+          message.member.removeRole(role.id).then(console.log("Success")).catch("Error in removing role");
 
+      }
+      i++;
+    }
+  }
 }
 
 function displayResult(added, notAdded, message)
