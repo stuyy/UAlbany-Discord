@@ -52,6 +52,10 @@ client.on('message', message => {
   {
     commands.addRole(message);
   }
+  else if(message.content.startsWith("!deleteRole"))
+  {
+    commands.deleteRole(message);
+  }
 
   else if(message.content.startsWith("!addrole"))
   {
