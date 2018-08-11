@@ -28,8 +28,10 @@ function requestData(url, message)
         message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition + ", " + condition2);
       }
       else
+      {
         message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition);
-
+        console.log("There is no other condition");
+      }
     }
   });
 
