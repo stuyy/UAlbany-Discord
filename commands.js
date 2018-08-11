@@ -4,7 +4,8 @@ exports.addRole = function addRole(message)
 {
   console.log("User trying to add themselves to a role.");
   let args = message.content.toLowerCase().split(" ");
-  let addedRoles, notAddedRoles = [];
+  let addedRoles = [];
+  let notAddedRoles = [];
   if(args.length > 1) // User specified at least one role (2 args).
   {
     let i = 1;
@@ -12,18 +13,30 @@ exports.addRole = function addRole(message)
     {
       if(roles.hasOwnProperty(args[i]))
       {
-        let role = message.guild.roles.find('name', roles[args[i]]);
-        addedRoles.push(roles[args[i]]);
-        message.member.addRole(role.id);
+        var role = message.guild.roles.find('name', roles[args[i]]);
+        if(!(message.member.roles.has(role.id)))
+        {
+          addedRoles.push(roles[args[i]]);
+          message.member.addRole(role.id);
+        }
+        else
+          notAddedRoles.push(roles[args[i]]);
       }
-      else
-        notAddedRoles.push(roles[args[i]]);
+      i++;
     }
-    i++;
   }
+  displayResult(addedRoles, notAddedRoles, message);
 }
 
-function deleteRole()
+exports.deleteRole = function deleteRole()
 {
 
+}
+
+function displayResult(added, notAdded, message)
+{
+  if(added.length > 0)
+    message.channel.send(message.author + " has been added to the following role(s): " + added.join(", "));
+  if(notAdded.length > 0)
+    message.channel.send(message.author + " was not added to the following role(s): " + notAdded.join(", ") + ". Either the roles you listed do not exist or you do not have permission.");
 }
