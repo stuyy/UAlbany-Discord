@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const request = require('request');
 const commands = require('./commands.js');
 const botinfo = require('./botinfo.json');
+const weather = require('./weather.js');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -18,8 +19,7 @@ client.on('guildMemberAdd', member => {
   var generalChannel = client.channels.find('name', 'general');
   console.log(member.user.username);
   console.log(generalChannel.name);
-
-  console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!")
+  console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!");
 
 });
 
@@ -31,10 +31,12 @@ client.on('message', message => {
   else if(message.content === '!roles')
     message.channel.send(botinfo.roleList);
 
-    /*
-  else if(message.content === '!weather')
+
+  else if(message.content.toLowerCase().startsWith("!weather"))
   {
-    message.channel.send("What is your city?");
+    weather.getTemperature(message);
+    //message.channel.send("What is your city?");
+    /*
     const filter = m => (!m.author.bot);
     message.channel.awaitMessages(filter, {max: 1, time: 0, errors: ['time'] })
     .then(collected => {
@@ -43,7 +45,8 @@ client.on('message', message => {
       getTemp(message, url, cityName);
     })
     .catch(collected => console.log("Error"));
-  } */
+    */
+  }
 
   else if(message.content.startsWith("!addrole"))
   {
