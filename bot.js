@@ -24,7 +24,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', message => {
 
-  if(message.content === 'bot help')
+  if(message.content === '!help')
   {
     message.channel.send("`!addrole - Specify one or multiple keywords to be assigned to the respective role.\n!deleterole - Specify one or multiple keywords to be removed from the respective roles.\n!roles - list of all the roles available\n!courseinfo - Enter the department/subject code/course number to retrieve a list of courses offered in Fall 2018 as an image.\n!weather - Provides the weather (only temperature as of now) of the city in Fahrenheight`");
   }
@@ -45,21 +45,6 @@ client.on('message', message => {
       getTemp(message, url, cityName);
     })
     .catch(collected => console.log("Error"));
-  }
-
-  else if(message.content === '!destroy')
-  {
-    client.destroy();
-  }
-
-  else if(message.content === '!checkrole')
-  {
-    var status = checkUserRoles(message);
-    if(status)
-      console.log("User already has a role!");
-    else {
-      console.log("No role assigned!");
-    }
   }
 
   else if(message.content.startsWith("!addrole"))
@@ -312,42 +297,7 @@ client.on('message', message => {
     }
   }
 
-  else if(message.content.toLowerCase() === '!albany')
-  {
-    message.channel.send("Here's a picture of UAlabny's Football Field: ", {files: ['./ua.jpg']});
-  }
-
 }); // End of message event.
-
-function isAdmin()
-{
-
-}
-function checkUserRoles(message)
-{
-  var count = 0;
-  var majorArraySize = botinfo.majorRole.length;
-  while(count<majorArraySize)
-  {
-    // find the role first.
-    role = message.guild.roles.find('name', botinfo.majorRole[count]); // search each role
-    console.log("Searching if user has " + botinfo.majorRole[count] + " role");
-    if(role === null)
-    {
-      count++;
-      continue;
-    }
-    else if(message.member.roles.has(role.id))
-    {
-      message.channel.send(message.author.username + " has the " + botinfo.majorRole[count] + " role!");
-      return true;
-    }
-    count++;
-  }
-
-  return false;
-
-}
 
 function addUserRole(roleName, message)
 {
