@@ -18,8 +18,8 @@ client.on('guildMemberAdd', member => {
   var generalChannel = client.channels.find('name', 'general');
   console.log(member.user.username);
   console.log(generalChannel.name);
-  console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!");
   let greatDane = member.guild.roles.find('name', 'Great Dane');
+  generalChannel.send("Welcome to the server " + member.user + "!");
   member.addRole(greatDane.id);
 });
 
