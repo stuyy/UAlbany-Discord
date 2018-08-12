@@ -16,6 +16,7 @@ exports.showMap = function showMap(message)
         while(k<maps[maj].length)
         {
           console.log("Major: " + maps[maj][k].major + "\nDegree: " + maps[maj][k].degree + "\nMap: ");
+          message.channel.send("Major: " + maps[maj][k].major + "\nDegree: " + maps[maj][k].degree, {files: [ maps[maj][k].map ]});
           k++;
         }
       }
