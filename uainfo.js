@@ -11,12 +11,12 @@ exports.showMap = function showMap(message)
       if(maps.hasOwnProperty(args[i]))
       {
         let k = 0;
-        let maj = args[i];
-        console.log(maj);
-        while(k<maps[maj].length)
+        let m = args[i];
+        console.log(m);
+        while(k<maps[m].length)
         {
-          console.log("Major: " + maps[maj][k].major + "\nDegree: " + maps[maj][k].degree + "\nMap: ");
-          message.channel.send("Major: " + maps[maj][k].major + "\nDegree: " + maps[maj][k].degree, {files: [ maps[maj][k].map ]});
+          console.log("Major: " + maps[m][k].major + "\nDegree: " + maps[m][k].degree + "\nMap: ");
+          message.channel.send("Major: " + maps[m][k].major + "\nDegree: " + maps[m][k].degree, {files: [ maps[m][k].map ]});
           k++;
         }
       }
