@@ -11,9 +11,11 @@ exports.showMap = function showMap(message)
       if(maps.hasOwnProperty(args[i]))
       {
         let k = 0;
-        while(k<maps.args[i].length)
+        let maj = args[i];
+        console.log(maj);
+        while(k<maps[maj].length)
         {
-          console.log("Major: " + maps.args[i][k].major + "\nDegree: " + maps.args[i][k].degree + "\nMap: ");
+          console.log("Major: " + maps[maj][k].major + "\nDegree: " + maps[maj][k].degree + "\nMap: ");
           k++;
         }
       }
