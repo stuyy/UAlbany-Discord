@@ -52,7 +52,7 @@ client.on('message', message => {
 
   else if(message.content.startsWith("!maps"))
   {
-    showMap(message);
+    maps.showMap(message);
   }
 
 
