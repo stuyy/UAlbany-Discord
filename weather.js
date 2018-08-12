@@ -21,17 +21,16 @@ function requestData(url, message)
       let temp = kelToF(weatherData.main.temp);
       let maxTemp = kelToF(weatherData.main.temp_max);
       let minTemp = kelToF(weatherData.main.temp_min);
-      let condition = weatherData.weather[0].main;
-      if(weatherData.weather[1] != null)
-      {
-        let condition2 = weatherData.weather[1].main;
-        message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition + ", " + condition2);
-      }
-      else
-      {
-        message.channel.send("The current temperature in " + weatherData.name + " is: " + temp + ". The max is: " + maxTemp + " and the min is: " + minTemp + ". The condition is currently: " + condition);
-        console.log("There is no other condition");
-      }
+      //let condition = weatherData.weather[0].main;
+      let conditions = [];
+      var i = 0;
+      console.log("There are " + weatherData.weather.length  + " conditions");
+      while(i<weatherData.weather.length)
+        conditions.push(weatherData.weather[i++].main);
+
+      console.log(conditions);
+      message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", "));
+
     }
   });
 
