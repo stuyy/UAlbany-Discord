@@ -19,7 +19,8 @@ client.on('guildMemberAdd', member => {
   console.log(member.user.username);
   console.log(generalChannel.name);
   console.log("Welcome " + member.user.username + "! Be sure to check out the rules and information channel!");
-
+  let greatDane = member.guild.roles.find('name', 'Great Dane');
+  member.addRole(greatDane.id);
 });
 
 client.on('message', message => {

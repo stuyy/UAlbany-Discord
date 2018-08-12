@@ -55,5 +55,5 @@ function displayResult(added, notAdded, message)
   if(added.length > 0)
     message.channel.send(message.author + " has been added to the following role(s): " + added.join(", "));
   if(notAdded.length > 0)
-    message.channel.send(message.author + " was not added to the following role(s): " + notAdded.join(", ") + ". Either the roles you listed do not exist or you do not have permission.");
+    message.channel.send(message.author + " was not added to the following role(s): " + notAdded.join(", ") + ". Either the roles you listed do not exist, were applied to you already, or you do not have permission.");
 }
