@@ -1,5 +1,4 @@
 const request = require('request');
-const weatherKey = require('./info/weather_key.json');
 exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
