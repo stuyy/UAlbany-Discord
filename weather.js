@@ -35,7 +35,4 @@ function requestData(url, message)
   });
 
 }
-function kelToF(temp)
-{
-  return Math.ceil((temp*(9/5)) - 459.67);
-}
+var kelToF = temp => Math.ceil((temp*(9/5))-459.67);
