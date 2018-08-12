@@ -13,7 +13,7 @@ exports.showMap = function showMap(message)
         let k = 0;
         while(k<maps.args[i].length)
         {
-          console.log("Major: " + maps.args[i][k].major + "\nDegree: " + maps.args[i][k].degree + "\nMap: " + );
+          console.log("Major: " + maps.args[i][k].major + "\nDegree: " + maps.args[i][k].degree + "\nMap: ");
           k++;
         }
       }
