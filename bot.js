@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const commands = require('./commands.js');
 const botinfo = require('./botinfo.json');
 const weather = require('./weather.js');
+const maps = require('./uainfo.js');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -48,5 +49,11 @@ client.on('message', message => {
     else
       message.channel.send("You must use this command in the #bot channel!");
   }
+
+  else if(message.content.startsWith("!maps"))
+  {
+    showMap(message);
+  }
+
 
 }); // End of message event.

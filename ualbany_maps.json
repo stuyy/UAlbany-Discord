@@ -1,0 +1,15 @@
+{
+  "cs" : [
+    {
+      "major": "Computer Science",
+      "degree": "BS",
+      "map" : "./Major_MAPS/cs_bs.png"
+    },
+    {
+      "major": "Computer Science",
+      "degree": "BA",
+      "map": "./Major_MAPS/cs_ba.png"
+    }
+
+   ]
+}
