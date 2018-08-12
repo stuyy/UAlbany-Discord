@@ -1,14 +1,21 @@
 const request = require('request');
-
+const weatherKey = require('./info/weather_key.json');
 exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=b72c192b44cefcc6c901db99aaa5823e';
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherKey.key;
   console.log(command);
   console.log(city);
   console.log(url);
   requestData(url, message);
+}
+
+exports.getForecast = function getForecast(message)
+{
+  let command = message.content.substr(0, messgae.content.indexOf(' '));
+  let city = message.content.substr(message.content.indexOf(' ')+1);
+  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + weatherKey.key;
 }
 
 function requestData(url, message)
