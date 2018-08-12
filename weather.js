@@ -16,7 +16,7 @@ function requestData(url, message)
   request(url, function(err, res, body){
     var weatherData = JSON.parse(body);
     if(weatherData.cod === "404")
-      msg.channel.send("Invalid city provided, try again.");
+      message.channel.send("Invalid city provided, try again.");
     else {
       let temp = kelToF(weatherData.main.temp);
       let maxTemp = kelToF(weatherData.main.temp_max);
