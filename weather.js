@@ -4,7 +4,7 @@ exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherKey.key;
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_API_KEY;
   console.log(command);
   console.log(city);
   console.log(url);
@@ -15,7 +15,9 @@ exports.getForecast = function getForecast(message)
 {
   let command = message.content.substr(0, messgae.content.indexOf(' '));
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + weatherKey.key;
+  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + process.env.WEATHER_API_KEY;
+
+
 }
 
 function requestData(url, message)
