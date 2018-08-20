@@ -58,7 +58,8 @@ client.on('message', message => {
   else if (message.channel.name === 'giphy-posts')
   {
     console.log('trying to get post');
-    giphy.sendGIF(message, message.content.toLowerCase());
+    if(!message.author.bot)
+      giphy.sendGIF(message, message.content.toLowerCase());
   }
 
 
