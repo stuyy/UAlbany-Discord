@@ -16,7 +16,6 @@ exports.getForecast = function getForecast(message)
   let city = message.content.substr(message.content.indexOf(' ')+1);
   let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + process.env.WEATHER_API_KEY;
 
-
 }
 
 function requestData(url, message)
@@ -38,7 +37,7 @@ function requestData(url, message)
 
       console.log(conditions);
       message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", "));
-
+      
     }
   });
 
