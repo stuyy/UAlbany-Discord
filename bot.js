@@ -4,7 +4,6 @@ const commands = require('./commands.js');
 const botinfo = require('./botinfo.json');
 const weather = require('./weather.js');
 const maps = require('./uainfo.js');
-const giphy = require('./giphy.js');
 
 client.login(process.env.BOT_TOKEN);
 
@@ -55,10 +54,11 @@ client.on('message', message => {
   {
     maps.showMap(message);
   }
+  /*
   else if (message.channel.name === 'giphy-posts')
   {
     giphy.sendGIF(message, message.content.toLowerCase());
   }
-
+  */
 
 }); // End of message event.
