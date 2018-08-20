@@ -1,4 +1,5 @@
 const key = process.env.GIPHY_KEY;
+const Discord = require('discord.js');
 const request = require('request');
 
 exports.sendGIF = function sendGIF(message, searchQuery)
