@@ -3,7 +3,8 @@ const request = require('request');
 
 exports.sendGIF = function sendGIF(message, searchQuery)
 {
-  var url = 'https://api.giphy.com/v1/gifs/search?api_key=' + key + '&q=' + searchQuery + '&limit=250&offset=0&rating=G&lang=en';
+  var number = Math.floor(Math.random() * 50);
+  var url = 'https://api.giphy.com/v1/gifs/search?api_key=' + key + '&q=' + searchQuery + '&limit=1&offset=' + number + '&rating=G&lang=en';
   console.log(url);
 
   // limit is 250, but there may not be 250 results.
@@ -14,9 +15,7 @@ exports.sendGIF = function sendGIF(message, searchQuery)
       message.channel.send("Too many requests... Please wait and try again later");
     }
     else {
-      var resultLength = queryData.data.length;
-      console.log(resultLength + " gifs found");
-      var number = Math.floor(Math.random() * resultLength);
+
       console.log(number);
       if(queryData.data.length === 0)
       {
@@ -24,7 +23,7 @@ exports.sendGIF = function sendGIF(message, searchQuery)
       }
       else
       {
-        message.channel.send(queryData.data[number].bitly_url);
+        message.channel.send(queryData.data[0].bitly_url);
       }
     }
   });
