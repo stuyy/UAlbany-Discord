@@ -5,6 +5,7 @@ const botinfo = require('./botinfo.json');
 const weather = require('./weather.js');
 const maps = require('./uainfo.js');
 const giphy = require('./giphy.js');
+const recentUser = new Set();
 
 client.login(process.env.BOT_TOKEN);
 
@@ -57,9 +58,22 @@ client.on('message', message => {
   }
   else if (message.channel.name === 'giphy-posts' || message.channel.name === 'giphy-posts-2')
   {
-    console.log('trying to get post');
-    if(!message.author.bot)
-      giphy.sendGIF(message, message.content.toLowerCase());
+    if(recentUser.has(message.author.id))
+    {
+      message.channel.send("Please wait 30 seconds before typing this again " + message.author);
+    }
+    else
+    {
+      if(!message.author.bot)
+        giphy.sendGIF(message, message.content.toLowerCase());
+
+        console.log("YO");
+      recentUser.add(message.author.id);
+      setTimeout(()=>{
+        recentUser.delete(message.author.id);
+      }, 30000);
+    }
+
   }
 
 
