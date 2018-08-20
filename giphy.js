@@ -10,7 +10,7 @@ exports.sendGIF = function sendGIF(message, searchQuery)
   // limit is 250, but there may not be 250 results.
   request(url, function(err, res, body){
     var queryData = JSON.parse(body);
-    message.channel.send({files: ['queryData.data.bitly_url', './giphy.png']});
+    message.channel.send({files: [queryData.data.bitly_url, './giphy.png']});
   });
 
 }
