@@ -60,7 +60,7 @@ client.on('message', message => {
   {
     if(recentUser.has(message.author.id))
     {
-      message.channel.send("Please wait 30 seconds before typing this again " + message.author);
+      message.channel.send("Please wait 10 seconds before typing this again " + message.author);
     }
     else
     {
@@ -71,7 +71,7 @@ client.on('message', message => {
       recentUser.add(message.author.id);
       setTimeout(()=>{
         recentUser.delete(message.author.id);
-      }, 30000);
+      }, 10000);
     }
 
   }
