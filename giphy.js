@@ -10,22 +10,7 @@ exports.sendGIF = function sendGIF(message, searchQuery)
   // limit is 250, but there may not be 250 results.
   request(url, function(err, res, body){
     var queryData = JSON.parse(body);
-    if(queryData.message === "API rate limit exceeded")
-    {
-      message.channel.send("Too many requests... Please wait and try again later");
-    }
-    else {
-
-      console.log(number);
-      if(queryData.data.length === 0)
-      {
-        message.channel.send("No results found.");
-      }
-      else
-      {
-        message.channel.send(queryData.data[0].bitly_url);
-      }
-    }
+    message.channel.send(queryData.data.bitly_url);
   });
 
 }
