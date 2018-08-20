@@ -55,7 +55,7 @@ client.on('message', message => {
   {
     maps.showMap(message);
   }
-  else if (message.channel.name === 'giphy-posts')
+  else if (message.channel.name === 'giphy-posts' || message.channel.name === 'giphy-posts-2')
   {
     console.log('trying to get post');
     if(!message.author.bot)
