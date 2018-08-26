@@ -54,7 +54,7 @@ exports.showHours = function showHours(message)
     .setColor(6881105)
     .addField("UAlbany ID Card Office", "Monday - Friday: 8:30am - 4:30pm")
     .addField("University Bookstore (August 27th to September 2nd)", "Monday - Thursday: 9am - 8pm\nFriday: 9am - 6pm\nSaturday: 11am - 5pm\nSunday: CLOSED\n");
-
+    message.channel.send({embed});
   }
 
 }
