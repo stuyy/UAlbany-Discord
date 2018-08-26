@@ -1,4 +1,5 @@
 const maps = require('./ualbany_maps.json');
+const Discord = require('discord.js');
 
 exports.showMap = function showMap(message)
 {
