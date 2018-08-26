@@ -34,7 +34,7 @@ exports.showHours = function showHours(message)
     const embed = new Discord.RichEmbed()
       .setTitle("UAlbany Dining Hall Hours of Operation")
       .setColor(6881105)
-      .setImage('https://github.com/ansonfoong/UAlbany-Discord/blob/master/ua-hours/dining-hall.png');
+      .setImage('https://raw.githubusercontent.com/ansonfoong/UAlbany-Discord/master/ua-hours/dining-hall.png');
 
     message.channel.send({embed});
   }
@@ -43,7 +43,7 @@ exports.showHours = function showHours(message)
     const embed = new Discord.RichEmbed()
       .setTitle("UAlbany Campus Center Hours of Operation")
       .setColor(6881105)
-      .setImage('https://github.com/ansonfoong/UAlbany-Discord/blob/master/ua-hours/campus-center.png');
+      .setImage('https://raw.githubusercontent.com/ansonfoong/UAlbany-Discord/master/ua-hours/campus-center.png');
 
     message.channel.send({embed});
   }
