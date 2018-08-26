@@ -37,7 +37,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase().startsWith("!weather"))
     weather.getWeather(message);
 
-  else if(message.content.startsWith("!addrole"))
+  else if(message.content.toLowerCase().startsWith("!addrole"))
   {
     if(message.channel.name === "bot2" || message.channel.name === "bot")
       commands.addRole(message);
@@ -56,18 +56,16 @@ client.on('message', message => {
   {
     maps.showMap(message);
   }
-  else if ((message.channel.name === 'giphy-posts' || message.channel.name === 'giphy-posts-2') && !message.author.bot)
+  else if ((message.channel.name === 'giphy-posts') && !message.author.bot)
   {
     if(recentUser.has(message.author.id))
-    {
       message.channel.send("Please wait 10 seconds before typing this again " + message.author);
-    }
+
     else
     {
       if(!message.author.bot)
         giphy.sendGIF(message, message.content.toLowerCase());
 
-        console.log("YO");
       recentUser.add(message.author.id);
       setTimeout(()=>{
         recentUser.delete(message.author.id);
