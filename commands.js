@@ -14,7 +14,7 @@ exports.addRole = function addRole(message)
       if(roles.hasOwnProperty(args[i]))
       {
         console.log(roles[args[i]]);
-        var role = message.guild.roles.find(role => role.name === roles[args[i]]);
+        var role = message.guild.roles.find(role => role.name === roles[args[i]]); // Passing in a function instead of a property.
         if(!(message.member.roles.has(role.id)))
         {
           addedRoles.push(roles[args[i]]);

@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const commands = require('./commands.js');
 const botinfo = require('./botinfo.json');
 const weather = require('./weather.js');
-const maps = require('./uainfo.js');
+const info = require('./uainfo.js');
 const giphy = require('./giphy.js');
 const recentUser = new Set();
 
@@ -54,7 +54,11 @@ client.on('message', message => {
 
   else if(message.content.startsWith("!maps"))
   {
-    maps.showMap(message);
+    info.showMap(message);
+  }
+  else if(message.content.toLowerCase().startsWith("!hours"))
+  {
+    info.showHours(message);
   }
   else if ((message.channel.name === 'giphy-posts') && !message.author.bot)
   {

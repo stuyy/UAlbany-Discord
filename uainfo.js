@@ -24,3 +24,17 @@ exports.showMap = function showMap(message)
     }
   }
 }
+
+exports.showHours = function showHours(message)
+{
+  let args = message.content.toLowerCase().split(" ");
+  if(args[1] === 'dh')
+  {
+    const embed = new Discord.RichEmbed()
+      .setTitle("UAlbany Dining Hall Hours of Operation")
+      .setColor(6881105)
+      .setImage('./dining-hall.png');
+
+    message.channel.send({embed});
+  }
+}
