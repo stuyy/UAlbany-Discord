@@ -34,7 +34,7 @@ exports.showHours = function showHours(message)
     const embed = new Discord.RichEmbed()
       .setTitle("UAlbany Dining Hall Hours of Operation")
       .setColor(6881105)
-      .setImage('./dining-hall.png');
+      .setImage('https://raw.githubusercontent.com/ansonfoong/UAlbany-Discord/master/dining-hall.png');
 
     message.channel.send({embed});
   }
