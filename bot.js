@@ -22,18 +22,33 @@ client.on('guildMemberAdd', member => {
   console.log(member.user.username);
   console.log(generalChannel.name);
   let greatDane = member.guild.roles.find('name', 'Great Dane');
-  generalChannel.send("Welcome to the server " + member.user + "!");
+  generalChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on #introductions and add yourself to a role on the #bot channel!");
   member.addRole(greatDane.id);
 });
 
 client.on('message', message => {
 
   if(message.content === '!help')
-    message.channel.send(botinfo.commandList);
+  {
+    const embed = new Discord.RichEmbed()
+    .setTitle("List of all the commands for Dane BOT")
+    .setColor(0xbca72d)
+    .addField("Commands", botinfo.commandList);
+    message.channel.send({embed});
+  }
 
   else if(message.content === '!roles')
-    message.channel.send(botinfo.roleList);
+    //message.channel.send(botinfo.roleList);
+  {
+    const embed = new Discord.RichEmbed()
+    .setTitle("UAlbany Discord Server Roles")
+    .setColor(0x9829e8)
+    .addField("List of Major-Specific Roles", botinfo.roleList)
+    .addField("List of roles specified by Academic Standing", botinfo.yearRoles)
+    .addField("List of Gaming Roles", botinfo.gamingRoles);
+    message.channel.send({embed});
 
+  }
   else if(message.content.toLowerCase().startsWith("!weather"))
     weather.getWeather(message);
 

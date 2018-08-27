@@ -14,12 +14,16 @@
   "dig" : "Digital Forensics",
   "eco" : "Economics",
   "geo" : "Geography",
+  "his" : "History",
+  "hom" : "Homeland Security",
   "inf" : "Informatics",
   "lin" : "Linguistics",
   "math" : "Mathematics",
   "phys" : "Physics",
   "polsci" : "Political Science",
   "psy" : "Psychology",
+  "pub" : "Public Policy",
+  "soc" : "Sociology",
   "freshmen" : "Freshmen",
   "sophomore" : "Sophomore",
   "junior" : "Junior",
@@ -29,8 +33,8 @@
   "ow" : "Overwatch",
   "lol" : "League of Legends",
   "fn" : "Fort Nite",
+  "hs" : "Hearthstone",
   "pubg" : "PUBG",
   "csgo" : "CSGO",
   "siege" : "Rainbow Six Siege"
-
 }
