@@ -43,6 +43,7 @@ client.on('message', message => {
     const embed = new Discord.RichEmbed()
     .setTitle("UAlbany Discord Server Roles")
     .setColor(0x9829e8)
+    .setDescription("To add yourself to a role, simply type !addrole [ all of the role keywords go here without the square brackets], i.e: !addrole cs math phys")
     .addField("List of Major-Specific Roles", botinfo.roleList)
     .addField("List of roles specified by Academic Standing", botinfo.yearRoles)
     .addField("List of Gaming Roles", botinfo.gamingRoles);
