@@ -6,22 +6,6 @@ const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const giphy = require('./giphy.js');
 const recentUser = new Set();
-const mysql = require('mysql');
-const mysqlinfo = require('./mysqlinfo.json');
-
-var con = mysql.createConnection({
-  //mysql://bd535318c0af59:3a0f9dd2@us-cdbr-iron-east-01.cleardb.net/heroku_d4680b9c66a1a38?reconnect=true
-  host: mysqlinfo.host,
-  username: mysqlinfo.username,
-  password: mysqlinfo.password,
-  database: mysqlinfo.database
-
-});
-
-con.connect(function(err) {
-  if(err) throw err;
-  console.log("CONNECTED");
-})
 
 client.login(process.env.BOT_TOKEN);
 
