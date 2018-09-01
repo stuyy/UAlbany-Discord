@@ -100,7 +100,7 @@ client.on('message', message => {
   {
     botinfo.phrases.some(v =>
       {
-        if(v.statement === message.content.toLowerCase())
+        if(v.statement.includes(message.content.toLowerCase()))
           message.channel.send(v.reply);
       })
   }
