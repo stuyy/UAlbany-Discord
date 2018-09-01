@@ -98,7 +98,11 @@ client.on('message', message => {
   }
   else if(botinfo.phrases.some(v => v.statement === message.content.toLowerCase())) // If true
   {
-    console.log("Check");
+    botinfo.phrases.some(v =>
+      {
+        if(v.statement === message.content.toLowerCase())
+          message.channel.send(v.reply);
+      })
   }
 
 
