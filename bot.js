@@ -96,12 +96,12 @@ client.on('message', message => {
     }
 
   }
-  else if(botinfo.phrases.some(v => v.statement === message.content.toLowerCase())) // If true
+  else// If true
   {
     botinfo.phrases.some(v =>
       {
-        if(v.statement.includes(message.content.toLowerCase()))
-          message.channel.send(v.reply);
+        if(message.content.toLowerCase().includes(v.statement))
+          message.channel.send(message.author + ' ' + v.reply);
       })
   }
 
