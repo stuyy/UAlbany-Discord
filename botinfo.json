@@ -5,5 +5,21 @@
 
   "gamingRoles" : "ow - Overwatch\nlol - League of Legends\nfn - Fort Nite\npubg - PUBG\ncsgo - CSGO\nsiege - Rainbow Six Siege\n",
 
-  "yearRoles" : "freshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n"
+  "yearRoles" : "freshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n",
+
+  "phrases" : [
+    {
+      "statement": "it's a great day",
+      "reply": "It's a great day to be a Great Dane!"
+    },
+    {
+      "statement" : "its a great day",
+      "reply" : "It's a great day to be a Great Dane!"
+    },
+    {
+      "statement" : "hello",
+      "reply" : "Hello!"
+    }
+
+  ]
 }

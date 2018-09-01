@@ -39,6 +39,7 @@ client.on('message', message => {
     message.channel.send({embed});
   }
 
+
   else if(message.content === '!roles')
     //message.channel.send(botinfo.roleList);
   {
@@ -95,6 +96,11 @@ client.on('message', message => {
     }
 
   }
+  else if(botinfo.phrases.some(v => v.statement.includes(message.content.toLowerCase()))) // If true
+  {
+    console.log("Check");
+  }
+
 
 
 }); // End of message event.
