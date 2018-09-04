@@ -1,0 +1,49 @@
+#Add two numbers
+
+addimmediate r1 12 (91, 0C)
+addimmediate r2 27 (92, 1B)
+add r1 r2 r3 (12 13)
+interrupt 0 (8000)
+halt
+
+# Divide two numbers
+
+addimmediate r1 12 (91, 0C) # ai, 2 bytes
+addimmediate r2 4 (91, 04) #ai 2 bytes
+addimmediate r3 3 (93, 03) #ai 2 bytes
+divide r1 r3 r4 (13 34) #3R, 2 bytes
+
+branchifequal r2 r4 6 # 10 bytes so far
+interrupt 0 (8000) #int, 2 bytes
+halt
+
+multiply r1 r4 r5 (14, 45)
+addimmediate r6 27 (96, 1B)
+
+interrupt 0
+
+Our expected values:
+
+R1 == 12
+R2 == 4
+R3 == 3
+r4 == 4
+r5 == 48 (12 * 4 = 48)
+r6 == 27
+
+subtract r6 r5 r7 (65, 57)
+subtract r1 r1 r1 (11, 51)
+subtract r2 r2 r2 (22, 52)
+subtract r3 r3 r3 (33, 53)
+subtract r4 r4 r4 (44, 54)
+subtract r5 r5 r5 (55, 55)
+subtract r7 r7 r7 (77 57)
+
+halt
+
+# Linked List
+
+addimmediate r1 59
+addimmediate r2 63
+addimmediate r3 94
+addimmediate r4 56

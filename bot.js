@@ -18,7 +18,7 @@ client.on("ready", () => {
 
 client.on('guildMemberAdd', member => {
 
-  var generalChannel = client.channels.find('name', 'general');
+  var generalChannel = client.channels.find('name', 'welcome');
   console.log(member.user.username);
   console.log(generalChannel.name);
   var intro = client.channels.find(channel => channel.name === 'introductions');
