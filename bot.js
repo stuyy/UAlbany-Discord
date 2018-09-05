@@ -96,10 +96,10 @@ client.on('message', message => {
     }
 
   }
+  /*
   else// If true
   {
-    if(!message.author.bot)
-    {
+
       botinfo.phrases.some(v =>
         {
           if(message.content.toLowerCase().includes(v.statement) && !message.author.bot)
@@ -108,8 +108,7 @@ client.on('message', message => {
             message.channel.send(message.author + ' ' + v.reply[num]);
           }
         });
-    }
-  }
+  }*/
 
 
 
