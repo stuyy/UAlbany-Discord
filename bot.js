@@ -98,14 +98,17 @@ client.on('message', message => {
   }
   else// If true
   {
-    botinfo.phrases.some(v =>
-      {
-        if(message.content.toLowerCase().includes(v.statement) && !message.author.bot)
+    if(!message.author.bot)
+    {
+      botinfo.phrases.some(v =>
         {
-          var num = Math.floor(Math.random() * v.reply.length);
-          message.channel.send(message.author + ' ' + v.reply[num]);
-        }
-      })
+          if(message.content.toLowerCase().includes(v.statement) && !message.author.bot)
+          {
+            var num = Math.floor(Math.random() * v.reply.length);
+            message.channel.send(message.author + ' ' + v.reply[num]);
+          }
+        });
+    }
   }
 
 
