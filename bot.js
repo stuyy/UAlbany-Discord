@@ -101,7 +101,10 @@ client.on('message', message => {
     botinfo.phrases.some(v =>
       {
         if(message.content.toLowerCase().includes(v.statement) && !message.author.bot)
-          message.channel.send(message.author + ' ' + v.reply);
+        {
+          var num = Math.floor(Math.random() * v.reply.length);
+          message.channel.send(message.author + ' ' + v.reply[num]);
+        }
       })
   }
 
