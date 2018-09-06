@@ -122,4 +122,5 @@ exports.addXP = function addXP(message)
         }
       }
   })
+  }
 }
