@@ -21,15 +21,15 @@ exports.showTable = function showTable(message)
     console.log("A non-admin is trying to access this command");
 
 }
-/*
+
 exports.createTable = function createTable()
 {
-  con.query('CREATE TABLE level (name VARCHAR(300), id VARCHAR(100), xp MEDIUMINT)', err => {
+  con.query('CREATE TABLE level (id VARCHAR(100), xp MEDIUMINT)', err => {
     if(err) throw err;
     console.log("Table created Successfully");
   });
 }
-*/
+
 exports.viewXP = function viewXP(message)
 {
   con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, result) => {
@@ -65,7 +65,7 @@ exports.addXP = function addXP(message)
     if(err) throw err;
     if(rows.length < 1)
     {
-      let sql = `INSERT INTO level (name, id, xp) VALUES ('${message.author.username}', '${message.author.id}', ${xpGenerate(message)})`;
+      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate(message)})`;
       con.query(sql, (err, result) => {
         if(err) throw err;
         console.log("Successfully updated XP for " + message.author.username);
