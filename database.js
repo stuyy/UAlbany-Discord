@@ -36,7 +36,7 @@ exports.viewXP = function viewXP(message)
     if(err) throw err;
     console.log(message.author + " has " + result[0].xp + " total xp");
     const embed = new Discord.RichEmbed()
-    .addTitle(message.author.username + "'s total XP")
+    .setTitle(message.author.username + "'s total XP")
     .setColor("#42dcf4")
     .addField("Total XP: " + result[0].xp);
     message.channel.send({embed});
