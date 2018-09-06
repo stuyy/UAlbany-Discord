@@ -21,7 +21,7 @@ exports.showTable = function showTable(message)
     console.log("A non-admin is trying to access this command");
 
 }
-
+/*
 exports.createTable = function createTable()
 {
   con.query('CREATE TABLE level (name VARCHAR(300), id VARCHAR(100), xp MEDIUMINT)', err => {
@@ -29,13 +29,17 @@ exports.createTable = function createTable()
     console.log("Table created Successfully");
   });
 }
-
+*/
 exports.viewXP = function viewXP(message)
 {
   con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, result) => {
     if(err) throw err;
     console.log(message.author + " has " + result[0].xp + " total xp");
-    message.channel.send("Your total experience is: " + result[0].xp);
+    const embed = new Discord.RichEmbed()
+    .addTitle(message.author.username + "'s total XP")
+    .setColor("#42dcf4")
+    .addField("Total XP: " + result[0].xp);
+    message.channel.send({embed});
   });
 }
 
@@ -56,7 +60,7 @@ exports.drop = function drop()
 }
 exports.addXP = function addXP(message)
 {
-  if(message.content.startsWith("`")) return;
+  if(message.content.startsWith("`") || message.content.startsWith("!")) return;
   con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, rows) => {
     if(err) throw err;
     if(rows.length < 1)
