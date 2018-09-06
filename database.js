@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const config = require('./config.json');
+const Discord = require('discord.js');
 var con = mysql.createConnection(config.info);
 con.connect(function(err) {
   if(err) throw err;
