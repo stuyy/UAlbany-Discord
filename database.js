@@ -24,10 +24,10 @@ exports.showTable = function showTable(message)
 
 exports.createTable = function createTable()
 {
-  con.query('CREATE TABLE level (name VARCHAR(300), id VARCHAR(100), xp MEDIUMINT', err => {
+  con.query('CREATE TABLE level (name VARCHAR(300), id VARCHAR(100), xp MEDIUMINT)', err => {
     if(err) throw err;
     console.log("Table created Successfully");
-  })
+  });
 }
 
 exports.viewXP = function viewXP(message)
