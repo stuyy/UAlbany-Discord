@@ -1,11 +1,11 @@
-const key = process.env.GIPHY_KEY;
+
 const Discord = require('discord.js');
 const request = require('request');
 
 exports.sendGIF = function sendGIF(message, searchQuery)
 {
   var number = Math.floor(Math.random() * 50);
-  var url = 'https://api.giphy.com/v1/gifs/random?api_key='+key+'&tag='+searchQuery+'&rating=G';
+  var url = 'https://api.giphy.com/v1/gifs/random?api_key=3GbDWSgSZnoSB2S7B5fOWaq8t6FIiJSf&tag='+searchQuery+'&rating=G';
   console.log(url);
 
   // limit is 250, but there may not be 250 results.

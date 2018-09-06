@@ -65,7 +65,7 @@ exports.addXP = function addXP(message)
         }
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 1");
+          message.channel.send(message.author + " leveled up! You have reached level 1. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }
@@ -82,7 +82,7 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 2");
+          message.channel.send(message.author + " leveled up! You have reached level 2.  To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
 
@@ -100,7 +100,7 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 3");
+          message.channel.send(message.author + " leveled up! You have reached level 3. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }
@@ -117,7 +117,7 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 4");
+          message.channel.send(message.author + " leveled up! You have reached level 4. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }

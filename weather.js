@@ -3,7 +3,7 @@ exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + process.env.WEATHER_API_KEY;
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + 'c517a8221d86dbe9af8cbc0e520f0c74';
   console.log(command);
   console.log(city);
   console.log(url);
@@ -14,7 +14,7 @@ exports.getForecast = function getForecast(message)
 {
   let command = message.content.substr(0, messgae.content.indexOf(' '));
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + process.env.WEATHER_API_KEY;
+  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + 'c517a8221d86dbe9af8cbc0e520f0c74';
 
 }
 
@@ -37,7 +37,7 @@ function requestData(url, message)
 
       console.log(conditions);
       message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", "));
-      
+
     }
   });
 
