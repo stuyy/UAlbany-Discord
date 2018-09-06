@@ -98,6 +98,11 @@ client.on('message', message => {
     database.showTable(message);
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
     database.viewXP(message);
+  else if(message.content.toLowerCase() === '!create')
+    database.createTable();
+
+  else if(message.content.toLowerCase() === '!drop')
+    database.drop();
   else if(message.content.toLowerCase() === '!cleardata')
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
