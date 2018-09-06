@@ -32,6 +32,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', message => {
 
+  if(message.author.bot) return;
   if(message.content === '!help')
   {
     const embed = new Discord.RichEmbed()
@@ -40,8 +41,6 @@ client.on('message', message => {
     .addField("Commands", botinfo.commandList);
     message.channel.send({embed});
   }
-
-
   else if(message.content === '!roles')
     //message.channel.send(botinfo.roleList);
   {
@@ -98,6 +97,8 @@ client.on('message', message => {
     }
 
   }
+  else if(message.content.toLowerCase() === '!viewtable')
+    database.showTable(message);
   /*
   else// If true
   {
