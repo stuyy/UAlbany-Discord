@@ -124,3 +124,9 @@ exports.addXP = function addXP(message)
   });
 });
 }
+
+function xpGenerate(msg)
+{
+  var size = msg.content.length;
+  return size/5;
+}
