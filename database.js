@@ -38,7 +38,7 @@ exports.viewXP = function viewXP(message)
     const embed = new Discord.RichEmbed()
     .setTitle(message.author.username + "'s total XP")
     .setColor("#42dcf4")
-    .addField("Total XP: " + result[0].xp);
+    .addField("Total XP: ", result[0].xp);
     message.channel.send({embed});
   });
 }
