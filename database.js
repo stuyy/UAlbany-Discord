@@ -23,10 +23,11 @@ exports.showTable = function showTable(message)
 
 exports.viewXP = function viewXP(message)
 {
+  var channel = new Discord.Guild().channels.find(c => c.name === 'xp-levels');
   con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, result) => {
     if(err) throw err;
     console.log(message.author + " has " + result[0].xp + " total xp");
-    message.channel.send("Your total experience is: " + result[0].xp);
+    channel.send("Your total experience is: " + result[0].xp);
   });
 }
 

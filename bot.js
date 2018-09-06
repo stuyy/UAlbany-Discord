@@ -41,8 +41,7 @@ client.on('message', message => {
     .addField("Commands", botinfo.commandList);
     message.channel.send({embed});
   }
-  else if(message.content === '!roles')
-    //message.channel.send(botinfo.roleList);
+  else if(message.content === '!roles' && message.channel.name === 'bot')
   {
     const embed = new Discord.RichEmbed()
     .setTitle("UAlbany Discord Server Roles")
@@ -54,7 +53,7 @@ client.on('message', message => {
     message.channel.send({embed});
 
   }
-  else if(message.content.toLowerCase().startsWith("!weather"))
+  else if(message.content.toLowerCase().startsWith("!weather") && message.channel.name === 'bot')
     weather.getWeather(message);
 
   else if(message.content.toLowerCase().startsWith("!addrole"))
@@ -73,13 +72,11 @@ client.on('message', message => {
   }
 
   else if(message.content.startsWith("!maps"))
-  {
     info.showMap(message);
-  }
+
   else if(message.content.toLowerCase().startsWith("!hours"))
-  {
     info.showHours(message);
-  }
+
   else if ((message.channel.name === 'giphy-posts') && !message.author.bot)
   {
     if(recentUser.has(message.author.id))
@@ -99,23 +96,20 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!viewtable')
     database.showTable(message);
-  else if(message.content.toLowerCase() === '!viewxp')
-    database.viewXP(message);
+  else if(message.content.toLowerCase() === '!viewxp' && message.channel.name === 'bot')
+    database.viewXP();
   else
-    database.addXP(message);
-  /*
-  else// If true
   {
-
+      database.addXP(message);
       botinfo.phrases.some(v =>
         {
-          if(message.content.toLowerCase().includes(v.statement) && !message.author.bot)
+          if(message.content.toLowerCase().includes(v.statement))
           {
             var num = Math.floor(Math.random() * v.reply.length);
             message.channel.send(message.author + ' ' + v.reply[num]);
           }
         });
-  }*/
+  }
 
 
 
