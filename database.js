@@ -40,7 +40,7 @@ exports.addXP = function addXP(message)
       let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate(message)})`;
       con.query(sql, (err, result) => {
         if(err) throw err;
-        console.log(result);
+        console.log("Successfully updated XP for " + message.author.username);
       });
     }
     else
@@ -49,7 +49,7 @@ exports.addXP = function addXP(message)
       let sql = `UPDATE level SET xp = ${xp + xpGenerate(message)} WHERE id = '${message.author.id}'`;
       con.query(sql, (err, result) => {
         if(err) throw err;
-        console.log(result);
+        console.log("Successfully updated XP for " + message.author.username);
       });
     }
 
