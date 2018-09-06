@@ -102,9 +102,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!viewxp')
     database.viewXP(message);
   else
-  {
-
-  }
+    database.addXP(message);
   /*
   else// If true
   {
