@@ -99,6 +99,12 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!viewtable')
     database.showTable(message);
+  else if(message.content.toLowerCase() === '!viewxp')
+    database.viewXP(message);
+  else
+  {
+
+  }
   /*
   else// If true
   {
