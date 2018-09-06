@@ -121,6 +121,6 @@ exports.addXP = function addXP(message)
           message.member.addRole(role.id);
         }
       }
-  })
-  }
+  });
+});
 }
