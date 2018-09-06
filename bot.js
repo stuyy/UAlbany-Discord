@@ -96,7 +96,7 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!viewtable')
     database.showTable(message);
-  else if(message.content.toLowerCase() === '!viewxp' && message.channel.name === 'bot')
+  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
     database.viewXP(message);
   else if(message.content.toLowerCase() === '!cleardata')
   {
