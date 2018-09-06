@@ -101,13 +101,12 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!cleardata')
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
-    {
       database.clearData(message);
-    }
   }
   else
   {
       database.addXP(message);
+      /*
       botinfo.phrases.some(v =>
         {
           if(message.content.toLowerCase().includes(v.statement))
@@ -115,7 +114,7 @@ client.on('message', message => {
             var num = Math.floor(Math.random() * v.reply.length);
             message.channel.send(message.author + ' ' + v.reply[num]);
           }
-        });
+        });*/
   }
 
 

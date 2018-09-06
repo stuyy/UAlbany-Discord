@@ -24,12 +24,10 @@ exports.showTable = function showTable(message)
 
 exports.viewXP = function viewXP(message)
 {
-  var channel = message.guild.channels.find(c => c.name === 'xp-levels');
-
   con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, result) => {
     if(err) throw err;
     console.log(message.author + " has " + result[0].xp + " total xp");
-    channel.send("Your total experience is: " + result[0].xp);
+    message.channel.send("Your total experience is: " + result[0].xp);
   });
 }
 
@@ -76,7 +74,8 @@ exports.addXP = function addXP(message)
         }
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 1. To view your total XP, type !viewxp");
+          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          expChannel.send(message.author + " leveled up! You have reached level 1. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }
@@ -93,7 +92,8 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 2.  To view your total XP, type !viewxp");
+          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          expChannel.send(message.author + " leveled up! You have reached level 2.  To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
 
@@ -111,7 +111,8 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 3. To view your total XP, type !viewxp");
+          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          expChannel.send(message.author + " leveled up! You have reached level 3. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }
@@ -128,7 +129,8 @@ exports.addXP = function addXP(message)
           console.log("User already leveled up.");
         else
         {
-          message.channel.send(message.author + " leveled up! You have reached level 4. To view your total XP, type !viewxp");
+          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          expChannel.send(message.author + " leveled up! You have reached level 4. To view your total XP, type !viewxp");
           message.member.addRole(role.id);
         }
       }
