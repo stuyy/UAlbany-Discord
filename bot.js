@@ -6,17 +6,10 @@ const config = require('./config.json');
 const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const giphy = require('./giphy.js');
-const mysql = require('mysql');
+const database = require('./database.js');
 const recentUser = new Set();
 
 client.login(config.token);
-
-var con = mysql.createConnection(config.info);
-con.connect(function(err) {
-  if(err) throw err;
-  console.log("Connected Successfully!");
-});
-
 
 client.on("ready", () => {
 
