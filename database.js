@@ -31,6 +31,14 @@ exports.viewXP = function viewXP(message)
   });
 }
 
+exports.clearData = function clearData(message)
+{
+  con.query(`DELETE FROM level WHERE id = ${message.author.id}`, err => {
+    if(err) throw err;
+    console.log("Cleared data.");
+  });
+}
+
 exports.addXP = function addXP(message)
 {
   if(message.content.startsWith("`")) return;

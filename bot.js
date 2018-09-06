@@ -97,7 +97,14 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!viewtable')
     database.showTable(message);
   else if(message.content.toLowerCase() === '!viewxp' && message.channel.name === 'bot')
-    database.viewXP();
+    database.viewXP(message);
+  else if(message.content.toLowerCase() === '!cleardata')
+  {
+    if(message.member.hasPermission('ADMINISTRATOR'))
+    {
+      database.clearData(message);
+    }
+  }
   else
   {
       database.addXP(message);
