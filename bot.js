@@ -2,12 +2,21 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const commands = require('./commands.js');
 const botinfo = require('./botinfo.json');
+const config = require('./config.json');
 const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const giphy = require('./giphy.js');
+const mysql = require('mysql');
 const recentUser = new Set();
 
-client.login(process.env.BOT_TOKEN);
+client.login(config.token);
+
+var con = mysql.createConnection(config.info);
+con.connect(function(err) {
+  if(err) throw err;
+  console.log("Connected Successfully!");
+});
+
 
 client.on("ready", () => {
 
