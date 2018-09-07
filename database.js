@@ -65,7 +65,7 @@ exports.addXP = function addXP(message)
     if(err) throw err;
     if(rows.length < 1)
     {
-      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate(message)})`;
+      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate()})`;
       con.query(sql, (err, result) => {
         if(err) throw err;
         console.log("Successfully updated XP for " + message.author.username);
@@ -74,7 +74,7 @@ exports.addXP = function addXP(message)
     else
     {
       let xp = rows[0].xp;
-      let sql = `UPDATE level SET xp = ${xp + xpGenerate(message)} WHERE id = '${message.author.id}'`;
+      let sql = `UPDATE level SET xp = ${xp + xpGenerate()} WHERE id = '${message.author.id}'`;
       con.query(sql, (err, result) => {
         if(err) throw err;
         console.log("Successfully updated XP for " + message.author.username);
@@ -88,13 +88,16 @@ exports.addXP = function addXP(message)
       {
         var role = message.guild.roles.find(roles => roles.name === 'Rank One');
         if(message.member.roles.has(role.id))
-        {
           console.log("User already leveled up.");
-        }
+
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          expChannel.send(message.author + " leveled up! You have reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!");
+          const embed = new Discord.RichEmbed()
+          .setTitle("Level Up!")
+          .setDescription("You have just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setColor("#42f46e");
+          expChannel.send({embed});
           message.member.addRole(role.id);
         }
       }
@@ -112,7 +115,11 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          expChannel.send(message.author + " leveled up! You have reached level 2.  To view your total XP, type !viewxp in the " + botChannel + " channel!");
+          const embed = new Discord.RichEmbed()
+          .setTitle("Level Up!")
+          .setDescription("You have just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setColor("#42f46e");
+          expChannel.send({embed});
           message.member.addRole(role.id);
         }
 
@@ -131,7 +138,11 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          expChannel.send(message.author + " leveled up! You have reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!");
+          const embed = new Discord.RichEmbed()
+          .setTitle("Level Up!")
+          .setDescription("You have just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setColor("#42f46e");
+          expChannel.send({embed});
           message.member.addRole(role.id);
         }
       }
@@ -149,8 +160,11 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          var botChannel = message.guild.channels.find(c => c.name === 'bot');
-          expChannel.send(message.author + " leveled up! You have reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!");
+          const embed = new Discord.RichEmbed()
+          .setTitle("Level Up!")
+          .setDescription("You have just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setColor("#42f46e");
+          expChannel.send({embed});
           message.member.addRole(role.id);
         }
       }
@@ -158,8 +172,7 @@ exports.addXP = function addXP(message)
 });
 }
 
-function xpGenerate(msg)
+function xpGenerate()
 {
-  var size = msg.content.length;
-  return size/5;
+  return Math.floor(Math.random() * 50);
 }
