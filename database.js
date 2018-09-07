@@ -93,6 +93,7 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
           .setDescription("You have just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
@@ -115,6 +116,7 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
           .setDescription("You have just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
@@ -138,6 +140,7 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
           .setDescription("You have just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
@@ -160,6 +163,7 @@ exports.addXP = function addXP(message)
         else
         {
           var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+          var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
           .setDescription("You have just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
