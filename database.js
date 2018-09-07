@@ -96,7 +96,7 @@ exports.addXP = function addXP(message)
           var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
-          .setDescription("You have just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setDescription(message.author + " has just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
           .setColor("#42f46e");
           expChannel.send({embed});
           message.member.addRole(role.id);
@@ -119,7 +119,7 @@ exports.addXP = function addXP(message)
           var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
-          .setDescription("You have just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setDescription(message.author + " has just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
           .setColor("#42f46e");
           expChannel.send({embed});
           message.member.addRole(role.id);
@@ -143,7 +143,7 @@ exports.addXP = function addXP(message)
           var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
-          .setDescription("You have just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setDescription(message.author + " has just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
           .setColor("#42f46e");
           expChannel.send({embed});
           message.member.addRole(role.id);
@@ -166,7 +166,7 @@ exports.addXP = function addXP(message)
           var botChannel = message.guild.channels.find(c => c.name === 'bot');
           const embed = new Discord.RichEmbed()
           .setTitle("Level Up!")
-          .setDescription("You have just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
+          .setDescription(message.author + " has just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
           .setColor("#42f46e");
           expChannel.send({embed});
           message.member.addRole(role.id);
