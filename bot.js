@@ -138,9 +138,15 @@ client.on('message', message => {
   }*/
   else if(message.content.startsWith("```Java"))
   {
-    var sourceCode = message.content.substring(7);
-    sourceCode = sourceCode.substring(0, sourceCode.length-3);
-    compile.runJava(sourceCode, message);
+    if(message.member.hasPermission('ADMINISTRATOR'))
+    {
+      var sourceCode = message.content.substring(7);
+      sourceCode = sourceCode.substring(0, sourceCode.length-3);
+      compile.runJava(sourceCode, message);
+    }
+    else {
+      message.channel.send("You don't have permission");
+    }
 
   }
   else
