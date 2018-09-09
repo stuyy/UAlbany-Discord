@@ -140,7 +140,7 @@ client.on('message', message => {
   {
     var sourceCode = message.content.substring(7);
     sourceCode = sourceCode.substring(0, sourceCode.length-3);
-    compile.runJava(message);
+    compile.runJava(sourceCode);
 
   }
   else
