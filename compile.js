@@ -10,7 +10,15 @@ exports.runJava = function runJava(code, message)
 
     shell.exec('javac Test.java');
     shell.exec("java Test >> output.txt");
-    shell.exec("echo >> output.txt");
+
+    const linereader = require('readline').createInterface({
+      input: require('fs').createReadStream('output.txt');
+    });
+
+    linereader.on('line', line => {
+      message.channel.send("Result: " + line);
+    });
+
   });
 
 }
