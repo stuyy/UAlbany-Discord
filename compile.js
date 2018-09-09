@@ -8,10 +8,8 @@ exports.runJava = function runJava(code, message)
     if(err) throw err;
     console.log("Succesfully written!");
 
-    shell.exec('javac Test.java', function(code, stdout, stderr){
-      console.log("STDOUT:" +stdout);
-    });
-
+    shell.exec('javac Test.java');
+    message.channel.send(shell.exec("java Test.java"));
   });
 
 }
