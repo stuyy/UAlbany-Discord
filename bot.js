@@ -77,11 +77,11 @@ client.on('message', message => {
   else if(message.content.toLowerCase().startsWith("!hours"))
     info.showHours(message);
 
-  else if ((message.channel.name === 'imgur') && !message.author.bot)
+  else if ((message.channel.name === 'imgur-posts') && !message.author.bot)
   {
     if(recentUser.has(message.author.id))
       message.channel.send("Please wait 15 seconds before typing this again " + message.author);
-
+    
     else
     {
       imgur.search(message, message.content.toLowerCase());
