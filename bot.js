@@ -138,7 +138,8 @@ client.on('message', message => {
   }*/
   else if(message.content.startsWith("```Java"))
   {
-    var sourceCode = message.content.substring(7, sourceCode.length-3);
+    var sourceCode = message.content.substring(7);
+    sourceCode = sourceCode.substring(0, sourceCode.length-3);
     compile.runJava(message);
 
   }
