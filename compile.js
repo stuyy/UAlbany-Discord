@@ -9,7 +9,8 @@ exports.runJava = function runJava(code, message)
     console.log("Succesfully written!");
 
     shell.exec('javac Test.java');
-    shell.exec("java Test.java");
+    shell.exec("java Test >> output.txt");
+    shell.exec("echo >> output.txt");
   });
 
 }
