@@ -81,7 +81,7 @@ client.on('message', message => {
   {
     if(recentUser.has(message.author.id))
       message.channel.send("Please wait 15 seconds before typing this again " + message.author);
-    
+
     else
     {
       imgur.search(message, message.content.toLowerCase());
@@ -108,6 +108,11 @@ client.on('message', message => {
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
+  }
+  else if(message.content.startsWith("```Java"))
+  {
+    // Execute java code.
+    console.log(message.content);
   }
   else
   {
