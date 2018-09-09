@@ -100,7 +100,7 @@ client.on('message', message => {
     database.viewXP(message);
 
   else if(message.content.toLowerCase() === '!sortxp')
-    database.sortTable();
+    database.sortTable(message);
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
 

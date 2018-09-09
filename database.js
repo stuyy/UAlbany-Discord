@@ -176,11 +176,17 @@ exports.addXP = function addXP(message)
 });
 }
 
-exports.sortTable = function sortTable()
+exports.sortTable = function sortTable(message)
 {
-  con.query("SELECT * FROM level ORDER BY xp", (err, result) => {
+  con.query("SELECT * FROM level ORDER BY xp DESC", (err, result) => {
     if(err) throw err;
-    console.log(result);
+    //console.log(result);
+    result.forEach( result => {
+      console.log("ID: " + result.id + " XP: " + result.xp);
+    });
+
+
+    })
   });
 }
 
