@@ -181,10 +181,13 @@ exports.sortTable = function sortTable(message)
   con.query("SELECT * FROM level ORDER BY xp DESC", (err, result) => {
     if(err) throw err;
     //console.log(result);
+    var arr = [];
     result.forEach( result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
       console.log("Username: " + someMember.user.username + " XP: " + result.xp);
+      arr.push("Name: " + someMember.user.username + "Total XP: " + result.xp);
+      message.channel.send(arr);
     });
 
 
