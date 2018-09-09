@@ -185,11 +185,11 @@ exports.sortTable = function sortTable(message)
     result.forEach( result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
-      console.log("Username: " + someMember.user.username + " XP: " + result.xp);
-      arr.push("Name: " + someMember.user.username + "Total XP: " + result.xp);
-      message.channel.send(arr);
-    });
+      //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
+      arr.push("Name: " + someMember.user.username + " Total XP: " + result.xp);
 
+    });
+    message.channel.send(arr);
 
   });
 }
