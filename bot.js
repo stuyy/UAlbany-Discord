@@ -112,7 +112,7 @@ client.on('message', message => {
   else if(message.content.startsWith("```Java"))
   {
     // Execute java code.
-    console.log(message.content);
+    console.log(message.content.substring(3));
   }
   else
   {
