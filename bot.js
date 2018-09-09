@@ -117,12 +117,7 @@ client.on('message', message => {
     console.log(sourceCode.substring(0, sourceCode.length-3));
     sourceCode = sourceCode.substring(0, sourceCode.length-3);
     var program = {
-      script: "public class Test {
-        public static void main(String[] args)
-        {
-          
-        }
-      }",
+      script: "public class Test { public static void main(String[] args) {" + sourceCode + "}}",
       language: "java",
       versionIndex: "0",
       clientId: "e60d503c6a9ef89737854122eb13d37f",
