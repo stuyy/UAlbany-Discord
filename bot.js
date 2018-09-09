@@ -113,7 +113,7 @@ client.on('message', message => {
   {
     // Execute java code.
     var first = message.content.substring(3);
-    console.log(first.substring(0, -3));
+    console.log(first);
   }
   else
   {
