@@ -186,10 +186,14 @@ exports.sortTable = function sortTable(message)
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
-      arr.push("Name: " + someMember.user.username + " Total XP: " + result.xp);
+      arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
 
     });
-    message.channel.send(arr);
+    const embed = new Discord.RichEmbed()
+    .setTitle("User XP Rankings")
+    .setColor("#42f46e")
+    .addField("XP Rankings: ", arr);
+    message.channel.send({embed});
 
   });
 }
