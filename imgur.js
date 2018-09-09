@@ -11,7 +11,7 @@ exports.search = function search(message, query) // Takes in the message object,
       var arrayLength = queryData.data.length;
       console.log("Results: " + arrayLength);
       var random = Math.floor(Math.random() * arrayLength);
-      message.channel.send({file: queryData.data[random].link});
+      message.channel.send(queryData.data[random].link);
     }
     catch(error)
     {
