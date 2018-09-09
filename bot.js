@@ -7,9 +7,7 @@ const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const database = require('./database.js');
 const imgur = require('./imgur.js');
-const compile = require('./compile.js');
 const recentUser = new Set();
-var request = require('request');
 
 client.login(config.token);
 
@@ -110,44 +108,6 @@ client.on('message', message => {
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
-  }/*
-  else if(message.content.startsWith("```Java"))
-  {
-    // Execute java code.
-    var sourceCode = message.content.substring(7);
-    console.log(sourceCode.substring(0, sourceCode.length-3));
-    sourceCode = sourceCode.substring(0, sourceCode.length-3);
-    var program = {
-      script: "public class Test { public static void main(String[] args) {" + sourceCode + "}}",
-      language: "java",
-      versionIndex: "0",
-      clientId: "e60d503c6a9ef89737854122eb13d37f",
-      clientSecret:"2ac8aeb45e201e84b7f95ab8d59f613601eb3b4c851252c4e988fd2317ac96ff"
-    }
-
-    request({
-      url: 'https://api.jdoodle.com/execute',
-      method: "POST",
-      json: program
-    },
-    function(err, res, body) {
-      if(err) throw err;
-      console.log(body.output);
-      message.channel.send(body.output);
-    })
-  }*/
-  else if(message.content.startsWith("```Java"))
-  {
-    if(message.member.hasPermission('ADMINISTRATOR'))
-    {
-      var sourceCode = message.content.substring(7);
-      sourceCode = sourceCode.substring(0, sourceCode.length-3);
-      compile.runJava(sourceCode, message);
-    }
-    else {
-      message.channel.send("You don't have permission");
-    }
-
   }
   else
   {
