@@ -184,7 +184,7 @@ exports.sortTable = function sortTable(message)
     result.forEach( result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
-      console.log("Username: " + someMember.nickname + " XP: " + result.xp);
+      console.log("Username: " + someMember.user.username + " XP: " + result.xp);
     });
 
 
