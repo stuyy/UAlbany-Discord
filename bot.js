@@ -20,16 +20,11 @@ client.on("ready", () => {
 
 client.on('guildMemberAdd', member => {
 
-  var generalChannel = client.channels.find('name', 'welcome');
+  var welcomeChannel = client.channels.find('name', 'welcome');
   var intro = client.channels.find(channel => channel.name === 'introductions');
   var botChannel = client.channels.find(channel => channel.name === 'bot');
   let greatDane = member.guild.roles.find('name', 'Great Dane');
-  const embed = new Discord.RichEmbed()
-  .setAuthor(member.user.username, member.user.avatarURL)
-  .setColor("#c542f4")
-  .setDescription("Introduce yourself over on " + intro + " and add yourself to a role in the " + botChannel + " channel!");
-  /*generalChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");*/
-  generalChannel.send({embed});
+  welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
 });
 
