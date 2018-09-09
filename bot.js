@@ -115,7 +115,7 @@ client.on('message', message => {
     // Execute java code.
     var sourceCode = message.content.substring(3);
     console.log(sourceCode.substring(0, sourceCode.length-3));
-
+    sourceCode = sourceCode.substring(0, sourceCode.length-3);
     var program = {
       script: sourceCode,
       language: "java",
@@ -123,6 +123,7 @@ client.on('message', message => {
       clientId: "e60d503c6a9ef89737854122eb13d37f",
       clientSecret:"2ac8aeb45e201e84b7f95ab8d59f613601eb3b4c851252c4e988fd2317ac96ff"
     }
+
     request({
       url: 'https://api.jdoodle.com/execute',
       method: "POST",
