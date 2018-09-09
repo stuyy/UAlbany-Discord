@@ -12,7 +12,7 @@ exports.runJava = function runJava(code, message)
     shell.exec("java Test >> output.txt");
 
     const linereader = require('readline').createInterface({
-      input: require('fs').createReadStream('output.txt');
+      input: require('fs').createReadStream('output.txt')
     });
 
     linereader.on('line', line => {
