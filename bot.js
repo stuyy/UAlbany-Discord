@@ -99,7 +99,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
     database.viewXP(message);
 
-  else if(message.content.toLowerCase() === '!sortxp')
+  else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
     database.sortTable(message);
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
