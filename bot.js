@@ -7,6 +7,7 @@ const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const database = require('./database.js');
 const imgur = require('./imgur.js');
+const compile = require('./compile.js');
 const recentUser = new Set();
 var request = require('request');
 
@@ -109,7 +110,7 @@ client.on('message', message => {
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
-  }
+  }/*
   else if(message.content.startsWith("```Java"))
   {
     // Execute java code.
@@ -134,6 +135,12 @@ client.on('message', message => {
       console.log(body.output);
       message.channel.send(body.output);
     })
+  }*/
+  else if(message.content.startsWith("```Java"))
+  {
+    var sourceCode = message.content.substring(7, sourceCode.length-3);
+    compile.runJava(message);
+
   }
   else
   {
