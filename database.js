@@ -186,7 +186,6 @@ exports.sortTable = function sortTable(message)
     });
 
 
-    })
   });
 }
 
