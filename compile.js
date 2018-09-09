@@ -1,17 +1,16 @@
 const shell = require('shelljs');
 const fs = require('fs');
 
-exports.runJava = function runJava(message)
+exports.runJava = function runJava(code, message)
 {
 
-  console.log("CODE: " + message);
-  fs.writeFile('Test.java', message, err => {
+  fs.writeFile('Test.java', code, err => {
     if(err) throw err;
     console.log("Succesfully written!");
 
     shell.exec('javac Test.java');
-    shell.exec('java Test');
-
+    var output = shell.exec('java Test');
+    message.channel.send(output);
   });
 
 }
