@@ -9,7 +9,7 @@ exports.runJava = function runJava(code, message)
     console.log("Succesfully written!");
 
     shell.exec('javac Test.java');
-    shell.exec("java Test >> output.txt");
+    shell.exec("java Test > output.txt");
 
     const linereader = require('readline').createInterface({
       input: require('fs').createReadStream('output.txt')
