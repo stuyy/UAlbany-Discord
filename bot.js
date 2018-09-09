@@ -113,7 +113,7 @@ client.on('message', message => {
   else if(message.content.startsWith("```Java"))
   {
     // Execute java code.
-    var sourceCode = message.content.substring(3);
+    var sourceCode = message.content.substring(7);
     console.log(sourceCode.substring(0, sourceCode.length-3));
     sourceCode = sourceCode.substring(0, sourceCode.length-3);
     var program = {
