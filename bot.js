@@ -127,8 +127,10 @@ client.on('message', message => {
       url: 'https://api.jdoodle.com/execute',
       method: "POST",
       json: program
-    }, function(err, res, body) {
+    },
+    function(err, res, body) {
       if(err) throw err;
+      console.log(body.output);
       message.channel.send(body.output);
     })
   }
