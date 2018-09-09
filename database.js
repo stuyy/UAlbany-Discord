@@ -176,6 +176,14 @@ exports.addXP = function addXP(message)
 });
 }
 
+exports.sortTable = function sortTable()
+{
+  con.query("SELECT * FROM level ORDER BY xp", (err, result) => {
+    if(err) throw err;
+    console.log(result);
+  });
+}
+
 function xpGenerate()
 {
   return Math.floor(Math.random() * 50);

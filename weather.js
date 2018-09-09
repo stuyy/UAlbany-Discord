@@ -1,9 +1,10 @@
 const request = require('request');
+const config = require('./config.json');
 exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + 'c517a8221d86dbe9af8cbc0e520f0c74';
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + config.weather_API;
   console.log(command);
   console.log(city);
   console.log(url);
@@ -14,7 +15,7 @@ exports.getForecast = function getForecast(message)
 {
   let command = message.content.substr(0, messgae.content.indexOf(' '));
   let city = message.content.substr(message.content.indexOf(' ')+1);
-  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + 'c517a8221d86dbe9af8cbc0e520f0c74';
+  let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + config.weather_API;
 
 }
 
