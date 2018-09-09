@@ -21,12 +21,15 @@ client.on("ready", () => {
 client.on('guildMemberAdd', member => {
 
   var generalChannel = client.channels.find('name', 'welcome');
-  console.log(member.user.username);
-  console.log(generalChannel.name);
   var intro = client.channels.find(channel => channel.name === 'introductions');
   var botChannel = client.channels.find(channel => channel.name === 'bot');
   let greatDane = member.guild.roles.find('name', 'Great Dane');
-  generalChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
+  const embed = new Discord.RichEmbed()
+  .setAuthor("Welcome to the UAlbany Community Server! " + member.user.avatarURL)
+  .setColor("#c542f4")
+  .setDescription("Introduce yourself over on " + intro + " and add yourself to a role in the " + botChannel + " channel!");
+  /*generalChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");*/
+  generalChannel.send({embed});
   member.addRole(greatDane.id);
 });
 
@@ -122,7 +125,6 @@ client.on('message', message => {
           }
         });*/
   }
-
 
 
 }); // End of message event.

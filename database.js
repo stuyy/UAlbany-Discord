@@ -83,7 +83,7 @@ exports.addXP = function addXP(message)
 
     con.query(`SELECT * FROM level WHERE id = '${message.author.id}'`, function (err, result, fields) {
       if (err) throw err;
-      console.log(result[0].xp);
+
       checkXP(message, result);
       /*
       if(result[0].xp >= 120 && result[0].xp < 240)
