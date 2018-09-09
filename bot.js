@@ -109,7 +109,7 @@ client.on('message', message => {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
   }
-  else if(message.content.startsWith("```Java"))
+  else if(message.content.startsWith("Java"))
   {
     // Execute java code.
     console.log(message.content);
