@@ -5,8 +5,8 @@ const botinfo = require('./botinfo.json');
 const config = require('./config.json');
 const weather = require('./weather.js');
 const info = require('./uainfo.js');
-const giphy = require('./giphy.js');
 const database = require('./database.js');
+const imgur = require('./imgur.js');
 const recentUser = new Set();
 
 client.login(config.token);
@@ -77,20 +77,18 @@ client.on('message', message => {
   else if(message.content.toLowerCase().startsWith("!hours"))
     info.showHours(message);
 
-  else if ((message.channel.name === 'giphy-posts') && !message.author.bot)
+  else if ((message.channel.name === 'imgur') && !message.author.bot)
   {
     if(recentUser.has(message.author.id))
-      message.channel.send("Please wait 10 seconds before typing this again " + message.author);
+      message.channel.send("Please wait 15 seconds before typing this again " + message.author);
 
     else
     {
-      if(!message.author.bot)
-        giphy.sendGIF(message, message.content.toLowerCase());
-
+      imgur.search(message, message.content.toLowerCase());
       recentUser.add(message.author.id);
       setTimeout(()=>{
         recentUser.delete(message.author.id);
-      }, 10000);
+      }, 15000);
     }
 
   }

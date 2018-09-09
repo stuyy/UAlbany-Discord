@@ -7,5 +7,6 @@
     "database": "botData"
   },
   "weather_API" : "c517a8221d86dbe9af8cbc0e520f0c74",
-  "giphy_API" : "3GbDWSgSZnoSB2S7B5fOWaq8t6FIiJSf"
+  "giphy_API" : "3GbDWSgSZnoSB2S7B5fOWaq8t6FIiJSf",
+  "imgur_client_id" : "f7e7bca94c01903"
 }

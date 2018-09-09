@@ -200,5 +200,5 @@ exports.sortTable = function sortTable(message)
 
 function xpGenerate()
 {
-  return Math.floor(Math.random() * 50);
+  return Math.floor(Math.random() * 25);
 }
