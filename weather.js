@@ -43,12 +43,14 @@ function requestData(url, message)
       let location = weatherData.name + ", " + weatherData.sys.country;
       const embed = new Discord.RichEmbed()
       .setTitle("Weather Data")
+      .setTimestamp()
+      .setThumbnail('http://openweathermap.org/img/w/01d.png')
       .setDescription("Provides a brief description of the weather in the specified city")
-      .addField("City: ", location, true)
-      .addField("Temperature: ", temp, true)
-      .addField("Max Temperature: " , maxTemp, true)
-      .addField("Min Temperature: ", minTemp, true)
-      .addField("Current Conditions: ", conditions.join(","), true);
+      .addField("City: ", location)
+      .addField("Temperature: ", temp)
+      .addField("Max Temperature: " , maxTemp)
+      .addField("Min Temperature: ", minTemp)
+      .addField("Current Conditions: ", conditions.join(","));
       
       message.channel.send({embed});
 
