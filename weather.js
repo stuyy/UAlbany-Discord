@@ -41,10 +41,12 @@ function requestData(url, message)
       /*
       message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", ")); */
       let location = weatherData.name + ", " + weatherData.sys.country;
+      //let iconURL = "http://openweathermap.org/img/w/" + weatherData.weather.".png"
       const embed = new Discord.RichEmbed()
       .setTitle("Weather Data")
       .setTimestamp()
       .setThumbnail('http://openweathermap.org/img/w/01d.png')
+      .setThumbnail('http://openweathermap.org/img/w/04n.png')
       .setDescription("Provides a brief description of the weather in the specified city")
       .addField("City: ", location)
       .addField("Temperature: ", temp)
