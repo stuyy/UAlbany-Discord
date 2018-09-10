@@ -31,7 +31,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', message => {
 
   if(message.author.bot) return;
-  if(message.content === '!help')
+  if(message.content.toLowerCase() === '!help' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
   {
     const embed = new Discord.RichEmbed()
     .setTitle("List of all the commands for Dane BOT")
@@ -44,7 +44,7 @@ client.on('message', message => {
     .addField(botinfo.commands[5].commandName, botinfo.commands[5].description);
     message.channel.send({embed});
   }
-  else if(message.content === '!roles' && message.channel.name === 'bot')
+  else if(message.content.toLowerCase() === '!roles' && message.channel.name === 'bot')
   {
     const embed = new Discord.RichEmbed()
     .setTitle("UAlbany Discord Server Roles")
@@ -56,17 +56,17 @@ client.on('message', message => {
     message.channel.send({embed});
 
   }
-  else if(message.content.toLowerCase().startsWith("!weather") && message.channel.name === 'bot')
+  else if(message.content.toLowerCase().startsWith("!weather") && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     weather.getWeather(message);
 
   else if(message.content.toLowerCase().startsWith("!addrole"))
   {
-    if(message.channel.name === "bot2" || message.channel.name === "bot")
+    if(message.channel.name === "bot" || message.member.hasPermission('ADMINISTRATOR'))
       commands.addRole(message);
     else
       message.channel.send("You must use this command in the #bot channel!");
   }
-  else if(message.content.startsWith("!deleterole"))
+  else if(message.content.toLowerCase().startsWith("!deleterole"))
   {
     if(message.channel.name === "bot2" || message.channel.name === "bot")
       commands.deleteRole(message);
@@ -80,7 +80,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase().startsWith("!hours"))
     info.showHours(message);
 
-  else if ((message.channel.name === 'imgur-posts') && !message.author.bot)
+  else if ((message.channel.name === 'imgur-posts'))
   {
     if(recentUser.has(message.author.id))
       message.channel.send("Please wait 15 seconds before typing this again " + message.author);
@@ -93,14 +93,13 @@ client.on('message', message => {
         recentUser.delete(message.author.id);
       }, 15000);
     }
-
   }
   else if(message.content.toLowerCase() === '!viewtable')
     database.showTable(message);
-  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
+  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
     database.viewXP(message);
 
-  else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
+  else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
   /*
   else if(message.content.toLowerCase() === '!create')
@@ -109,11 +108,12 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!drop')
     database.drop();
     */
+  /*
   else if(message.content.toLowerCase() === '!cleardata')
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
-  }
+  }*/
   else
   {
       database.addXP(message);

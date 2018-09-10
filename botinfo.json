@@ -1,6 +1,4 @@
 {
-  "commandList" : "!addrole - Specify one or multiple keywords to be assigned to the respective role/s.\n!roles - list of all the roles available\n!courseinfo - Enter the department/subject code/course number to retrieve a list of courses offered in Fall 2018.\n!weather - Provides the weather of the city specified\n!viewxp - View the total XP you have based on chat activity\n",
-
   "commands" : [
     {
       "commandName" : "!addrole [ role1, role2, role3, etc...]",
@@ -26,7 +24,6 @@
       "commandName" : "!rankings",
       "description" : "View the top 10 leaderboards for total user XP"
     }
-
 
 ],
 
