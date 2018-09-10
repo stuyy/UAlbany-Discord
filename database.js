@@ -116,7 +116,7 @@ exports.sortTable = function sortTable(message)
     .setColor("#42f46e")
     .addField("User: ", arr[0].name, true)
     .addField("XP: ", arr[0].xp, true)
-    .addField("User: ", arr[1].name, false)
+    .addField("User: ", arr[1].name, true)
     .addField("XP: ", arr[1].xp, true)
     .addField("User: ", arr[2].name, true)
     .addField("XP: ", arr[2].xp, true);
