@@ -3,20 +3,20 @@
 
   "commands" : [
     {
-      "commandName" : "!addrole",
-      "description" : "Specify one or more multiple keywords that correspond to the respective role to be assigned to it."
+      "commandName" : "!addrole [ role1, role2, role3, etc...]",
+      "description" : "Specify one or more multiple keywords that correspond to the respective role to be assigned to it. e.g: !addrole cs math phys ow senior"
     },
     {
       "commandName" : "!roles",
       "description" : "List all of the self-assignable roles"
     },
     {
-      "commandName" : "!courseinfo",
-      "description" : "Enter the departmen/subject code/course number to retrieve a list of courses for the Fall 2018 Semester."
+      "commandName" : "!courseinfo [dept/subject/number]",
+      "description" : "Enter the departmen/subject code/course number to retrieve a list of courses for the Fall 2018 Semester. e.g: Computer Science/CSI/404"
     },
     {
-      "commandName" : "!weather",
-      "description" : "Provides the weather for the city specified."
+      "commandName" : "!weather [city name] ",
+      "description" : "Provides the weather for the city specified. e.g: !weather albany, NY"
     },
     {
       "commandName" : "!viewxp",
