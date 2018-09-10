@@ -109,17 +109,32 @@ exports.sortTable = function sortTable(message)
     });
     //console.log(arr);
 
-
+    var userArray = [];
+    var userArrayXP = [];
+    userArray.push("User: " + arr[0].name);
+    userArray.push("User: " + arr[1].name);
+    userArray.push("User: " + arr[2].name);
+    userArray.push("User: " + arr[3].name);
+    userArray.push("User: " + arr[4].name);
+    userArray.push("User: " + arr[5].name);
+    userArray.push("User: " + arr[6].name);
+    userArray.push("User: " + arr[7].name);
+    userArray.push("User: " + arr[8].name);
+    userArrayXP.push("XP: " + arr[0].xp);
+    userArrayXP.push("XP: " + arr[1].xp);
+    userArrayXP.push("XP: " + arr[2].xp);
+    userArrayXP.push("XP: " + arr[3].xp);
+    userArrayXP.push("XP: " + arr[4].xp);
+    userArrayXP.push("XP: " + arr[5].xp);
+    userArrayXP.push("XP: " + arr[6].xp);
+    userArrayXP.push("XP: " + arr[7].xp);
+    userArrayXP.push("XP: " + arr[8].xp);
 
     const embed = new Discord.RichEmbed()
     .setTitle("Top 10 Leaderboards for Server XP")
     .setColor("#42f46e")
-    .addField("User: ", arr[0].name, true)
-    .addField("XP: ", arr[0].xp, true)
-    .addField("User: ", arr[1].name, true)
-    .addField("XP: ", arr[1].xp, true)
-    .addField("User: ", arr[2].name, true)
-    .addField("XP: ", arr[2].xp, true);
+    .addField(userArray[0], userArrayXP[0]);
+    .addField(userArray[1], userArrayXP[1]);
     message.channel.send({embed});
 
   });
