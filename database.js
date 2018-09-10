@@ -133,7 +133,7 @@ exports.sortTable = function sortTable(message)
     const embed = new Discord.RichEmbed()
     .setTitle("Top 10 Leaderboards for Server XP")
     .setColor("#42f46e")
-    .addField(userArray[0], userArrayXP[0]);
+    .addField(userArray[0], userArrayXP[0])
     .addField(userArray[1], userArrayXP[1]);
     message.channel.send({embed});
 
