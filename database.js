@@ -116,7 +116,7 @@ exports.sortTable = function sortTable(message)
     .addField("XP: ", arr[0].xp)
     .addField("User: ", arr[1].name)
     .addField("XP: ", arr[1].xp)
-    .addField("User: " arr[2].name)
+    .addField("User: ", arr[2].name)
     .addField("XP: ", arr[2].xp);
     message.channel.send({embed});
 
