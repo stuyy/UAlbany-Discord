@@ -105,8 +105,9 @@ exports.sortTable = function sortTable(message)
     });
     arr.length = 10;
     const embed = new Discord.RichEmbed()
+    .setTitle("Top 10 Leaderboard (Server XP):")
     .setColor("#42f46e")
-    .addField("XP Rankings: ", arr);
+    .addField("XP Rankings:\n\n", arr);
     message.channel.send({embed});
 
   });

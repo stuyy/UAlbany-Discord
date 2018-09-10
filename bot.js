@@ -36,7 +36,8 @@ client.on('message', message => {
     const embed = new Discord.RichEmbed()
     .setTitle("List of all the commands for Dane BOT")
     .setColor(0xbca72d)
-    .addField("Commands", botinfo.commandList);
+    .addField(botinfo.commands[0].commandName, botinfo.commands[0].description, true);
+
     message.channel.send({embed});
   }
   else if(message.content === '!roles' && message.channel.name === 'bot')
