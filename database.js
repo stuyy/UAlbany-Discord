@@ -100,55 +100,18 @@ exports.sortTable = function sortTable(message)
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
-      let user = new User(someMember.user.username, someMember.id, result.xp);
-      arr.push(user);
-
-      //arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
-
+      arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
 
     });
-    //console.log(arr);
-
-    var userArray = [];
-    var userArrayXP = [];
-    userArray.push("User: " + arr[0].name);
-    userArray.push("User: " + arr[1].name);
-    userArray.push("User: " + arr[2].name);
-    userArray.push("User: " + arr[3].name);
-    userArray.push("User: " + arr[4].name);
-    userArray.push("User: " + arr[5].name);
-    userArray.push("User: " + arr[6].name);
-    userArray.push("User: " + arr[7].name);
-    userArray.push("User: " + arr[8].name);
-    userArrayXP.push("XP: " + arr[0].xp);
-    userArrayXP.push("XP: " + arr[1].xp);
-    userArrayXP.push("XP: " + arr[2].xp);
-    userArrayXP.push("XP: " + arr[3].xp);
-    userArrayXP.push("XP: " + arr[4].xp);
-    userArrayXP.push("XP: " + arr[5].xp);
-    userArrayXP.push("XP: " + arr[6].xp);
-    userArrayXP.push("XP: " + arr[7].xp);
-    userArrayXP.push("XP: " + arr[8].xp);
-
+    arr.length = 10;
     const embed = new Discord.RichEmbed()
-    .setTitle("Top 10 Leaderboards for Server XP")
     .setColor("#42f46e")
-    .addField(userArray[0], userArrayXP[0])
-    .addField(userArray[1], userArrayXP[1]);
+    .addField("XP Rankings: ", arr);
     message.channel.send({embed});
 
   });
 }
 
-class User
-{
-  constructor(name, id, xp)
-  {
-    this.name = name;
-    this.id = id;
-    this.xp = xp;
-  }
-}
 function xpGenerate()
 {
   return Math.floor(Math.random() * 25);
