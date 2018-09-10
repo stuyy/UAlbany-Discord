@@ -20,7 +20,7 @@ client.on("ready", () => {
 
 client.on('guildMemberAdd', member => {
 
-  var welcomeChannel = client.channels.find('name', 'welcome');
+  var welcomeChannel = client.channels.find(c => c.name === 'welcome');
   var intro = client.channels.find(channel => channel.name === 'introductions');
   var botChannel = client.channels.find(channel => channel.name === 'bot');
   let greatDane = member.guild.roles.find('name', 'Great Dane');
@@ -97,11 +97,13 @@ client.on('message', message => {
 
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.channel.name === 'bot2'))
     database.sortTable(message);
+  /*
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
 
   else if(message.content.toLowerCase() === '!drop')
     database.drop();
+    */
   else if(message.content.toLowerCase() === '!cleardata')
   {
     if(message.member.hasPermission('ADMINISTRATOR'))

@@ -85,95 +85,7 @@ exports.addXP = function addXP(message)
       if (err) throw err;
 
       checkXP(message, result);
-      /*
-      if(result[0].xp >= 120 && result[0].xp < 240)
-      {
-        var role = message.guild.roles.find(roles => roles.name === 'Rank One');
-        if(message.member.roles.has(role.id))
-          console.log("User already leveled up.");
 
-        else
-        {
-          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          var botChannel = message.guild.channels.find(c => c.name === 'bot');
-          const embed = new Discord.RichEmbed()
-          .setTitle("Level Up!")
-          .setDescription(message.author + " has just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-          .setColor("#42f46e");
-          expChannel.send({embed});
-          message.member.addRole(role.id);
-        }
-      }
-      else if(result[0].xp >= 240 && result[0].xp < 480)
-      {
-        var role = message.guild.roles.find(roles => roles.name === 'Rank Two');
-        var previousRole = message.guild.roles.find(roles => roles.name === 'Rank One');
-        if(message.member.roles.has(previousRole.id))
-        {
-          console.log("Removing user from rank 1 role");
-          message.member.removeRole(previousRole.id);
-        }
-        if(message.member.roles.has(role.id))
-          console.log("User already leveled up.");
-        else
-        {
-          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          var botChannel = message.guild.channels.find(c => c.name === 'bot');
-          const embed = new Discord.RichEmbed()
-          .setTitle("Level Up!")
-          .setDescription(message.author + " has just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-          .setColor("#42f46e");
-          expChannel.send({embed});
-          message.member.addRole(role.id);
-        }
-
-      }
-      else if(result[0].xp >= 480 && result[0].xp < 1024)
-      {
-        var role = message.guild.roles.find(roles => roles.name === 'Rank Three');
-        var previousRole = message.guild.roles.find(roles => roles.name === 'Rank Two');
-        if(message.member.roles.has(previousRole.id))
-        {
-          console.log("Removing user from rank 2 role");
-          message.member.removeRole(previousRole.id);
-        }
-        if(message.member.roles.has(role.id))
-          console.log("User already leveled up.");
-        else
-        {
-          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          var botChannel = message.guild.channels.find(c => c.name === 'bot');
-          const embed = new Discord.RichEmbed()
-          .setTitle("Level Up!")
-          .setDescription(message.author + " has just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-          .setColor("#42f46e");
-          expChannel.send({embed});
-          message.member.addRole(role.id);
-        }
-      }
-      else if(result[0].xp >= 1024 && result[0].xp < 2048)
-      {
-        var role = message.guild.roles.find(roles => roles.name === 'Rank Four');
-        var previousRole = message.guild.roles.find(roles => roles.name === 'Rank Three');
-        if(message.member.roles.has(previousRole.id))
-        {
-          console.log("Removing user from rank 3 role");
-          message.member.removeRole(previousRole.id);
-        }
-        if(message.member.roles.has(role.id))
-          console.log("User already leveled up.");
-        else
-        {
-          var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-          var botChannel = message.guild.channels.find(c => c.name === 'bot');
-          const embed = new Discord.RichEmbed()
-          .setTitle("Level Up!")
-          .setDescription(message.author + " has just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-          .setColor("#42f46e");
-          expChannel.send({embed});
-          message.member.addRole(role.id);
-        }
-      } */
   });
 });
 }
@@ -188,20 +100,42 @@ exports.sortTable = function sortTable(message)
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
-      arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
+      let user = new User(someMember.user.username, someMember.id, result.xp);
+      arr.push(user);
+
+      //arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
+
 
     });
+    console.log(arr);
+    /*
     const embed = new Discord.RichEmbed()
+    .setTitle("Top 10 Leaderboards for Server XP")
     .setColor("#42f46e")
-    .addField("XP Rankings: ", arr);
+    .addField(, arr[0]);
+    .addField()
     message.channel.send({embed});
-
+    */
   });
 }
 
+class User
+{
+  constructor(name, id, xp)
+  {
+    this.name = name;
+    this.id = id;
+    this.xp = xp;
+  }
+}
 function xpGenerate()
 {
   return Math.floor(Math.random() * 25);
+}
+
+function checkLevel()
+{
+
 }
 
 function checkXP(message, result)
