@@ -1,5 +1,6 @@
 const request = require('request');
 const config = require('./config.json');
+const Discord = require('discord.js');
 exports.getWeather = function getWeather(message)
 {
   let command = message.content.substr(0, message.content.indexOf(' ')); // should be !weather
@@ -37,7 +38,19 @@ function requestData(url, message)
         conditions.push(weatherData.weather[i++].main);
 
       console.log(conditions);
-      message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", "));
+      /*
+      message.channel.send("The current temperature in " + weatherData.name + ", " + weatherData.sys.country + " is: " + temp + ".\nThe max temperature is: " + maxTemp + ".\nThe min temperature is: " + minTemp + ".\nThe condition is currently: " + conditions.join(", ")); */
+      let location = weatherData.name + ", " + weatherData.sys.country;
+      const embed = new Discord.RichEmbed()
+      .setTitle("Weather Data")
+      .setDescription("Provides a brief description of the weather in the specified city")
+      .addField("City: ", location, true)
+      .addField("Temperature: ", temp, true)
+      .addField("Max Temperature: " , maxTemp, true)
+      .addField("Min Temperature: ", minTemp, true)
+      .addField("Current Conditions: ", conditions.join(","), true);
+      
+      message.channel.send({embed});
 
     }
   });
