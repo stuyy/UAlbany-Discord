@@ -109,15 +109,17 @@ exports.sortTable = function sortTable(message)
     });
     //console.log(arr);
 
+
+
     const embed = new Discord.RichEmbed()
     .setTitle("Top 10 Leaderboards for Server XP")
     .setColor("#42f46e")
     .addField("User: ", arr[0].name, true)
-    .addField("XP:\n", arr[0].xp, true)
-    .addField("User: ", arr[1].name, true)
-    .addField("XP:\n", arr[1].xp, true)
-    .addField("User: ", arr[2].name, true)
-    .addField("XP:\n", arr[2].xp, true);
+    .addField("XP: ", arr[0].xp, true)
+    .addField("User: ", arr[1].name, false)
+    .addField("XP: ", arr[1].xp, true)
+    .addField("User: ", arr[2].name, false)
+    .addField("XP: ", arr[2].xp, true);
     message.channel.send({embed});
 
   });
