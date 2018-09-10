@@ -36,7 +36,13 @@ client.on('message', message => {
     const embed = new Discord.RichEmbed()
     .setTitle("List of all the commands for Dane BOT")
     .setColor(0xbca72d)
-    .addField(botinfo.commands[0].commandName, botinfo.commands[0].description, true);
+    .addField(botinfo.commands[0].commandName, botinfo.commands[0].description)
+    .addBlankField()
+    .addField(botinfo.commands[1].commandName, botinfo.commands[1].description)
+    .addBlankField()
+    .addField(botinfo.commands[2].commandName, botinfo.commands[2].description)
+    .addBlankField()
+    .addField(botinfo.commands[3].commandName, botinfo.commands[3].description);
 
     message.channel.send({embed});
   }
