@@ -37,13 +37,11 @@ client.on('message', message => {
     .setTitle("List of all the commands for Dane BOT")
     .setColor(0xbca72d)
     .addField(botinfo.commands[0].commandName, botinfo.commands[0].description)
-    .addBlankField()
     .addField(botinfo.commands[1].commandName, botinfo.commands[1].description)
-    .addBlankField()
     .addField(botinfo.commands[2].commandName, botinfo.commands[2].description)
-    .addBlankField()
-    .addField(botinfo.commands[3].commandName, botinfo.commands[3].description);
-
+    .addField(botinfo.commands[3].commandName, botinfo.commands[3].description)
+    .addField(botinfo.commands[4].commandName, botinfo.commands[4].description)
+    .addField(botinfo.commands[5].commandName, botinfo.commands[5].description);
     message.channel.send({embed});
   }
   else if(message.content === '!roles' && message.channel.name === 'bot')
