@@ -18,6 +18,10 @@ client.on("ready", () => {
 
 });
 
+client.on('guildUpdate', (oldGuild, newGuild) => {
+  newGuild.fetchAuditLogs().then(audit => console.log(audit.Actions)).catch(console.error);
+});
+
 client.on('guildMemberAdd', member => {
 
   var welcomeChannel = client.channels.find(c => c.name === 'welcome');
@@ -26,6 +30,7 @@ client.on('guildMemberAdd', member => {
   let greatDane = member.guild.roles.find('name', 'Great Dane');
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
+  database.addDB();
 
 });
 

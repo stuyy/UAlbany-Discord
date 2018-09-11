@@ -316,3 +316,8 @@ function checkXP(message, result)
     }
   }
 }
+
+exports.addDB = function addToDatabase()
+{
+
+}
