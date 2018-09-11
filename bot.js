@@ -123,6 +123,10 @@ client.on('message', message => {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
   }
+  else if(message.content.toLowerCase() === '!fetch')
+  {
+    client.fetchUser('322213102588264448').then(user => console.log(user.username));
+  }
   else
   {
       database.addXP(message);
