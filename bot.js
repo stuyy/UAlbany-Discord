@@ -125,7 +125,7 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!fetch')
   {
-    client.fetchUser('322213102588264448').then(user => console.log(user.username));
+    client.fetchUser('217117467439398912').then(user => console.log(user.username));
   }
   else
   {
