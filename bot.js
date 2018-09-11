@@ -101,6 +101,14 @@ client.on('message', message => {
 
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
+
+  else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('faggot'))
+  {
+    message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
+    .catch(console.error);
+  }
+
+
   /*
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
