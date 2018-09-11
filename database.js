@@ -45,7 +45,7 @@ exports.viewXP = function viewXP(message)
 
 exports.clearData = function clearData(message)
 {
-  con.query(`DELETE FROM level WHERE id = 396345752458100748`, err => {
+  con.query(`DELETE FROM level WHERE id = ${message.author.id}`, err => {
     if(err) throw err;
     console.log("Cleared data.");
   });
@@ -97,14 +97,8 @@ exports.sortTable = function sortTable(message)
     //console.log(result);
     var arr = [];
     result.forEach( result => {
-      //console.log("ID : " + result.id);
       var someMember = message.guild.members.find(gm => gm.id === result.id);
-      if(someMember == null)
-      {
-        console.log(result.id)
-      }
-      else
-      //console.log(someMember.id);
+
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
       arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
 
