@@ -26,6 +26,7 @@ client.on('guildMemberAdd', member => {
   let greatDane = member.guild.roles.find('name', 'Great Dane');
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
+  
 });
 
 client.on('message', message => {
