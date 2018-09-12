@@ -317,18 +317,29 @@ function checkXP(message, result)
   }
 }
 
-exports.modifyDB = function modifyDB(status)
+exports.modifyDB = function modifyDB(status, member)
 {
   if(status)
   {
-    let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', 0)`;
-    con.query(sql, (err, result) => {
+    con.query(`SELECT * FROM level WHERE id = ${member.id}`, (err, rows) => {
       if(err) throw err;
-      console.log("Successfully added " + message.author.username + " to the database!");
+      if(rows.length < 1)
+      {
+        let sql = `INSERT INTO level (id, xp) VALUES ('${member.id}', 0)`;
+        con.query(sql, (err, result) => {
+          if(err) throw err;
+          console.log("Successfully updated XP for " + member.user.username);
+        });
+      }
+      else
+      {
+        let xp = rows[0].xp;
+        let sql = `UPDATE level SET xp = 0 WHERE id = '${member.id}'`;
+        con.query(sql, (err, result) => {
+          if(err) throw err;
+          console.log("Successfully updated XP for " + member.user.username);
+        });
+      }
     });
-  }
-  else
-  {
-    
   }
 }

@@ -30,7 +30,7 @@ client.on('guildMemberAdd', member => {
   let greatDane = member.guild.roles.find('name', 'Great Dane');
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
-  database.modifyDB(true);
+  database.modifyDB(true, member);
   var logChannel = client.channels.find(channel => channel.id === '489191706819035154');
   if(logChannel != null)
   {
@@ -47,7 +47,7 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('guildMemberRemove', member => {
-  database.modifyDB(false); // remove the member from the database.
+  database.modifyDB(false, member); // remove the member from the database.
   var logChannel = client.channels.find(channel => channel.id === '489191706819035154');
   if(logChannel != null)
   {
