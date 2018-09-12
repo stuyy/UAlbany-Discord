@@ -31,7 +31,19 @@ client.on('guildMemberAdd', member => {
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
   database.modifyDB(true);
-
+  var logChannel = client.channels.find(channel => channel.id === '489191706819035154');
+  if(logChannel != null)
+  {
+    let name = member.user.username;
+    let memberID = member.id;
+    let tag = member.user.discriminator;
+    let authorName = name + "#" + tag + " (" + memberID + ")";
+    const embed = new Discord.RichEmbed()
+    .setAuthor(authorName, member.user.displayAvatarURL)
+    .setFooter("User joined")
+    .setColor("#41a9f4");
+    logChannel.send({embed});
+  }
 });
 
 client.on('guildMemberRemove', member => {
@@ -41,12 +53,15 @@ client.on('guildMemberRemove', member => {
   {
     let name = member.user.username;
     let memberID = member.id;
-    let authorName = name + " " + memberID;
+    let tag = member.user.discriminator;
+    let authorName = name + "#" + tag + " (" + memberID + ")";
     const embed = new Discord.RichEmbed()
-    .setAuthor(authorName, member.user.avatarURL);
+    .setAuthor(authorName, member.user.displayAvatarURL)
+    .setFooter("User left")
+    .setColor("#f44141");
     logChannel.send({embed});
   }
-})
+});
 
 client.on('message', message => {
 
