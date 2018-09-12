@@ -129,7 +129,7 @@ client.on('message', message => {
       }, 15000);
     }
   }
-  else if(message.content.toLowerCase() === '!viewtable')
+  else if(message.content.toLowerCase() === '!viewtable' && message.member.hasPermission('ADMINISTRATOR'))
     database.showTable(message);
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
     database.viewXP(message);

@@ -45,9 +45,9 @@ exports.viewXP = function viewXP(message)
 
 exports.clearData = function clearData(message)
 {
-  con.query(`DELETE FROM level WHERE id = ${message.author.id}`, err => {
+  con.query(`DELETE FROM level WHERE id = 216997362160107520`, err => {
     if(err) throw err;
-    console.log("Cleared data.");
+    console.log("Cleared data for 216997362160107520");
   });
 }
 
@@ -340,6 +340,12 @@ exports.modifyDB = function modifyDB(status, member)
           console.log("Successfully updated XP for " + member.user.username);
         });
       }
+    });
+  }
+  else {
+    con.query(`DELETE FROM level WHERE id = ${member.id}`, (err, result) => {
+      if(err) throw err;
+      console.log("Cleared data for " + member.user.username);
     });
   }
 }
