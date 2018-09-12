@@ -317,7 +317,18 @@ function checkXP(message, result)
   }
 }
 
-exports.addDB = function addToDatabase()
+exports.modifyDB = function modifyDB(status)
 {
-
+  if(status)
+  {
+    let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', 0)`;
+    con.query(sql, (err, result) => {
+      if(err) throw err;
+      console.log("Successfully added " + message.author.username + " to the database!");
+    });
+  }
+  else
+  {
+    
+  }
 }
