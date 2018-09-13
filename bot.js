@@ -148,6 +148,15 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!rules')
     info.showRules(message);
 
+  else if(message.content.toLowerCase() === '!roleinfo')
+    info.showRoleInfo(message);
+  else if(message.content.toLowerCase() === '!chinfo')
+    info.showChannelInfo(message);
+
+  else if(message.content.toLowerCase() === '!footer')
+    info.showFooter(message);
+  else if(message.content.toLowerCase() === '!invite')
+    info.showInvite(message);
   /*
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
@@ -160,10 +169,6 @@ client.on('message', message => {
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
-  }
-  else if(message.content.toLowerCase() === '!fetch')
-  {
-    client.fetchUser('396345752458100748').then(user => console.log(user.username));
   }
   else
   {
