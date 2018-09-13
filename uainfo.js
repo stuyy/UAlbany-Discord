@@ -1,6 +1,6 @@
 const maps = require('./ualbany_maps.json');
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const Guild = new Discord.Guild();
 
 exports.showMap = function showMap(message)
 {
@@ -62,7 +62,7 @@ exports.showHours = function showHours(message)
 
 exports.showIntro = function()
 {
-  let channel = client.channels.find(channel => channel.id === '487000554858610710');
+  let channel = Guild.channels.find(channel => channel.id === '487000554858610710');
   if(channel != null)
   {
     const embed = new Discord.RichEmbed()
