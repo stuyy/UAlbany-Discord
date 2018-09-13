@@ -72,4 +72,7 @@ exports.showIntro = function()
     .addField("", "- UAlbany students, alumni, applicants, faculty, or anyone associated with the University are welcome here. A server member does not necessarily have to be a current student or faculty member, they may have either graduated or may be looking to attend the school and needs some additional information.");
     channel.send({embed});
   }
+  else {
+    console.log("Error");
+  }
 }
