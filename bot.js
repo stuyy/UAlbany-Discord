@@ -66,6 +66,36 @@ client.on('guildMemberRemove', member => {
 client.on('message', message => {
 
   if(message.author.bot) return;
+  if(message.channel.type === 'dm')
+  {
+    if(message.content.toLowerCase().startsWith("!announce") && message.author.id === '187090775819943936')
+    {
+      let args = message.content.toLowerCase().split(" ");
+      args.length = 2; // Get the command AND the channel.
+      let channelName = args[1];
+      console.log(channelName);
+      console.log(channelName.length);
+      let announcement = message.content.substr(message.content.indexOf(' ') + channelName.length+1);
+      let guild = client.guilds.find(guild => guild.id === '298219088356966402');
+      try {
+        let author = "Message from: " + message.author.username;
+        let someChannel = guild.channels.find(c => c.name === channelName);
+        let embed = new Discord.RichEmbed()
+        .setTitle("")
+        .setAuthor(client.user.username, client.user.displayAvatarURL)
+        .setDescription(announcement);
+        someChannel.send({embed});
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    }
+    else
+    {
+      message.channel.send("You are not authorized to use this command");
+    }
+  }
   if(message.content.toLowerCase() === '!help' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
   {
     const embed = new Discord.RichEmbed()
