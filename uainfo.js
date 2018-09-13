@@ -60,9 +60,9 @@ exports.showHours = function showHours(message)
 
 }
 
-exports.showIntro = function()
+exports.showIntro = function(message)
 {
-  let channel = Guild.channels.find(channel => channel.id === '487000554858610710');
+  let channel = message.guild.channels.find(channel => channel.id === '487000554858610710');
   if(channel != null)
   {
     const embed = new Discord.RichEmbed()

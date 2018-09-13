@@ -143,7 +143,7 @@ client.on('message', message => {
     .catch(console.error);
   }
   else if(message.content.toLowerCase() === '!showintro')
-    info.showIntro();
+    info.showIntro(message);
 
 
   /*
