@@ -145,6 +145,8 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!showintro')
     info.showIntro(message);
 
+  else if(message.content.toLowerCase() === '!rules')
+    info.showRules(message);
 
   /*
   else if(message.content.toLowerCase() === '!create')
