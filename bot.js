@@ -142,6 +142,8 @@ client.on('message', message => {
     message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
     .catch(console.error);
   }
+  else if(message.content.toLowerCase() === '!showintro')
+    info.showIntro();
 
 
   /*

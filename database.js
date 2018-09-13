@@ -45,9 +45,9 @@ exports.viewXP = function viewXP(message)
 
 exports.clearData = function clearData(message)
 {
-  con.query(`DELETE FROM level WHERE id = 488293075144409104`, err => {
+  con.query(`DELETE FROM level WHERE id = ${message.author.id}`, err => {
     if(err) throw err;
-    console.log("Cleared data for 216997362160107520");
+    console.log("Cleared data.");
   });
 }
 
