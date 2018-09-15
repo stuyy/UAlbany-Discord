@@ -65,7 +65,7 @@ exports.addXP = function addXP(message)
     if(err) throw err;
     if(rows.length < 1)
     {
-      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate()})`;
+      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate(message)})`;
       con.query(sql, (err, result) => {
         if(err) throw err;
         console.log("Successfully updated XP for " + message.author.username);
@@ -74,7 +74,7 @@ exports.addXP = function addXP(message)
     else
     {
       let xp = rows[0].xp;
-      let sql = `UPDATE level SET xp = ${xp + xpGenerate()} WHERE id = '${message.author.id}'`;
+      let sql = `UPDATE level SET xp = ${xp + xpGenerate(message)} WHERE id = '${message.author.id}'`;
       con.query(sql, (err, result) => {
         if(err) throw err;
         console.log("Successfully updated XP for " + message.author.username);
@@ -96,7 +96,7 @@ exports.sortTable = function sortTable(message)
     if(err) throw err;
     //console.log(result);
     var arr = [];
-    result.forEach( result => {
+    result.forEach(result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
 
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
@@ -113,8 +113,11 @@ exports.sortTable = function sortTable(message)
   });
 }
 
-function xpGenerate()
+function xpGenerate(message)
 {
+  let msgContent = message.content.toLowerCase().split(' ').join('');
+  let msgCount = msgContent.length;
+
   return Math.floor(Math.random() * 25);
 }
 
