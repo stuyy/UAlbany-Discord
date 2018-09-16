@@ -27,7 +27,7 @@ client.on('guildMemberAdd', member => {
   var welcomeChannel = client.channels.find(c => c.name === 'welcome');
   var intro = client.channels.find(channel => channel.name === 'introductions');
   var botChannel = client.channels.find(channel => channel.name === 'bot');
-  let greatDane = member.guild.roles.find('name', 'Great Dane');
+  let greatDane = member.guild.roles.find(role => role.name === 'Great Dane');
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
   member.addRole(greatDane.id);
   database.modifyDB(true, member);
@@ -113,60 +113,24 @@ client.on('message', message => {
       message.channel.send("You are not authorized to use this command");
     }
   }
-  if(message.content.toLowerCase() === '!help' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
-  {
-    const embed = new Discord.RichEmbed()
-    .setTitle("List of all the commands for Dane BOT")
-    .setColor(0xbca72d)
-    .addField(botinfo.commands[0].commandName, botinfo.commands[0].description)
-    .addField(botinfo.commands[1].commandName, botinfo.commands[1].description)
-    .addField(botinfo.commands[2].commandName, botinfo.commands[2].description)
-    .addField(botinfo.commands[3].commandName, botinfo.commands[3].description)
-    .addField(botinfo.commands[4].commandName, botinfo.commands[4].description)
-    .addField(botinfo.commands[5].commandName, botinfo.commands[5].description);
-    message.channel.send({embed});
-  }
-  else if(message.content.toLowerCase() === '!roles' && message.channel.name === 'bot')
-  {
-    const embed = new Discord.RichEmbed()
-    .setTitle("UAlbany Discord Server Roles")
-    .setColor(0x9829e8)
-    .setDescription("To add yourself to a role, simply type !addrole [ all of the role keywords go here without the square brackets], i.e: !addrole cs math phys")
-    .addField("List of Major-Specific Roles", botinfo.roleList)
-    .addField("List of roles specified by Academic Standing", botinfo.yearRoles)
-    .addField("List of Gaming Roles", botinfo.gamingRoles);
-    message.channel.send({embed});
-
-  }
-  else if(message.content.toLowerCase().startsWith("!weather") && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
+  if(commands.checkCommand(message, "help") && commands.checkPermission(message))
+    commands.help(message, botinfo);
+  else if(commands.checkCommand(message, "roles") && commands.checkPermission(message))
+    commands.displayRoles(message, botinfo);
+  else if(commands.checkCommand(message, "weather") && commands.checkPermission(message))
     weather.getWeather(message);
-
-  else if(message.content.toLowerCase().startsWith("!addrole"))
-  {
-    if(message.channel.name === "bot" || message.member.hasPermission('ADMINISTRATOR'))
-      commands.addRole(message);
-    else
-      message.channel.send("You must use this command in the #bot channel!");
-  }
-  else if(message.content.toLowerCase().startsWith("!deleterole"))
-  {
-    if(message.channel.name === "bot2" || message.channel.name === "bot")
-      commands.deleteRole(message);
-    else
-      message.channel.send("You must use this command in the #bot channel!");
-  }
-
-  else if(message.content.startsWith("!maps"))
+  else if(commands.checkCommand(message, "addrole") && commands.checkPermission(message))
+    commands.addRole(message);
+  else if(commands.checkCommand(message, "deleterole") && commands.checkPermission(message))
+    commands.deleteRole(message);
+  else if(commands.checkCommand(message, "maps"))
     info.showMap(message);
-
   else if(message.content.toLowerCase().startsWith("!hours"))
     info.showHours(message);
-
   else if ((message.channel.name === 'imgur-posts'))
   {
     if(recentUser.has(message.author.id))
       message.channel.send("Please wait 15 seconds before typing this again " + message.author);
-
     else
     {
       imgur.search(message, message.content.toLowerCase());
@@ -178,59 +142,37 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!viewtable' && message.member.hasPermission('ADMINISTRATOR'))
     database.showTable(message);
-
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
-
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
     database.checkLevel(message);
-
-  else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger'))
+  else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger') || message.content.toLowerCase().includes('niqqa') || message.content.toLowerCase().includes('nigguh'))
   {
     message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
     .catch(console.error);
   }
+  /*
   else if(message.content.toLowerCase() === '!showintro')
     info.showIntro(message);
-
   else if(message.content.toLowerCase() === '!rules')
     info.showRules(message);
-
   else if(message.content.toLowerCase() === '!roleinfo')
     info.showRoleInfo(message);
   else if(message.content.toLowerCase() === '!chinfo')
     info.showChannelInfo(message);
-
   else if(message.content.toLowerCase() === '!footer')
     info.showFooter(message);
   else if(message.content.toLowerCase() === '!invite')
     info.showInvite(message);
-  /*
   else if(message.content.toLowerCase() === '!create')
     database.createTable();
-
   else if(message.content.toLowerCase() === '!drop')
     database.drop();
-    */
-
   else if(message.content.toLowerCase() === '!cleardata')
   {
     if(message.member.hasPermission('ADMINISTRATOR'))
       database.clearData(message);
-  }
+  }*/
   else
-  {
-      database.addXP(message);
-      /*
-      botinfo.phrases.some(v =>
-        {
-          if(message.content.toLowerCase().includes(v.statement))
-          {
-            var num = Math.floor(Math.random() * v.reply.length);
-            message.channel.send(message.author + ' ' + v.reply[num]);
-          }
-        });*/
-  }
-
-
+    database.addXP(message);
 }); // End of message event.

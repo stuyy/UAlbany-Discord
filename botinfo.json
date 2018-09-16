@@ -33,43 +33,6 @@
 
   "yearRoles" : "freshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n",
 
-  "phrases" : [
-    {
-      "statement": "great day",
-      "reply": ["It's a great day to be a Great Dane!", "It's never a bad day to be remind yourself that you're a Great Dane!", "The weather indeed is spectacular", "Although it is a great day, tomorrow will be even greater"]
-    },
-    {
-      "statement" : "hello",
-      "reply" : ["Hey there! What's the weather like today?", "Hi! Did you remember to go to the gym today?", "Howdy Partner!", "Hello! Did you introduce yourself already?"]
-    },
-    {
-      "statement" : "hi",
-      "reply" : ["Hey there! What's the weather like today?", "Hi! Did you remember to go to the gym today?", "Howdy Partner!", "Hello! Did you introduce yourself already?"]
-    },
-    {
-      "statement" : "hey",
-      "reply" : ["Hey there! What's the weather like today?", "Hi! Did you remember to go to the gym today?", "Howdy Partner!", "Hello! Did you introduce yourself already?"]
-    },
-    {
-      "statement" : "bye",
-      "reply" : ["Oh... you're leaving already? :(", "It was nice chatting with you!", "See you next time!", "I'm just happy I had the chance to speak to you again"]
-    },
-    {
-      "statement" : "goodbye",
-      "reply" : ["Oh... you're leaving already? :(", "It was nice chatting with you!", "See you next time!", "I'm just happy I had the chance to speak to you again"]
-    },
-    {
-      "statement" : "cya",
-      "reply" : ["Oh... you're leaving already? :(", "It was nice chatting with you!", "See you next time!", "I'm just happy I had the chance to speak to you again"]
-    },
-    {
-      "statement" : "pce",
-      "reply" : ["Oh... you're leaving already? :(", "It was nice chatting with you!", "See you next time!", "I'm just happy I had the chance to speak to you again"]
-    },
-    {
-      "statement": "night",
-      "reply" : ["Sleep with one eye tonight.", "Good night! Sleep well!", "I would advise you to close your window to avoid being robbed in the middle of the night"]
-    }
+  "removeableWords" : ["nigga", "n1gga", "n1ga", "niqqa", "n1qqa", "nigguh", "nigg"]
 
-  ]
 }
