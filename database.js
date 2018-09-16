@@ -30,18 +30,7 @@ exports.createTable = function createTable()
   });
 }
 
-exports.viewXP = function viewXP(message)
-{
-  con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, result) => {
-    if(err) throw err;
-    console.log(message.author + " has " + result[0].xp + " total xp");
-    const embed = new Discord.RichEmbed()
-    .setTitle(message.author.username + "'s total XP")
-    .setColor("#42dcf4")
-    .addField("Total XP: ", result[0].xp);
-    message.channel.send({embed});
-  });
-}
+
 
 exports.clearData = function clearData(message)
 {
@@ -101,19 +90,42 @@ exports.sortTable = function sortTable(message)
     var arr = [];
     result.forEach(result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
-
+      let userLevel = checkUserLevel(result.xp);
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
-      arr.push("Name: " + someMember.user.username + "\nTotal XP: " + result.xp + "\n");
+      arr.push("**Name:** " + someMember.user + "\n**Total XP:** " + result.xp + "\n**Level:** " + userLevel + "\n");
 
     });
     arr.length = 10;
     const embed = new Discord.RichEmbed()
-    .setTitle("Top 10 Leaderboard (Server XP):")
     .setColor("#42f46e")
-    .addField("XP Rankings:\n\n", arr);
+    .addField("Top 10 Leaderboards(User XP):\n\n", arr);
     message.channel.send({embed});
 
   });
+}
+
+function checkUserLevel(xpCount)
+{
+  if(xpCount >= 240 && xpCount < 720)
+    return 1;
+  else if(xpCount >= 720 && xpCount < 1440)
+    return 2;
+  else if(xpCount >= 1440 && xpCount < 2880)
+    return 3;
+  else if(xpCount >= 2880 && xpCount < 5760)
+    return 4;
+  else if(xpCount >= 5760 && xpCount < 11520)
+    return 5;
+  else if(xpCount >= 11520 && xpCount < 23040)
+    return 6;
+  else if(xpCount >= 23040 && xpCount < 57600)
+    return 7;
+  else if(xpCount >= 57600 && xpCount < 144000)
+    return 8;
+  else if(xpCount >= 144000 && xpCount < 360000)
+    return 9;
+  else if(xpCount >= 360000 && xpCount < 900000)
+    return 10;
 }
 
 function xpGenerate(message)
@@ -124,21 +136,29 @@ function xpGenerate(message)
   let randomPercentage = Math.random()/5; // Random percentage multiplier.
   console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " + msgCount);
   return Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/6);
-  /*
-  if(msgCount <= 200) // MAX XP GAINED IS 22
-    return (Math.floor((Math.random()/4) * msgCount)) + Math.floor(msgCount/8);
-  else if(msgCount > 200 && msgCount <= 500)
-    return (Math.floor((Math.random()/3) * msgCount)) + Math.floor(msgCount/8);
-  else if(msgCount > 500 && msgCount < 850))
-    return Math.floor()
- */
 
 }
 
-function checkLevel()
+exports.checkLevel = function checkLevel(message)
 {
+  let authorID = message.author.id;
+
+  con.query(`SELECT * FROM level WHERE id = ${authorID}`, function(err, results, fields) {
+    if(err) throw err;
+    console.log(message.author + " has " + results[0].xp + " xp!");
+    let totalUserXP = results[0].xp;
+    let userLevel = checkUserLevel(totalUserXP);
+    let authorName = message.author.username + "#" + message.author.discriminator + "'s user data";
+    const embed = new Discord.RichEmbed()
+    .setColor("#42dcf4")
+    .setAuthor(authorName, message.author.displayAvatarURL)
+    .addField("Total XP: ", results[0].xp, true)
+    .addField("User Level: ", userLevel, true);
+    message.channel.send({embed});
+  });
 
 }
+
 
 function checkXP(message, result)
 {
@@ -332,6 +352,19 @@ function checkXP(message, result)
       message.member.addRole(role.id);
     }
   }
+}
+
+exports.deleteXP = function deleteXP(memberID, xp)
+{
+  con.query(`SELECT * FROM level WHERE id = ${memberID}`, (err, results, fields) => {
+    if(err) throw err;
+    let currentUserXP = results[0].xp;
+    let updatedXP = currentUserXP - xp;
+    con.query(`UPDATE level SET xp = ${updatedXP} WHERE id = ${memberID}`, (err, result, fields) => {
+      if(err) throw err;
+      console.log("Successfully removed " + xp + " xp from " + memberID);
+    })
+  });
 }
 
 exports.modifyDB = function modifyDB(status, member)

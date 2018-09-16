@@ -64,8 +64,20 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('messageDelete', message => {
-  let content = message.content;
-  let authorUser = message.author;
+
+  let userMember = message.guild.members.find(member => member.id === message.member.id);
+  if(userMember === null || message.content.startsWith("!") || message.content.startsWith("`") || message.author.bot)
+    console.log("User not found, message author was a BOT, or message deleted did not acquire XP to begin with.");
+  else
+  {
+    let content = message.content;
+    let authorUser = message.author;
+    let msgCount = message.content.split(" ").join("").length;
+    let randomPercentage = Math.random()/5;
+    let xpToRemove = Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/6);
+    console.log("The percentage is " + randomPercentage.toFixed(2));
+    database.deleteXP(message.member.id, xpToRemove);
+  }
 });
 
 client.on('message', message => {
@@ -166,11 +178,12 @@ client.on('message', message => {
   }
   else if(message.content.toLowerCase() === '!viewtable' && message.member.hasPermission('ADMINISTRATOR'))
     database.showTable(message);
-  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
-    database.viewXP(message);
 
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
+
+  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
+    database.checkLevel(message);
 
   else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger'))
   {
