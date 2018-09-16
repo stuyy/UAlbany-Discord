@@ -131,7 +131,7 @@ client.on('message', message => {
   {
     commands.viewUserData(message);
   }
-  else if(commands.checkCommand(message, "play") && (message.channel === 'music-bot' || message.member.hasPermission('ADMINISTRATOR')))
+  else if(commands.checkCommand(message, "play") && (message.channel.name === 'music-bot' || message.member.hasPermission('ADMINISTRATOR')))
   {
     console.log("Current Status: " + isReady);
     var args = message.content.split(" ");
