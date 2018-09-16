@@ -63,6 +63,11 @@ client.on('guildMemberRemove', member => {
   }
 });
 
+client.on('messageDelete', message => {
+  let content = message.content;
+  let authorUser = message.author;
+});
+
 client.on('message', message => {
 
   if(message.author.bot) return;

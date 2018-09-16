@@ -65,19 +65,22 @@ exports.addXP = function addXP(message)
     if(err) throw err;
     if(rows.length < 1)
     {
-      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${xpGenerate(message)})`;
+      let acquiredXP = xpGenerate(message);
+      let sql = `INSERT INTO level (id, xp) VALUES ('${message.author.id}', ${acquiredXP})`;
       con.query(sql, (err, result) => {
         if(err) throw err;
-        console.log("Successfully updated XP for " + message.author.username);
+        console.log(message.author.username + " acquired " + acquiredXP + " XP!");
       });
     }
     else
     {
-      let xp = rows[0].xp;
-      let sql = `UPDATE level SET xp = ${xp + xpGenerate(message)} WHERE id = '${message.author.id}'`;
+      let previousXP = rows[0].xp;
+      let acquiredXP = xpGenerate(message);
+      let updatedXP = previousXP + acquiredXP;
+      let sql = `UPDATE level SET xp = ${updatedXP} WHERE id = '${message.author.id}'`;
       con.query(sql, (err, result) => {
         if(err) throw err;
-        console.log("Successfully updated XP for " + message.author.username);
+        console.log(message.author.username + " acquired " + acquiredXP +  " total XP!");
       });
     }
 
@@ -118,7 +121,18 @@ function xpGenerate(message)
   let msgContent = message.content.toLowerCase().split(' ').join('');
   let msgCount = msgContent.length;
 
-  return Math.floor(Math.random() * 25);
+  let randomPercentage = Math.random()/5; // Random percentage multiplier.
+  console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " + msgCount);
+  return Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/6);
+  /*
+  if(msgCount <= 200) // MAX XP GAINED IS 22
+    return (Math.floor((Math.random()/4) * msgCount)) + Math.floor(msgCount/8);
+  else if(msgCount > 200 && msgCount <= 500)
+    return (Math.floor((Math.random()/3) * msgCount)) + Math.floor(msgCount/8);
+  else if(msgCount > 500 && msgCount < 850))
+    return Math.floor()
+ */
+
 }
 
 function checkLevel()
