@@ -8,7 +8,8 @@ const info = require('./uainfo.js');
 const database = require('./database.js');
 const imgur = require('./imgur.js');
 const recentUser = new Set();
-
+const ytdl = require('ytdl-core');
+var isReady = true;
 client.login(config.token);
 
 client.on("ready", () => {
@@ -16,12 +17,8 @@ client.on("ready", () => {
   console.log("Logged in successfully!");
   client.user.setActivity('with Federal Loans | "!help" for more info', {type: 'PLAYING'});
 
-});
 
-client.on('guildUpdate', (oldGuild, newGuild) => {
-  newGuild.fetchAuditLogs().then(audit => console.log(audit.Actions)).catch(console.error);
 });
-
 client.on('guildMemberAdd', member => {
 
   var welcomeChannel = client.channels.find(c => c.name === 'welcome');
@@ -150,6 +147,40 @@ client.on('message', message => {
   {
     message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
     .catch(console.error);
+  }
+  else if(commands.checkCommand(message, "viewuser"))
+  {
+    commands.viewUserData(message);
+  }
+  else if(commands.checkCommand(message, "play") && message.channel === 'music-bot')
+  {
+    console.log("Current Status: " + isReady);
+    var args = message.content.split(" ");
+    let voice = client.channels.find(c => c.id === '488968954618970112');
+    let url = args[1];
+    console.log(url);
+    const stream = ytdl(url, { filter : 'audioonly' });
+    if(isReady)
+    {
+      isReady = false;
+      voice.join()
+      .then(connection => {
+        const stream = ytdl(url, {filter : 'audioonly'});
+        const dispatcher = connection.playStream(stream, { seek: 0, volume: 1});
+        dispatcher.on('end', err => {
+          console.log("End");
+          voice.leave();
+          isReady = true;
+          console.log("Status: " + isReady);
+        });
+      }).catch(err =>console.log(err));
+    }
+
+  }
+  else if(commands.checkCommand(message, "leave"))
+  {
+      let voice = client.channels.find(c => c.id === '488968954618970112');
+      voice.leave();
   }
   /*
   else if(message.content.toLowerCase() === '!showintro')

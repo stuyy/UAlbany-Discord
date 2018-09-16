@@ -108,6 +108,35 @@ function displayResult(added, notAdded, message)
     message.channel.send(embed);
   }
 }
+
+exports.viewUserData = function viewUserData(message)
+{
+  let args = message.content.toLowerCase().split(" ");
+  if(args.length == 2) // If user specified 2 arguments, then the 2nd element is the ID.
+    var memberID = args[1];
+  else if(args.length == 1)
+    var memberID = message.author.id;
+
+  try {
+    let guildMember = message.guild.members.find(m => m.id === memberID);
+    console.log(guildMember.user.username);
+    let date = guildMember.joinedAt;
+    const embed = new Discord.RichEmbed()
+    .setAuthor("User info for " + guildMember.user.tag, guildMember.user.displayAvatarURL)
+    .addField("User Joined On: ", (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear(), true)
+    .addField("User ID: ", guildMember.user.id, true)
+    .addField("User Avatar: ", guildMember.user.displayAvatarURL, true)
+    .addField("User Status: ", guildMember.user.presence.status, true);
+    message.channel.send(embed);
+  }
+  catch(err)
+  {
+    const embed = new Discord.RichEmbed()
+    .setAuthor("Invalid ID specified or user not found")
+    .setDescription("USAGE: !viewuser USER ID");
+    message.channel.send(embed);
+  }
+}
 exports.checkPermission = function checkPermission(message)
 {
   return message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR');
