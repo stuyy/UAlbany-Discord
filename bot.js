@@ -17,30 +17,9 @@ client.on("ready", () => {
   console.log("Logged in successfully!");
   client.user.setActivity('with Federal Loans | "!help" for more info', {type: 'PLAYING'});
 
-
 });
 client.on('guildMemberAdd', member => {
-
-  var welcomeChannel = client.channels.find(c => c.name === 'welcome');
-  var intro = client.channels.find(channel => channel.name === 'introductions');
-  var botChannel = client.channels.find(channel => channel.name === 'bot');
-  let greatDane = member.guild.roles.find(role => role.name === 'Great Dane');
-  welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
-  member.addRole(greatDane.id);
-  database.modifyDB(true, member);
-  var logChannel = client.channels.find(channel => channel.id === '489191706819035154');
-  if(logChannel != null)
-  {
-    let name = member.user.username;
-    let memberID = member.id;
-    let tag = member.user.discriminator;
-    let authorName = name + "#" + tag + " (" + memberID + ")";
-    const embed = new Discord.RichEmbed()
-    .setAuthor(authorName, member.user.displayAvatarURL)
-    .setFooter("User joined")
-    .setColor("#41a9f4");
-    logChannel.send({embed});
-  }
+  commands.newUserAdd(client, member, database);
 });
 
 client.on('guildMemberRemove', member => {
@@ -141,7 +120,7 @@ client.on('message', message => {
     database.showTable(message);
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
-  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR')))
+  else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR') || message.member.hasPermission('MANAGE_MESSAGES')))
     database.checkLevel(message);
   else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger') || message.content.toLowerCase().includes('niqqa') || message.content.toLowerCase().includes('nigguh'))
   {
@@ -152,7 +131,7 @@ client.on('message', message => {
   {
     commands.viewUserData(message);
   }
-  else if(commands.checkCommand(message, "play") && message.channel === 'music-bot')
+  else if(commands.checkCommand(message, "play") && (message.channel === 'music-bot' || message.member.hasPermission('ADMINISTRATOR')))
   {
     console.log("Current Status: " + isReady);
     var args = message.content.split(" ");
