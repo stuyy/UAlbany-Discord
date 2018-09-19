@@ -121,7 +121,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR') || message.member.hasPermission('MANAGE_MESSAGES')))
-    database.checkLevel(message);
+    database.getUserData(message);
   else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger') || message.content.toLowerCase().includes('niqqa') || message.content.toLowerCase().includes('nigguh'))
   {
     message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
