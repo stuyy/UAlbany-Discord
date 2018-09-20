@@ -159,201 +159,40 @@ exports.getUserData = function getUserData(message)
 
 }
 
-
+function showLevelUpMessage(message, level)
+{
+  var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+  var botChannel = message.guild.channels.find(c => c.name === 'bot');
+  const embed = new Discord.RichEmbed()
+  .setTitle("Level Up!")
+  .setAuthor(message.author.username, message.author.avatarURL)
+  .setDescription(message.author + ` has just reached level ${level}. To view your total XP, type !viewxp in the ` + botChannel + " channel!")
+  .setColor("#42f46e");
+  expChannel.send(embed);
+}
 function checkXP(message, result)
 {
   if(result[0].xp >= 240 && result[0].xp < 720)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank One');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 1. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 1);
   else if(result[0].xp >= 720 && result[0].xp < 1440)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Two');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 2. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 2);
   else if(result[0].xp >= 1440 && result[0].xp < 2880)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Three');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 3. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 3);
   else if(result[0].xp >= 2880 && result[0].xp < 5760)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Four');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 4. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 4);
   else if(result[0].xp >= 5760 && result[0].xp < 11520)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Five');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 5. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 5);
   else if(result[0].xp >= 11520 && result[0].xp < 23040)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Six');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 6. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 6);
   else if(result[0].xp >= 23040 && result[0].xp < 57600)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Seven');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 7. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 7);
   else if(result[0].xp >= 57600 && result[0].xp < 144000)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Eight');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 8. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 8);
   else if(result[0].xp >= 144000 && result[0].xp < 360000)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Nine');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 9. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 9);
   else if(result[0].xp >= 360000 && result[0].xp < 900000)
-  {
-    var role = message.guild.roles.find(roles => roles.name === 'Rank Ten');
-    if(message.member.roles.has(role.id))
-      console.log("User already leveled up.");
-
-    else
-    {
-      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-      var botChannel = message.guild.channels.find(c => c.name === 'bot');
-      const embed = new Discord.RichEmbed()
-      .setTitle("Level Up!")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(message.author + " has just reached level 10. To view your total XP, type !viewxp in the " + botChannel + " channel!")
-      .setColor("#42f46e");
-      expChannel.send({embed});
-      message.member.addRole(role.id);
-    }
-  }
+    showLevelUpMessage(message, 10);
 }
-
 exports.deleteXP = function deleteXP(memberID, xp)
 {
   con.query(`SELECT * FROM level WHERE id = ${memberID}`, (err, results, fields) => {

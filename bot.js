@@ -48,10 +48,8 @@ client.on('messageDelete', message => {
   {
     let content = message.content;
     let authorUser = message.author;
-    let msgCount = message.content.split(" ").join("").length;
-    let randomPercentage = Math.random()/5;
-    let xpToRemove = Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/6);
-    console.log("The percentage is " + randomPercentage.toFixed(2));
+    let msgCount = message.content.length;
+    let xpToRemove = msgCount;
     database.deleteXP(message.member.id, xpToRemove);
   }
 });
