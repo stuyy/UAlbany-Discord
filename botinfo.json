@@ -33,8 +33,8 @@
 
   "yearRoles" : "freshmen - Freshmen\nsophomore - Sophomore\njunior - Junior\nsenior - Senior\ntransfer - transfer\n",
 
-  "removeableWords" : ["nigga", "n1gga", "n1ga", "niqqa", "n1qqa", "nigguh", "nigg"],
+  "removeableWords" : ["nigga", "n1gga", "n1ga", "niqqa", "n1qqa", "nigguh", "nigg"]
 
-  
+
 
 }
