@@ -171,16 +171,7 @@ client.on('message', message => {
   else if(message.content.toLowerCase() === '!footer')
     info.showFooter(message);
   else if(message.content.toLowerCase() === '!invite')
-    info.showInvite(message);
-  else if(message.content.toLowerCase() === '!create')
-    database.createTable();
-  else if(message.content.toLowerCase() === '!drop')
-    database.drop();
-  else if(message.content.toLowerCase() === '!cleardata')
-  {
-    if(message.member.hasPermission('ADMINISTRATOR'))
-      database.clearData(message);
-  }*/
+    info.showInvite(message);*/
   else
     database.addXP(message);
 }); // End of message event.

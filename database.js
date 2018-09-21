@@ -19,15 +19,6 @@ exports.showTable = function showTable(message)
   }
   else
     console.log("A non-admin is trying to access this command");
-
-}
-
-exports.createTable = function createTable()
-{
-  con.query('CREATE TABLE level (id VARCHAR(100), xp MEDIUMINT)', err => {
-    if(err) throw err;
-    console.log("Table created Successfully");
-  });
 }
 
 exports.addXP = function addXP(message)
@@ -87,30 +78,19 @@ exports.sortTable = function sortTable(message)
   });
 }
 
-function checkUserLevel(xpCount)
+function checkUserLevel(memberID, callback)
 {
-  if(xpCount >= 240 && xpCount < 720)
-    return 1;
-  else if(xpCount >= 720 && xpCount < 1440)
-    return 2;
-  else if(xpCount >= 1440 && xpCount < 2880)
-    return 3;
-  else if(xpCount >= 2880 && xpCount < 5760)
-    return 4;
-  else if(xpCount >= 5760 && xpCount < 11520)
-    return 5;
-  else if(xpCount >= 11520 && xpCount < 23040)
-    return 6;
-  else if(xpCount >= 23040 && xpCount < 57600)
-    return 7;
-  else if(xpCount >= 57600 && xpCount < 144000)
-    return 8;
-  else if(xpCount >= 144000 && xpCount < 360000)
-    return 9;
-  else if(xpCount >= 360000 && xpCount < 900000)
-    return 10;
+  con.query(`SELECT userLevel fROM level WHERE id = ${memberID}`, function(err, results) => {
+    if(err) throw err;
+    console.log(results[0]);
+    callback(results[0]);
+  })
 }
 
+function getLevelCallback(level)
+{
+  return level;
+}
 function xpGenerate(message)
 {
   let msgContent = message.content.toLowerCase().split(' ').join('');
@@ -130,7 +110,7 @@ exports.getUserData = function getUserData(message)
     if(err) throw err;
     console.log(message.author + " has " + results[0].xp + " xp!");
     let totalUserXP = results[0].xp;
-    let userLevel = checkUserLevel(totalUserXP);
+    let userLevel = checkUserLevel(message.member.id, getLevelCallback);
     let authorName = message.author.username + "#" + message.author.discriminator + "'s user data";
     const embed = new Discord.RichEmbed()
     .setColor("#42dcf4")
