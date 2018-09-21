@@ -59,7 +59,7 @@ exports.addXP = function addXP(message)
     con.query(`SELECT * FROM level WHERE id = '${message.author.id}'`, function (err, result, fields) {
       if (err) throw err;
 
-      //checkXP(message, result);
+      checkXP(message, result);
 
   });
 });
