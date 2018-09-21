@@ -80,7 +80,7 @@ exports.sortTable = function sortTable(message)
 
 function checkUserLevel(memberID, callback)
 {
-  con.query(`SELECT userLevel fROM level WHERE id = ${memberID}`, function(err, results) => {
+  con.query(`SELECT userLevel fROM level WHERE id = ${memberID}`, (err, results) => {
     if(err) throw err;
     console.log(results[0]);
     callback(results[0]);
