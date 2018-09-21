@@ -144,14 +144,31 @@ exports.getUserData = function getUserData(message)
 
 function showLevelUpMessage(message, level)
 {
-  var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
-  var botChannel = message.guild.channels.find(c => c.name === 'bot');
-  const embed = new Discord.RichEmbed()
-  .setTitle("Level Up!")
-  .setAuthor(message.author.username, message.author.avatarURL)
-  .setDescription(message.author + ` has just reached level ${level}. To view your total XP, type !viewxp in the ` + botChannel + " channel!")
-  .setColor("#42f46e");
-  expChannel.send(embed);
+  con.query(`SELECT * FROM level WHERE id = ${message.member.id}`, (err, results, fields) => {
+    if(err) throw err;
+    if(results[0].level != level) //If the user level from the DB is not equal to the level from checkXP.
+    {
+      var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+      var botChannel = message.guild.channels.find(c => c.name === 'bot');
+      const embed = new Discord.RichEmbed()
+      .setTitle("Level Up!")
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setDescription(message.author + ` has just reached level ${level}. To view your total XP, type !viewxp in the ` + botChannel + " channel!")
+      .setColor("#42f46e");
+      expChannel.send(embed);
+
+      // Now update their level.
+      con.query(`UPDATE level SET userLevel = ${level} WHERE id = ${message.member.id}`, (err) => {
+        if(err) throw err;
+        console.log("User level set to " + level + " from level " + results[0].level);
+      });
+    }
+    else
+    {
+      console.log("User already leveled up");
+    }
+  });
+
 }
 function checkXP(message, result)
 {
