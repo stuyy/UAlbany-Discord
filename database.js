@@ -146,7 +146,8 @@ function showLevelUpMessage(message, level)
 {
   con.query(`SELECT * FROM level WHERE id = ${message.member.id}`, (err, results, fields) => {
     if(err) throw err;
-    if(results[0].level != level) //If the user level from the DB is not equal to the level from checkXP.
+    console.log(results[0].userLevel + " AND " + level);
+    if(results[0].userLevel != level) //If the user level from the DB is not equal to the level from checkXP.
     {
       var expChannel = message.guild.channels.find(c => c.name === 'xp-levels');
       var botChannel = message.guild.channels.find(c => c.name === 'bot');
