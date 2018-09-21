@@ -59,7 +59,7 @@ exports.addXP = function addXP(message)
     con.query(`SELECT * FROM level WHERE id = '${message.author.id}'`, function (err, result, fields) {
       if (err) throw err;
 
-      checkXP(message, result);
+      //checkXP(message, result);
 
   });
 });
@@ -153,7 +153,6 @@ function showLevelUpMessage(message, level)
   .setColor("#42f46e");
   expChannel.send(embed);
 }
-/*
 function checkXP(message, result)
 {
   if(result[0].xp >= 240 && result[0].xp < 720)
@@ -176,7 +175,7 @@ function checkXP(message, result)
     showLevelUpMessage(message, 9);
   else if(result[0].xp >= 360000 && result[0].xp < 900000)
     showLevelUpMessage(message, 10);
-}*/
+}
 exports.deleteXP = function deleteXP(memberID, xp)
 {
   con.query(`SELECT * FROM level WHERE id = ${memberID}`, (err, results, fields) => {
