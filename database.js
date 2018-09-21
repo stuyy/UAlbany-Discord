@@ -64,7 +64,7 @@ exports.sortTable = function sortTable(message)
     var arr = [];
     result.forEach(result => {
       var someMember = message.guild.members.find(gm => gm.id === result.id);
-      let userLevel = checkUserLevel(result.xp);
+      let userLevel = result.userLevel;
       //console.log("Username: " + someMember.user.username + " XP: " + result.xp);
       arr.push("**Name:** " + someMember.user + "\n**Total XP:** " + result.xp + "\n**Level:** " + userLevel + "\n");
 
@@ -78,19 +78,20 @@ exports.sortTable = function sortTable(message)
   });
 }
 
-function checkUserLevel(memberID, callback)
+function checkUserLevel(message)
 {
-  con.query(`SELECT userLevel fROM level WHERE id = ${memberID}`, (err, results) => {
+  con.query(`SELECT * FROM level WHERE id = ${message.author.id}`, (err, results) => {
     if(err) throw err;
-    console.log(results[0]);
-    callback(results[0]);
-  })
+    let authorName = message.author.username + "#" + message.author.discriminator + "'s user data";
+    const embed = new Discord.RichEmbed()
+    .setColor("#42dcf4")
+    .setAuthor(authorName, message.author.displayAvatarURL)
+    .addField("Total XP: ", results[0].xp, true)
+    .addField("User Level: ", results[0].userLevel, true);
+    message.channel.send({embed});
+  });
 }
 
-function getLevelCallback(level)
-{
-  return level;
-}
 function xpGenerate(message)
 {
   let msgContent = message.content.toLowerCase().split(' ').join('');
@@ -98,7 +99,10 @@ function xpGenerate(message)
 
   let randomPercentage = Math.floor((Math.random() * 5) + 6)/10; // Random percentage multiplier.
   console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " + msgCount);
-  return Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/2);
+  if(message.channel.name === 'general')
+    return Math.ceil(randomPercentage * msgCount + Math.ceil(msgCount/2)) * 2;
+  else
+    return Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/2);
 
 }
 
@@ -110,14 +114,7 @@ exports.getUserData = function getUserData(message)
     if(err) throw err;
     console.log(message.author + " has " + results[0].xp + " xp!");
     let totalUserXP = results[0].xp;
-    let userLevel = checkUserLevel(message.member.id, getLevelCallback);
-    let authorName = message.author.username + "#" + message.author.discriminator + "'s user data";
-    const embed = new Discord.RichEmbed()
-    .setColor("#42dcf4")
-    .setAuthor(authorName, message.author.displayAvatarURL)
-    .addField("Total XP: ", results[0].xp, true)
-    .addField("User Level: ", userLevel, true);
-    message.channel.send({embed});
+    checkUserLevel(message);
   });
 
 }
