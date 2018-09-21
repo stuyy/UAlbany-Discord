@@ -30,23 +30,6 @@ exports.createTable = function createTable()
   });
 }
 
-
-
-exports.clearData = function clearData(message)
-{
-  con.query(`DELETE FROM level WHERE id = ${message.author.id}`, err => {
-    if(err) throw err;
-    console.log("Cleared data.");
-  });
-}
-
-exports.drop = function drop()
-{
-  con.query("DROP TABLE level", err => {
-    if(err) throw err;
-    console.log("Removed table successfully");
-  })
-}
 exports.addXP = function addXP(message)
 {
   if(message.content.startsWith("`") || message.content.startsWith("!")) return;
@@ -170,6 +153,7 @@ function showLevelUpMessage(message, level)
   .setColor("#42f46e");
   expChannel.send(embed);
 }
+/*
 function checkXP(message, result)
 {
   if(result[0].xp >= 240 && result[0].xp < 720)
@@ -192,7 +176,7 @@ function checkXP(message, result)
     showLevelUpMessage(message, 9);
   else if(result[0].xp >= 360000 && result[0].xp < 900000)
     showLevelUpMessage(message, 10);
-}
+}*/
 exports.deleteXP = function deleteXP(memberID, xp)
 {
   con.query(`SELECT * FROM level WHERE id = ${memberID}`, (err, results, fields) => {
@@ -214,7 +198,7 @@ exports.modifyDB = function modifyDB(status, member)
       if(err) throw err;
       if(rows.length < 1)
       {
-        let sql = `INSERT INTO level (id, xp) VALUES ('${member.id}', 0)`;
+        let sql = `INSERT INTO level (id, xp, userLevel) VALUES ('${member.id}', 0, 0)`;
         con.query(sql, (err, result) => {
           if(err) throw err;
           console.log("Successfully updated XP for " + member.user.username);
