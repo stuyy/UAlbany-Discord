@@ -144,7 +144,7 @@ exports.newUserAdd = function newUserAdd(client, member, database)
   var botChannel = client.channels.find(channel => channel.name === 'bot');
   let greatDane = member.guild.roles.find(role => role.name === 'Great Dane');
   welcomeChannel.send("Welcome to the server " + member.user + "! Feel free to introduce yourself over on" + intro + " and add yourself to a role on the " + botChannel + " channel!");
-  member.addRole(greatDane.id);
+  
   database.modifyDB(true, member);
   var logChannel = client.channels.find(channel => channel.id === '489191706819035154');
   if(logChannel != null)
@@ -159,6 +159,11 @@ exports.newUserAdd = function newUserAdd(client, member, database)
     .setColor("#41a9f4");
     logChannel.send({embed});
   }
+
+  setTimeout(function() {
+    member.addRole(greatDane.id);
+    console.log(member.user.username + " successfully added to the Great Dane role");
+  }, 300000)
 }
 exports.checkPermission = function checkPermission(message)
 {

@@ -19,7 +19,9 @@ client.on("ready", () => {
 
 });
 client.on('guildMemberAdd', member => {
-  commands.newUserAdd(client, member, database);
+
+    commands.newUserAdd(client, member, database);
+
 });
 
 client.on('guildMemberRemove', member => {
@@ -38,6 +40,7 @@ client.on('guildMemberRemove', member => {
     logChannel.send({embed});
   }
 });
+
 
 client.on('messageDelete', message => {
 
