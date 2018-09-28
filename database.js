@@ -98,12 +98,8 @@ function xpGenerate(message)
   let msgCount = msgContent.length;
 
   let randomPercentage = Math.floor((Math.random() * 5) + 6)/10; // Random percentage multiplier.
-  console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " + msgCount);
-  if(message.channel.name === 'general')
-    return Math.ceil(randomPercentage * msgCount + Math.ceil(msgCount/2)) * 2;
-  else
-    return Math.ceil(randomPercentage * msgCount) + Math.ceil(msgCount/2);
-
+  console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " +
+  return Math.ceil(randomPercentage * msgCount + Math.ceil(msgCount/2)) * 10;
 }
 
 exports.getUserData = function getUserData(message)

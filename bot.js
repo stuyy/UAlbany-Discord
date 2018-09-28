@@ -6,9 +6,8 @@ const config = require('./config.json');
 const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const database = require('./database.js');
-const imgur = require('./imgur.js');
-const recentUser = new Set();
 const ytdl = require('ytdl-core');
+const trivia = require('./trivia-games/trivia.js');
 var isReady = true;
 client.login(config.token);
 
@@ -104,33 +103,17 @@ client.on('message', message => {
     info.showMap(message);
   else if(message.content.toLowerCase().startsWith("!hours"))
     info.showHours(message);
-  else if ((message.channel.name === 'imgur-posts'))
-  {
-    if(recentUser.has(message.author.id))
-      message.channel.send("Please wait 15 seconds before typing this again " + message.author);
-    else
-    {
-      imgur.search(message, message.content.toLowerCase());
-      recentUser.add(message.author.id);
-      setTimeout(()=>{
-        recentUser.delete(message.author.id);
-      }, 15000);
-    }
-  }
   else if(message.content.toLowerCase() === '!viewtable' && message.member.hasPermission('ADMINISTRATOR'))
     database.showTable(message);
   else if(message.content.toLowerCase() === '!rankings' && (message.channel.name === 'bot' || message.member.hasPermission('ADMINISTRATOR')))
     database.sortTable(message);
   else if(message.content.toLowerCase() === '!viewxp' && (message.channel.name === 'bot' ||  message.member.hasPermission('ADMINISTRATOR') || message.member.hasPermission('MANAGE_MESSAGES')))
     database.getUserData(message);
-  else if(message.content.toLowerCase().includes('nigga') || message.content.toLowerCase().includes('fag') || message.content.toLowerCase().includes('nigger') || message.content.toLowerCase().includes('niqqa') || message.content.toLowerCase().includes('nigguh'))
-  {
-    message.delete().then(msg => console.log('Deleted message from ${msg.author.username}'))
-    .catch(console.error);
-  }
   else if(commands.checkCommand(message, "viewuser"))
-  {
     commands.viewUserData(message);
+  else if(commands.checkCommand(message, "trivia"))
+  {
+    trivia.displayQuestion(message);
   }
   else if(commands.checkCommand(message, "play") && (message.channel.name === 'music-bot' || message.member.hasPermission('ADMINISTRATOR')))
   {
