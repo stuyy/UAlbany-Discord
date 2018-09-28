@@ -99,8 +99,15 @@ function xpGenerate(message)
 
   let randomPercentage = Math.floor((Math.random() * 5) + 6)/10; // Random percentage multiplier.
   console.log("The percentage is " + randomPercentage.toFixed(2) + " and we are multiplying it by " + msgCount);
-
-  return Math.ceil(randomPercentage * msgCount + Math.ceil(msgCount/2)) * 10;
+  let xpGained = Math.ceil(randomPercentage * msgCount + Math.ceil(msgCount/2)) * 10;
+  let xpChannel = message.guild.channels.find(c => c.name === 'xp-levels');
+  const embed = new Discord.RichEmbed()
+  .setTitle("")
+  .setAuthor(message.author.username, message.author.avatarURL)
+  .setDescription(message.author + ` just acquired ${xpGained} XP!`)
+  .setColor("#42f46e");
+  xpChannel.send(embed);
+  return xpGained;
 
 
 }
