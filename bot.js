@@ -18,9 +18,7 @@ client.on("ready", () => {
 
 });
 client.on('guildMemberAdd', member => {
-
     commands.newUserAdd(client, member, database);
-
 });
 
 client.on('guildMemberRemove', member => {
@@ -115,11 +113,11 @@ client.on('message', message => {
   {
     trivia.displayQuestion(message);
   }
-  else if(commands.checkCommand(message, "play") && (message.channel.name === 'music-bot' || message.member.hasPermission('ADMINISTRATOR')))
+  else if(commands.checkCommand(message, "play") && (message.channel.name === 'music' || message.member.hasPermission('ADMINISTRATOR')))
   {
     console.log("Current Status: " + isReady);
     var args = message.content.split(" ");
-    let voice = client.channels.find(c => c.id === '488968954618970112');
+    let voice = client.channels.find(c => c.id === '497242812933472278');
     let url = args[1];
     console.log(url);
     const stream = ytdl(url, { filter : 'audioonly' });
@@ -142,7 +140,7 @@ client.on('message', message => {
   }
   else if(commands.checkCommand(message, "leave"))
   {
-      let voice = client.channels.find(c => c.id === '488968954618970112');
+      let voice = client.channels.find(c => c.id === '497242812933472278');
       voice.leave();
   }
   /*
