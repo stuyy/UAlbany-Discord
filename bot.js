@@ -7,7 +7,6 @@ const weather = require('./weather.js');
 const info = require('./uainfo.js');
 const database = require('./database.js');
 const ytdl = require('ytdl-core');
-const trivia = require('./trivia-games/trivia.js');
 var isReady = true;
 client.login(config.token);
 
