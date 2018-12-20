@@ -1,19 +1,35 @@
+const Member = require('../models/member');
+
 class BotCommands {
 
-    async isInDatabase(guildMember, memberModel)
+    async isInDatabase(guildMember)
     {
-        const member = await memberModel.findOne({ clientID: guildMember.id });
-        try {
-            if(member)
-                return true;
-            else
-                throw new Error("Member not in Database.");
-        }
-        catch(ex)
+        console.log(guildMember);
+        const member = await Member.findOne({ clientID: guildMember.id });
+        if(member == null) 
         {
-            console.log(ex);
+            
         }
+        else 
+            return true;
+    }
+
+    add(guildMember)
+    {
+        let newMember = {
+            username: guildMember.user.username,
+            clientID: guildMember.id,
+            joinedDate: guildMember.joinedAt,
+            discriminator: guildMember.user.discriminator
+        }
+
+        var newGuildMember = new Member(newMember);
+        newGuildMember.save()
+        .then(member => console.log("Saved " + member.username + "#" + member.discriminator + " to the Database."))
+        .catch(err => console.log(err));
+
     }
 }
+
 
 module.exports = { BotCommands };
