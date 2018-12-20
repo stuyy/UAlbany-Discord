@@ -2,12 +2,14 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const CONFIG = require('./config.json');
 const Member = require('./models/member');
+const { BotCommands } = require('./utilities/commands');
+
 client.login(CONFIG.token);
 
 client.on("ready", () => {
 
   console.log("Logged in successfully!");
-  client.user.setActivity('with Federal Loans | "!help" for more info', {type: 'PLAYING'});
+  client.user.setActivity('to Anson\'s Podcast', {type: 'Listening'});
 
 });
 client.on('guildMemberAdd', member => {
@@ -28,6 +30,9 @@ client.on('guildMemberAdd', member => {
   // After saving the user to the Database, apply them the Great Dane role.
 });
 
+/**
+ * Deletion of Member successful.
+ */
 client.on('guildMemberRemove', member => {
   Member.deleteOne({ clientID: member.id })
   .then(member => {
@@ -43,6 +48,9 @@ client.on('messageDelete', message => {
 
 client.on('message', message => {
 
+  const commandUtility = new BotCommands();
   if(message.author.bot) return;
-  
+  // First Check if the User is in the Database.
+  let guildMember = message.member;
+  let flag = commandUtility.isInDatabase(guildMember, Member);
 }); // End of message event.
