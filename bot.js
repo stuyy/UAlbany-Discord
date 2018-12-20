@@ -11,14 +11,20 @@ client.on("ready", () => {
 
 });
 client.on('guildMemberAdd', member => {
-
+  console.log("New member arrived.");
   var newMember = {
     username: member.user.username,
     clientID: member.id,
     joinedDate: member.joinedAt,
     discriminator: member.user.discriminator
   }
-  Member mem = new Member(newMember);
+  var newGuildMember = new Member(newMember);
+  newGuildMember.save()
+  .then(member => {
+    console.log("Member Saved to DB.");
+    console.log(member);
+  })
+  .catch(err => console.log(err));
 });
 
 client.on('guildMemberRemove', member => {

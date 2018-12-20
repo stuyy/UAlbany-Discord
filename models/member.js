@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/danediscord', { useNewUrlParser: true }, err => {
     if(err)
         throw err;
+    else 
+        console.log("Successfully connected to the Database.");
 });
 
 var memberSchema = mongoose.Schema({
