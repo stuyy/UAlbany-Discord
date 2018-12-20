@@ -25,12 +25,17 @@ client.on('guildMemberAdd', member => {
     console.log(member);
   })
   .catch(err => console.log(err));
+  // After saving the user to the Database, apply them the Great Dane role.
 });
 
 client.on('guildMemberRemove', member => {
-  
+  Member.deleteOne({ clientID: member.id })
+  .then(member => {
+    console.log("Member deleted successfully");
+    console.log(member);
+  })
+  .catch(err => console.log(err));
 });
-
 
 client.on('messageDelete', message => {
 
