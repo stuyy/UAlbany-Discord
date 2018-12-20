@@ -22,6 +22,10 @@ var memberSchema = mongoose.Schema({
     discriminator: {
         type: String,
         required: true
+    },
+    available: {
+        type: Boolean,
+        required: true
     }
 });
 

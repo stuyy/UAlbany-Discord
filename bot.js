@@ -18,6 +18,17 @@ client.on('guildMemberAdd', member => {
   console.log("New member arrived.");
   let util = new BotCommands();
   util.add(member);
+  // Print welcome message.
+
+  var welcomeChannel = member.guild.channels.find(channel => channel.name === 'welcome');
+
+  try {
+    welcomeChannel.send("Welcome to the server " + member.user + "!");
+  }
+  catch(ex)
+  {
+    console.log(ex);
+  }
 });
 
 /**
@@ -25,7 +36,7 @@ client.on('guildMemberAdd', member => {
  */
 client.on('guildMemberRemove', member => {
   let util = new BotCommands();
-  util.delete(member);
+  util.setUserAvailability(member);
 });
 
 client.on('messageDelete', message => {

@@ -6,35 +6,46 @@ class BotCommands {
     {
         console.log(guildMember);
         const member = await Member.findOne({ clientID: guildMember.id });
-        if(member == null) 
+        console.log(member);
+        return member;
+    }
+
+    async add(guildMember)
+    {
+        var exists = await this.isInDatabase(guildMember);
+
+        if(exists)
         {
-            
+            this.setUserAvailability(guildMember)
+            .then(member => console.log("OK"))
+            .catch(err => console.log(err));
         }
-        else 
-            return true;
+
+        else {
+            let newMember = {
+                username: guildMember.user.username,
+                clientID: guildMember.id,
+                joinedDate: guildMember.joinedAt,
+                discriminator: guildMember.user.discriminator,
+                available: true
+            }
+    
+            var newGuildMember = new Member(newMember);
+            newGuildMember.save()
+            .then(member => console.log("Saved " + member.username + "#" + member.discriminator + " to the Database."))
+            .catch(err => console.log(err));
+        }
     }
 
-    add(guildMember)
+    async setUserAvailability(guildMember)
     {
-        let newMember = {
-            username: guildMember.user.username,
-            clientID: guildMember.id,
-            joinedDate: guildMember.joinedAt,
-            discriminator: guildMember.user.discriminator
-        }
+        var member = await Member.findOne({ clientID: guildMember.id });
 
-        var newGuildMember = new Member(newMember);
-        newGuildMember.save()
-        .then(member => console.log("Saved " + member.username + "#" + member.discriminator + " to the Database."))
+        var status = !member.available;
+        console.log(status);
+        Member.findOneAndUpdate({ clientID: guildMember.id }, { available:  status})
+        .then(member => console.log("Member left. Changed availability to " + member.available))
         .catch(err => console.log(err));
-    }
-    delete(guildMember)
-    {
-        Member.deleteOne({ clientID: guildMember.id })
-        .then(member => {
-            console.log("Removed.");
-            console.log(member);
-        }).catch(err => console.log(err));
     }
 }
 
