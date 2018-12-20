@@ -16,20 +16,16 @@ client.on('error', console.error);
 
 client.on('guildMemberAdd', member => {
   console.log("New member arrived.");
-  let commandUtility = new BotCommands();
-  commandUtility.add(member);
+  let util = new BotCommands();
+  util.add(member);
 });
 
 /**
  * Deletion of Member successful.
  */
 client.on('guildMemberRemove', member => {
-  Member.deleteOne({ clientID: member.id })
-  .then(member => {
-    console.log("Member deleted successfully");
-    console.log(member);
-  })
-  .catch(err => console.log(err));
+  let util = new BotCommands();
+  util.delete(member);
 });
 
 client.on('messageDelete', message => {

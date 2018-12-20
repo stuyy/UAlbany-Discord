@@ -27,7 +27,14 @@ class BotCommands {
         newGuildMember.save()
         .then(member => console.log("Saved " + member.username + "#" + member.discriminator + " to the Database."))
         .catch(err => console.log(err));
-
+    }
+    delete(guildMember)
+    {
+        Member.deleteOne({ clientID: guildMember.id })
+        .then(member => {
+            console.log("Removed.");
+            console.log(member);
+        }).catch(err => console.log(err));
     }
 }
 
