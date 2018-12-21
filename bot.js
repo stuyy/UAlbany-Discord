@@ -73,5 +73,18 @@ client.on('message', async message => {
     await command.add(guildMember);
     command.handleCommand(message);
   }
-
 }); // End of message event.
+
+client.on('messageDelete', message => {
+
+  if(message.author.bot) return;
+  let serverLogChannel = message.guild.channels.find(ch => ch.name === 'server-log');
+  const embed = new Discord.RichEmbed();
+  embed.setAuthor(message.author.username, message.author.displayAvatarURL);
+  embed.setDescription("**Message Deleted** - " + message.content);
+  embed.setColor("#f49e42")
+  serverLogChannel.send(embed);
+
+});
+
+
