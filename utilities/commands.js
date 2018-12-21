@@ -1,12 +1,11 @@
 const Member = require('../models/member');
+const EventEmitter = require('events');
 
 class BotCommands {
 
     async isInDatabase(guildMember)
     {
-        console.log(guildMember);
         const member = await Member.findOne({ clientID: guildMember.id });
-        console.log(member);
         return member;
     }
 
@@ -20,7 +19,6 @@ class BotCommands {
             .then(member => console.log("OK"))
             .catch(err => console.log(err));
         }
-
         else {
             let newMember = {
                 username: guildMember.user.username,
@@ -39,15 +37,29 @@ class BotCommands {
 
     async setUserAvailability(guildMember)
     {
-        var member = await Member.findOne({ clientID: guildMember.id });
+        try {
+            var member = await Member.findOne({ clientID: guildMember.id });
 
-        var status = !member.available;
-        console.log(status);
-        Member.findOneAndUpdate({ clientID: guildMember.id }, { available:  status})
-        .then(member => console.log("Member left. Changed availability to " + member.available))
-        .catch(err => console.log(err));
+            var status = !member.available;
+            var updateMember = await Member.findOneAndUpdate({ clientID: guildMember.id }, { available:  status});
+        }
+        catch(ex)
+        {
+            console.log(ex);
+        }
+    }
+
+    handleCommand(message)
+    {
+        if(this.isCommand(message.content, "help"))
+            message.channel.send("Help Info");
+            
+    }
+
+    isCommand(message, command)
+    {
+        return message.toLowerCase().startsWith("?" +  command);
     }
 }
-
 
 module.exports = { BotCommands };
