@@ -19,14 +19,26 @@ client.on('guildMemberAdd', member => {
   let util = new BotCommands();
   util.add(member);
   // Print welcome message.
-  var channel = member.guild.channels.find(channel => channel.name === 'welcome');
+  var welcomeChannel = member.guild.channels.find(channel => channel.name === 'welcome');
+  var memberLogChannel = member.guild.channels.find(chan => chan.name === 'member-log');
+  var introductionChannel = member.guild.channels.find(chan => chan.name === 'introductions');
+  var botChannel = member.guild.channels.find(chan => chan.name === 'bot');
 
   try {
-    channel.send("Welcome to the server " + member.user + "!");
+    welcomeChannel.send("Welcome to the server " + member.user + "! Introduce yourself over at the " + introductionChannel + " channel and assign yourself to a role in the " + botChannel + " channel.");
+    
   }
   catch(ex)
   {
     console.log(ex);
+  }
+  finally {
+    let authorName = member.user.username + "#" + member.user.discriminator + " <" + member.id +">";
+    const embed = new Discord.RichEmbed()
+    .setAuthor(authorName, member.user.displayAvatarURL)
+    .setFooter("User joined")
+    .setColor("#41a9f4");
+    memberLogChannel.send({embed});
   }
 });
 
@@ -36,6 +48,13 @@ client.on('guildMemberAdd', member => {
 client.on('guildMemberRemove', member => {
   let util = new BotCommands();
   util.setUserAvailability(member);
+  var memberLogChannel = member.guild.channels.find(chan => chan.name === 'member-log');
+  let authorName = member.user.username + "#" + member.user.discriminator + " <" + member.id + ">";
+  const embed = new Discord.RichEmbed()
+    .setAuthor(authorName, member.user.displayAvatarURL)
+    .setFooter("User left")
+    .setColor("#f44141");
+    memberLogChannel.send(embed);
 });
 
 client.on('message', async message => {
