@@ -1,5 +1,6 @@
 const Member = require('../models/member');
 const EventEmitter = require('events');
+const Discord = require('discord.js');
 
 class BotCommands {
 
@@ -48,14 +49,30 @@ class BotCommands {
             console.log(ex);
         }
     }
-
     handleCommand(message)
     {
         if(this.isCommand(message.content, "help"))
-            message.channel.send("Help Info");
+        {
+            const embed = new Discord.RichEmbed();
+            embed.setTitle("Help Directory");
+            embed.setDescription("**?help** - Lists all of the available commands from Dane Bot\n" +
+            "**?add** - Assigns user to the role(s) specified. e.g: ?addrole Computer Science/Mathematics\n" +
+            "**?remove** - Removes the user from the specified role(s)\n" + 
+            "**?view** - Display information about a user provided by their Discord Client ID\n" +
+            "**?play** - Plays a YouTube stream provided by its URL in the Music Voice Channel\n" +
+            "**?weather** - Gets the current weather status provided by a city name\n");
+            message.channel.send(embed);
             
+        }
+        else if(this.isCommand(message.content, "roles"))
+            message.channel.send("Roles");
+        else if(this.isCommand(message.content, "add"));
+        else if(this.isCommand(message.content, "remove"));
+        else if(this.isCommand(message.content, "ban"));
+        else if(this.isCommand(message.content, "kick"));
+        else if(this.isCommand(message.content, "mute"));
     }
-
+    
     isCommand(message, command)
     {
         return message.toLowerCase().startsWith("?" +  command);

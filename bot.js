@@ -19,11 +19,10 @@ client.on('guildMemberAdd', member => {
   let util = new BotCommands();
   util.add(member);
   // Print welcome message.
-  
-  var welcomeChannel = member.guild.channels.find(channel => channel.name === 'welcome');
+  var channel = member.guild.channels.find(channel => channel.name === 'welcome');
 
   try {
-    welcomeChannel.send("Welcome to the server " + member.user + "!");
+    channel.send("Welcome to the server " + member.user + "!");
   }
   catch(ex)
   {
@@ -39,10 +38,6 @@ client.on('guildMemberRemove', member => {
   util.setUserAvailability(member);
 });
 
-client.on('messageDelete', message => {
-
-});
-
 client.on('message', async message => {
 
   const command = new BotCommands();
@@ -52,6 +47,7 @@ client.on('message', async message => {
   // First Check if the User is in the Database.
   let guildMember = message.member;
   let result = await command.isInDatabase(guildMember);
+
   if(result)
     command.handleCommand(message);
   else {
